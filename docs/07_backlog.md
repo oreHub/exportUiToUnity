@@ -2,13 +2,9 @@
 
 ## プラグイン（Claude Code で進める）
 
-- [ ] **段階 3: 書き出し**（`tools/export_ui.py` と同じ出力）
-  - 書き出し先フォルダの選択と記憶（UXP の `localFileSystem`、許可は最小に）
-  - 画像: 部品ごとに area_ / space_ を隠して書き出し、絵の範囲で切り出す。同じ絵は 1 枚にまとめる
-  - 枠（画像の area_、`_Img` の領域）がある画像は枠の大きさにし、周りを透明にする。はみ出したら注意を出す
-  - layout.json / report.html（`tools/report_template.html`）/ history.json / preview.png
-  - 版の判定と XMP（`uiexp:ScreenId` / `uiexp:BaseVersion`）、PSD の保存
-  - Photoshop での画像の書き出し方法は要調査（複製して新しいドキュメントで書き出す、imaging API など）
+- [ ] **段階 3: 書き出し** — 作成済み（0.3.0）。実機の確認待ち（`docs/04_plugin.md` の「書き出し」）
+  - 画像は「新しいドキュメントに複製して書き出す」方式（確実さを優先。速さが要るようになったら imaging API を検討）
+  - 実機で確かめること: 効果つきの部品・グループ・枠つきの画像が見た目どおりか、XMP の書き込みと保存、2 回目の「変更なし」
 - [ ] `_Fx` の印を解析で読む（今は `MARKS` に無いので名前に残ってしまう）。Python 版も同時に
 - [ ] 効果の分割の書き出し（Glow / Art / Stroke、光彩は白で書き出し色を記録）
 - [ ] 枠からのはみ出しを解析の時点でも出す（Photoshop の効果込みの範囲 `bounds` を使えば可能）

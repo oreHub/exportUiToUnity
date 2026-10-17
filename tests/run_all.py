@@ -53,11 +53,23 @@ def main():
 
     print('== 4. 仮の Photoshop でパネルを動かす')
     c, o = run(['node', os.path.join(H, 'mock_panel.js'), os.path.join(fx, 'Home.layers.json')])
-    good = c == 0 and EXPECT_HOME in o and 'renamed:' in o
+    expect_export = ['export 1: 書き出しました: 版', 'report ok true', 'export 2: 前の版', '書き出しを止めました: この PSD には書き出しの記録がありません',
+                     'export 3 forced: 前の版', 'export 4: 書き出しました', '変更 1 | versions', 'export 5: 画面 ID は']
+    good = c == 0 and EXPECT_HOME in o and 'renamed:' in o and all(x in o for x in expect_export)
     ok &= good
     for line in o.splitlines():
-        if line.startswith(('counts', 'fix buttons', 'renamed', 'after fix')): print('  ' + line[:160])
+        if line.startswith(('counts', 'fix buttons', 'renamed', 'after fix', 'export')): print('  ' + line[:160])
     if not good: print(o[-3000:])
+
+    print('== 5. 書き出しの照合（Python 版 export_ui.py と JS 版 core/export.js）')
+    ref, work = os.path.join(fx, 'Home.export.json'), os.path.join(fx, 'export_work')
+    c1, o1 = run([sys.executable, os.path.join(H, 'export_ref.py'), os.path.join(ROOT, 'samples', 'Home.psd'),
+                  os.path.join(fx, 'home_unmarked.py.json'), work, ref])
+    c2, o2 = run(['node', os.path.join(H, 'export_parity.js'), os.path.join(fx, 'Home.layers.json'), ref, os.path.join(fx, 'home_unmarked.py.json')])
+    good = c1 == 0 and c2 == 0
+    ok &= good
+    print(f'  Home: {"一致" if good else "NG"}  {o2.strip().splitlines()[0] if o2.strip() else ""}')
+    if not good: print(o1[-3000:], o2[-3000:])
 
     print('\n結果:', 'すべて OK' if ok else '失敗あり')
     sys.exit(0 if ok else 1)

@@ -19,7 +19,7 @@ PSD（印つき） ─ Photoshop プラグイン（解析・修正・書き出�
 
 | 場所 | 中身 | 状態 |
 | --- | --- | --- |
-| `plugin/UIExport/` | Photoshop UXP プラグイン（パネル） | 段階 1（解析・表示）と段階 2（名前の修正）まで完成。段階 3（書き出し）は未着手 |
+| `plugin/UIExport/` | Photoshop UXP プラグイン（パネル） | 段階 1（解析・表示）と段階 2（名前の修正）まで完成。段階 3（書き出し）は作成済みで実機の確認待ち |
 | `tools/` | Python 版（解析 `psd_to_layout.py`、書き出し `export_ui.py`、レポートのひな形） | 書き出しまで動く検証版。プラグインの書き出しの手本 |
 | `tests/` | Photoshop が無くても動くテスト | `python tests/run_all.py` |
 | `samples/` | サンプル PSD（`Home.psd` が現在の正、`home_unmarked.psd` は印を付ける前） | |
@@ -47,6 +47,6 @@ PSD（印つき） ─ Photoshop プラグイン（解析・修正・書き出�
 
 ## 次にやること（詳細は `docs/07_backlog.md`）
 
-1. プラグイン段階 3: 書き出し（`tools/export_ui.py` と同じ出力を Photoshop の中で作る）
+1. プラグイン段階 3: 書き出しの実機確認と修正（`tools/export_ui.py` と同じ出力を Photoshop の中で作る）
 2. `_Fx`（効果を別画像に分ける）の印の読み取りと書き出し
 3. Unity 取り込みツール（`docs/05_unity_importer.md`）

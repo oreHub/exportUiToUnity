@@ -1,11 +1,14 @@
-/* UI Export パネル（段階 2: 解析と表示、レイヤー名で直せる提案の適用） */
+/* UI Export パネル（段階 3: 解析と表示、レイヤー名で直せる提案の適用、書き出し） */
 'use strict';
 const { app, core, action } = require('photoshop');
+const { storage } = require('uxp');
 const { readDocument, readDocumentFast, readDocumentSlow, compareReads } = require('./ps/read.js');
 const { analyze } = require('./core/analyze.js');
 const { computeFixes, revealInfo } = require('./core/fixes.js');
+const X = require('./core/export.js');
+const PX = require('./ps/export.js');
 
-const PLUGIN_VERSION = '0.2.9';
+const PLUGIN_VERSION = '0.3.0';
 const LEVELS = [['error', 'エラー'], ['warn', '注意'], ['suggest', '提案'], ['info', '情報']];
 const LEVEL_LABEL = Object.fromEntries(LEVELS);
 // 項目の見出し（問題の種類の短い説明）
@@ -49,13 +52,14 @@ function showMessage(text, detail, kind) {
 }
 
 // ------------------------------------------------------------------ 解析
+// 成功したら true
 async function runAnalyze() {
   showMessage(null);
   const btn = $('btnAnalyze');
   btn.setAttribute('disabled', '');
   $('docInfo').textContent = '読み取り中…';
   try {
-    if (!app.activeDocument) { $('docInfo').textContent = 'PSD を開いて「解析」'; showMessage('ドキュメントが開かれていません。'); return; }
+    if (!app.activeDocument) { $('docInfo').textContent = 'PSD を開いて「解析」'; showMessage('ドキュメントが開かれていません。'); return false; }
     const t0 = Date.now();
     const input = await readDocument();
     const t1 = Date.now();
@@ -64,6 +68,8 @@ async function runAnalyze() {
     const pathToId = new Map();
     (function walk(n) { for (const c of n.children || []) { if (!pathToId.has(c.path) && c.layer_id !== undefined) pathToId.set(c.path, c.layer_id); walk(c); } })(result.raw);
     state = { input, result, pathToId, docId: input.doc_id, fixes: computeFixes(result) };
+    try { state.stamp = X.readStamp(await PX.readXmp(input.doc_id)); } catch (e) { state.stamp = {}; }
+    prefillScreen();
     const sec = ms => (ms / 1000).toFixed(1);
     const info = $('docInfo'); clear(info);
     info.appendChild(el('div', null, `${input.source}  ${input.canvas[0]}×${input.canvas[1]}`));
@@ -72,9 +78,11 @@ async function runAnalyze() {
     render();
     if (input.fast_error)
       showMessage('速い読み取りができなかったので、標準の読み取りで解析しました（結果は正しいです）。下の内容を送ってもらえれば直します。', input.fast_error);
+    return true;
   } catch (e) {
     $('docInfo').textContent = '解析できませんでした';
     showMessage('解析中にエラーが出ました。下の内容をそのまま送ってください。', `${e && e.message}\n\n${e && e.stack}`);
+    return false;
   } finally {
     btn.removeAttribute('disabled');
   }
@@ -301,6 +309,181 @@ function renderTree() {
   })(r.tree, 0);
 }
 
+// ------------------------------------------------------------------ 書き出し
+// 書き出し先は Unity プロジェクトの UIExport フォルダ。選んだフォルダだけに許可をもらい、次回も使えるように記録する
+let outFolder = null;
+let lastDocId = null;
+
+function showOutFolder() {
+  $('outPath').textContent = outFolder ? (outFolder.nativePath || outFolder.name) : '未選択';
+}
+async function restoreOutFolder() {
+  try {
+    const t = localStorage.getItem('uiexport.outToken');
+    if (t) outFolder = await storage.localFileSystem.getEntryForPersistentToken(t);
+  } catch (e) { outFolder = null; }
+  showOutFolder();
+}
+async function pickOutFolder() {
+  try {
+    const f = await storage.localFileSystem.getFolder();
+    if (!f) return false;
+    outFolder = f;
+    try { localStorage.setItem('uiexport.outToken', await storage.localFileSystem.createPersistentToken(f)); } catch (e) { /* 次回また選ぶ */ }
+    showOutFolder();
+    return true;
+  } catch (e) {
+    exportMessage('フォルダを選べませんでした。', 'error', [], `${e && e.message}`);
+    return false;
+  }
+}
+
+// 画面 ID: PSD に記録があればそれを、無ければファイル名から
+function prefillScreen() {
+  if (state.docId === lastDocId) return;
+  lastDocId = state.docId;
+  $('screenId').value = state.stamp.ScreenId || (state.input.source || '').replace(/\.[^.]+$/, '').replace(/[^A-Za-z0-9_-]/g, '_');
+}
+
+// 書き出しの結果・確認の表示。buttons: [[ラベル, 押したときの処理]]
+function exportMessage(text, kind, buttons, detail) {
+  const m = $('exportMsg'); clear(m);
+  if (!text) return;
+  const box = el('div', `xmsg ${kind || ''}`);
+  for (const line of String(text).split('\n')) box.appendChild(el('div', null, line));
+  if (detail) { const ta = document.createElement('textarea'); ta.value = detail; ta.readOnly = true; box.appendChild(ta); }
+  if (buttons && buttons.length) {
+    const row = el('div', 'xbtns');
+    for (const [label, fn] of buttons) { const b = el('div', 'fbtn', label); b.addEventListener('click', fn); row.appendChild(b); }
+    box.appendChild(row);
+  }
+  m.appendChild(box);
+}
+
+async function getChild(folder, name) { try { return await folder.getEntry(name); } catch (e) { return null; } }
+async function readJson(folder, name) {
+  const f = await getChild(folder, name);
+  return f ? JSON.parse(await f.read({ format: storage.formats.utf8 })) : null;
+}
+async function writeText(folder, name, text) {
+  const f = await folder.createFile(name, { overwrite: true });
+  await f.write(text, { format: storage.formats.utf8 });
+}
+async function writeBinary(folder, name, bytes) {
+  const f = await folder.createFile(name, { overwrite: true });
+  await f.write(bytes.buffer.slice(bytes.byteOffset, bytes.byteOffset + bytes.byteLength), { format: storage.formats.binary });
+}
+async function removeEntry(e) {
+  if (e.isFolder) for (const c of await e.getEntries()) await removeEntry(c);
+  await e.delete();
+}
+
+let exporting = false;
+async function runExport(force) {
+  if (exporting) return;
+  exportMessage(null);
+  const doc = app.activeDocument;
+  if (!doc) { exportMessage('ドキュメントが開かれていません。', 'error'); return; }
+  let psdPath = '';
+  try { psdPath = doc.path || ''; } catch (e) { psdPath = ''; }
+  if (!psdPath) { exportMessage('先に PSD を保存してください（書き出しと同時に、PSD に版を書き込んで保存するため）。', 'error'); return; }
+  const screen = $('screenId').value.trim();
+  if (!X.SCREEN_ID.test(screen)) { exportMessage('画面 ID は半角の英数字と _ - だけにしてください（例: Home）。', 'error'); return; }
+  if (!outFolder && !(await pickOutFolder())) return;
+
+  exporting = true;
+  const btn = $('btnExport'); btn.classList.add('busy'); btn.textContent = '書き出し中…';
+  try {
+    // 最新の状態で解析し直してから書き出す
+    if (!(await runAnalyze()) || state.docId !== doc.id) { exportMessage('解析できなかったので、書き出しを止めました。', 'error'); return; }
+    const a = state.result;
+    const stamp = state.stamp;
+    const dir = await getChild(outFolder, screen);
+    const history = (dir && await readJson(dir, 'history.json')) || [];
+    const prev = dir && await readJson(dir, 'layout.json');
+    const chk = X.checkVersion(stamp, history);
+    if (chk.stop && !force) {
+      exportMessage(`書き出しを止めました: ${chk.message}\n上書きしてよい場合は「上書きして書き出す」。別案として残すなら、画面 ID を変えて書き出してください。`, 'warn',
+        [['上書きして書き出す', () => runExport(true)], ['やめる', () => exportMessage(null)]]);
+      return;
+    }
+    const notes = [];
+    if (stamp.ScreenId && stamp.ScreenId !== screen) notes.push(`注意: この PSD は画面「${stamp.ScreenId}」として書き出されたものです。「${screen}」として書き出しました。`);
+    const pluginFolder = await storage.localFileSystem.getPluginFolder();
+    const template = await (await pluginFolder.getEntry('report_template.html')).read({ format: storage.formats.utf8 });
+
+    let out = null;
+    const before = PX.selectedIds(doc);
+    await core.executeAsModal(async (ctx) => {
+      try {
+        const progress = (i, n, name) => {
+          if (ctx.isCancelled) throw new Error('書き出しを取り消しました');
+          try { ctx.reportProgress({ value: n ? i / n : 0, commandName: `画像を書き出し中 ${i + 1}/${n}: ${name}` }); } catch (e) { /* 表示できなくても続ける */ }
+        };
+        const render = (lid, frame) => PX.renderLayer(doc, lid, frame, rect => (frame ? X.fitFrame(rect, frame) : { rect, over: null }));
+        const files = await X.exportImages(a.tree, a.issues, render, { progress });
+        const changes = prev ? X.diff(prev.tree, a.tree) : null;
+        if (changes && X.isEmptyDiff(changes)) {
+          // 変わっていなければ版を増やさない。PSD の記録が最新の版と違えば、最新の版に合わせておく
+          if (stamp.ScreenId !== screen || stamp.BaseVersion !== chk.latest) {
+            await PX.writeXmp(doc.id, X.writeStamp(await PX.readXmp(doc.id), screen, chk.latest));
+            await doc.save();
+          }
+          out = { nochange: true };
+          return;
+        }
+        try { ctx.reportProgress({ value: 1, commandName: '画面全体の画像を作成中' }); } catch (e) { /* 続ける */ }
+        const preview = await PX.renderPreview(doc);
+
+        const now = new Date();
+        const version = X.nextVersion(history, X.today(now));
+        const layout = X.buildLayout({ analysis: a, screen, version, base: chk.latest, psdFile: doc.name,
+          exportedAt: X.isoLocal(now), toolVersion: PLUGIN_VERSION, imageCount: files.size });
+        const entry = X.historyEntry(layout, changes);
+        history.push(entry);
+
+        // 全部そろってから書き込む（images は前の版を消してから置く）
+        const d = dir || await outFolder.createFolder(screen);
+        const old = await getChild(d, 'images');
+        if (old) await removeEntry(old);
+        const imgDir = await d.createFolder('images');
+        for (const [name, png] of files) await writeBinary(imgDir, name.slice('images/'.length), png);
+        await writeText(d, 'layout.json', JSON.stringify(layout, null, 1));
+        await writeText(d, 'history.json', JSON.stringify(history, null, 1));
+        await writeBinary(d, 'preview.png', preview);
+        await writeText(d, 'report.html', X.buildReport(template, layout, changes, history));
+
+        // PSD に「画面 ID」と「元にした版」を書き込んで保存
+        await PX.writeXmp(doc.id, X.writeStamp(await PX.readXmp(doc.id), screen, version));
+        const back = X.readStamp(await PX.readXmp(doc.id));
+        const stamped = back.ScreenId === screen && back.BaseVersion === version;
+        if (stamped) await doc.save();
+        out = { version, entry, changes, stamped, path: d.nativePath || d.name };
+      } finally {
+        try { await PX.restoreSelection(doc, before); } catch (e) { /* 選択が戻らなくても書き出しは済んでいる */ }
+      }
+    }, { commandName: 'UI Export: 書き出し' });
+
+    state.fixes = computeFixes(state.result);     // 枠からのはみ出しが増えることがあるので表示を作り直す
+    render();
+    if (out.nochange) {
+      exportMessage(notes.concat([`前の版 ${chk.latest} から変更がありません。版は増やさずに終わりました。`]).join('\n'), 'ok');
+      return;
+    }
+    const lv = out.entry.issues, c = out.changes;
+    const lines = [`書き出しました: 版 ${out.version}（元にした版 ${chk.latest || 'なし（初回）'}）`, out.path,
+      `画像 ${out.entry.images} 枚 / エラー ${lv.error} 注意 ${lv.warn} 提案 ${lv.suggest} 情報 ${lv.info}`];
+    if (c) lines.push(`前の版から: 追加 ${c.added.length} / 削除 ${c.removed.length} / 変更 ${c.changed.length}`);
+    if (!out.stamped) lines.push('PSD に版を書き込めなかったので、PSD は保存していません。次の書き出しで「記録がありません」と止まります。この内容を知らせてください。');
+    exportMessage(notes.concat(lines).join('\n'), out.stamped ? 'ok' : 'warn');
+  } catch (e) {
+    exportMessage('書き出し中にエラーが出ました。下の内容をそのまま送ってください。', 'error', [], `${e && e.message}\n\n${e && e.stack}`);
+  } finally {
+    exporting = false;
+    btn.classList.remove('busy'); btn.textContent = '書き出し';
+  }
+}
+
 // ------------------------------------------------------------------ 確認用の保存
 async function saveJson() {
   if (!state) { $('saveMsg').textContent = '先に「解析」してください。'; return; }
@@ -344,7 +527,7 @@ for (const t of document.querySelectorAll('.tab')) {
   t.addEventListener('click', () => {
     const tab = t.getAttribute('data-tab');
     for (const x of document.querySelectorAll('.tab')) { if (x === t) x.classList.add('on'); else x.classList.remove('on'); }
-    for (const name of ['issues', 'tree', 'debug']) {
+    for (const name of ['issues', 'tree', 'export', 'debug']) {
       if (name === tab) $('pane-' + name).classList.remove('hidden'); else $('pane-' + name).classList.add('hidden');
     }
   });
@@ -360,3 +543,6 @@ $('zIn').addEventListener('click', () => { fontPx = Math.min(32, fontPx + 2); ap
 applyFont();
 $('btnSave').addEventListener('click', saveJson);
 $('btnCompare').addEventListener('click', compareReaders);
+$('btnPickOut').addEventListener('click', pickOutFolder);
+$('btnExport').addEventListener('click', () => runExport(false));
+restoreOutFolder();

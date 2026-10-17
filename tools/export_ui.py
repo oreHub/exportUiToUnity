@@ -29,9 +29,10 @@ from psd_tools import PSDImage                 # noqa: E402
 from PIL import Image                          # noqa: E402
 from psd_tools.constants import Resource       # noqa: E402
 
-TOOL_VERSION = '261016-4'
+TOOL_VERSION = '261017-1'
 NS = 'http://example.com/ns/uiexport/1.0/'     # 社内で決めた名前空間に置き換える
 HERE = os.path.dirname(os.path.abspath(__file__))
+TEMPLATE = os.path.join(HERE, '..', 'plugin', 'UIExport', 'report_template.html')   # プラグインと同じひな形を使う
 
 
 # ------------------------------------------------------------------ PSD の中の版情報（XMP）
@@ -46,12 +47,23 @@ def read_stamp(psd):
         if m: out[k] = m.group(1)
     return out
 
+def stamp_xmp(x, screen, version):
+    """XMP の文字列に版情報を書き込む（plugin/UIExport/core/export.js の writeStamp と同じ）"""
+    # 前の記録を消す（自分で足した行、Photoshop が書き直した属性の形・要素の形）
+    x = re.sub(r'\s*<rdf:Description rdf:about=""\s+xmlns:uiexp="[^"]*"[^>]*/>', '', x)
+    x = re.sub(r'\s+uiexp:(ScreenId|BaseVersion)="[^"]*"', '', x)
+    x = re.sub(r'\s*<uiexp:(ScreenId|BaseVersion)>[^<]*</uiexp:\1>', '', x)
+    if '</rdf:RDF>' not in x:
+        x = EMPTY_XMP
+    desc = f'\n      <rdf:Description rdf:about="" xmlns:uiexp="{NS}" uiexp:ScreenId="{screen}" uiexp:BaseVersion="{version}"/>'
+    return x.replace('</rdf:RDF>', desc + '\n   </rdf:RDF>', 1)
+
+EMPTY_XMP = ('<?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>\n<x:xmpmeta xmlns:x="adobe:ns:meta/">\n'
+             '   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">\n   </rdf:RDF>\n</x:xmpmeta>\n<?xpacket end="w"?>')
+
 def write_stamp(psd, screen, version):
     x = psd.image_resources.get_data(Resource.XMP_METADATA).decode('utf-8')
-    x = re.sub(r'\s*<rdf:Description rdf:about=""\s+xmlns:uiexp="[^"]*"[^>]*/>', '', x)
-    desc = f'\n      <rdf:Description rdf:about="" xmlns:uiexp="{NS}" uiexp:ScreenId="{screen}" uiexp:BaseVersion="{version}"/>'
-    x = x.replace('</rdf:RDF>', desc + '\n   </rdf:RDF>', 1)
-    psd.image_resources[Resource.XMP_METADATA].data = x.encode('utf-8')
+    psd.image_resources[Resource.XMP_METADATA].data = stamp_xmp(x, screen, version).encode('utf-8')
 
 
 # ------------------------------------------------------------------ 画像
@@ -166,7 +178,7 @@ def diff(prev, cur):
 
 # ------------------------------------------------------------------ レポート
 def build_report(layout, changes, history, out_path):
-    t = open(os.path.join(HERE, 'report_template.html'), encoding='utf-8').read()
+    t = open(TEMPLATE, encoding='utf-8').read()
     dump = lambda x: json.dumps(x, ensure_ascii=False, separators=(',', ':')).replace('</', '<\\/')
     t = (t.replace('/*__DATA__*/null', dump(layout)).replace('/*__CHANGES__*/null', dump(changes))
           .replace('/*__HISTORY__*/null', dump(history)).replace('__IMG__', 'preview.png'))
@@ -223,6 +235,10 @@ def main():
     changes = diff(prev['tree'], tree) if prev else None
     if changes is not None and not (changes['added'] or changes['removed'] or changes['changed']) and not a.force:
         import shutil; shutil.rmtree(tmp)
+        # PSD の記録が最新の版と違えば（上書きを選んだ場合など）、最新の版に合わせておく
+        if stamp.get('ScreenId') != screen or base != latest:
+            write_stamp(psd, screen, latest)
+            psd.save(a.psd)
         print(f'前の版 {latest} から変更がありません。版は増やさずに終わります。')
         return
 

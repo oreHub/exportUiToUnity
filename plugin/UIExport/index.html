@@ -15,6 +15,7 @@
     <div id="tabs" class="row hidden">
       <div class="tab on" data-tab="issues">問題</div>
       <div class="tab" data-tab="tree">構造</div>
+      <div class="tab" data-tab="export">書き出し</div>
       <div class="tab" data-tab="debug">確認用</div>
     </div>
   </div>
@@ -22,6 +23,22 @@
   <div id="main">
     <div id="pane-issues" class="pane"></div>
     <div id="pane-tree" class="pane hidden"></div>
+    <div id="pane-export" class="pane hidden">
+      <div class="field">
+        <div class="muted">書き出し先（Unity プロジェクトの UIExport フォルダ）</div>
+        <div id="outPath">未選択</div>
+        <div class="fbtn" id="btnPickOut">フォルダを選ぶ…</div>
+      </div>
+      <div class="field">
+        <div class="muted">画面 ID（書き出し先のフォルダ名。初回に決めると PSD に記録される）</div>
+        <input id="screenId" type="text">
+      </div>
+      <div class="field">
+        <div class="fbtn" id="btnExport">書き出し</div>
+        <div class="muted note">画像・layout.json・report.html・history.json・preview.png を書き出し、PSD に版を書き込んで保存します。</div>
+      </div>
+      <div id="exportMsg"></div>
+    </div>
     <div id="pane-debug" class="pane hidden">
       <p class="muted">解析に使ったレイヤー情報と結果を JSON で保存します。結果が思った通りでないときに、このファイルを送ってもらえれば原因を調べられます。</p>
       <sp-button id="btnSave" variant="secondary">解析結果を保存…</sp-button>

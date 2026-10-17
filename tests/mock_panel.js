@@ -78,13 +78,59 @@ const photoshop = {
   core: { executeAsModal: async (fn) => fn({ hostControl: { suspendHistory: async () => 1, resumeHistory: async () => {} } }) },
 };
 
+// ------------------------------------------------------------------ 書き出し用: メモリ上のフォルダと、仮の画像作成
+class MemFile {
+  constructor(name, parent) { this.name = name; this.parent = parent; this.isFolder = false; this.data = null; this.nativePath = `${parent.nativePath}/${name}`; }
+  async write(d) { this.data = d; }
+  async read() { if (this.data === null) throw new Error('empty'); return this.data; }
+  async delete() { this.parent.kids.delete(this.name); }
+}
+class MemFolder {
+  constructor(name, parent) { this.name = name; this.parent = parent; this.isFolder = true; this.kids = new Map(); this.nativePath = parent ? `${parent.nativePath}/${name}` : name; }
+  async getEntry(n) { if (!this.kids.has(n)) throw new Error(`not found: ${n}`); return this.kids.get(n); }
+  async getEntries() { return [...this.kids.values()]; }
+  async createFolder(n) { if (this.kids.has(n)) throw new Error(`exists: ${n}`); const f = new MemFolder(n, this); this.kids.set(n, f); return f; }
+  async createFile(n) { const f = new MemFile(n, this); this.kids.set(n, f); return f; }
+  async delete() { if (this.kids.size) throw new Error('folder not empty'); this.parent.kids.delete(this.name); }
+}
+const outRoot = new MemFolder('C:/Unity/UIExport', null);
+const pluginFolder = new MemFolder('plugin', null);
+pluginFolder.kids.set('report_template.html', Object.assign(new MemFile('report_template.html', pluginFolder), { data: fs.readFileSync(path.join(PLUGIN, 'report_template.html'), 'utf8') }));
+const storage = {
+  formats: { utf8: 'utf8', binary: 'binary' },
+  localFileSystem: {
+    getFolder: async () => outRoot, getPluginFolder: async () => pluginFolder,
+    createPersistentToken: async () => 'token', getEntryForPersistentToken: async () => outRoot,
+  },
+};
+function fakePng(s) {          // 画素の部分（IDAT）に s を入れた PNG もどき
+  const chunk = (type, data) => { const len = Buffer.alloc(4); len.writeUInt32BE(data.length); return Buffer.concat([len, Buffer.from(type), data, Buffer.alloc(4)]); };
+  return new Uint8Array(Buffer.concat([Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]), chunk('IHDR', Buffer.alloc(13)), chunk('IDAT', Buffer.from(s)), chunk('IEND', Buffer.alloc(0))]));
+}
+const psx = { xmp: '', saved: 0, renders: 0 };
+doc.path = 'C:/mock/Home.psd';
+doc.save = async () => { psx.saved++; };
+const fakePsExport = {
+  readXmp: async () => psx.xmp,
+  writeXmp: async (id, x) => { psx.xmp = x; },
+  renderLayer: async (src, lid, frame, plan) => {
+    psx.renders++;
+    const f = flatInfo.find(x => x.id === lid);
+    const { rect, over } = plan(f.n.bbox);
+    return { png: fakePng(`${f.n.name}:${rect.join(',')}`), rect, over };
+  },
+  renderPreview: async () => fakePng('preview'),
+  selectedIds: () => [], restoreSelection: async () => {},
+};
+
 const html = fs.readFileSync(path.join(PLUGIN, 'index.html'), 'utf8').replace(/<script[^>]*><\/script>/, '');
 const dom = new JSDOM(html);
 global.document = dom.window.document;
 const origLoad = Module._load;
 Module._load = function (req, parent, isMain) {
   if (req === 'photoshop') return photoshop;
-  if (req === 'uxp') return { storage: {} };
+  if (req === 'uxp') return { storage };
+  if (req === './ps/export.js') return fakePsExport;
   if (req.startsWith('./')) return origLoad(path.join(PLUGIN, req), parent, isMain);
   return origLoad(req, parent, isMain);
 };
@@ -132,4 +178,34 @@ require(path.join(PLUGIN, 'main.js'));
     console.log('counts:', [...$('counts').children].map(c => c.textContent).join(' | '));
     console.log('fix buttons now:', document.querySelectorAll('#pane-issues .fbtn').length);
   }
+
+  // 書き出し
+  const click = async (id, ms = 300) => { $(id).dispatchEvent(new dom.window.Event('click')); await new Promise(r => setTimeout(r, ms)); };
+  const xmsg = () => $('exportMsg').textContent.replace(/\s+/g, ' ').slice(0, 220);
+  const home = () => outRoot.kids.get('Home');
+  const hist = () => JSON.parse(home().kids.get('history.json').data);
+  console.log('export screenId:', $('screenId').value, '| outPath:', $('outPath').textContent);
+  await click('btnExport');
+  console.log('export 1:', xmsg());
+  console.log('export 1 files:', [...home().kids.keys()].sort().join(','), '| images', home().kids.get('images').kids.size,
+    '| renders', psx.renders, '| saved', psx.saved, '| stamp', JSON.stringify(psx.xmp.match(/uiexp:\w+="[^"]*"/g)));
+  const lay = JSON.parse(home().kids.get('layout.json').data);
+  const rep = home().kids.get('report.html').data;
+  console.log('export 1 layout:', lay.screen, lay.version, lay.base_version, lay.tool_version, '| images', lay.images.count,
+    '| report ok', rep.includes('const DATA = {"screen":"Home"') && !rep.includes('__IMG__'));
+  await click('btnExport');
+  console.log('export 2:', xmsg(), '| versions', hist().length, '| saved', psx.saved);
+  psx.xmp = '';                                        // 記録の無い PSD
+  await click('btnExport');
+  console.log('export 3:', xmsg(), '| buttons', [...$('exportMsg').querySelectorAll('.fbtn')].map(b => b.textContent).join('/'));
+  $('exportMsg').querySelector('.fbtn').dispatchEvent(new dom.window.Event('click'));
+  await new Promise(r => setTimeout(r, 300));
+  console.log('export 3 forced:', xmsg(), '| stamp', JSON.stringify(psx.xmp.match(/uiexp:\w+="[^"]*"/g)));
+  const t = flatInfo.find(x => !x.n.group && !x.n.text && x.n.visible && !x.n.name.startsWith('area_') && !x.n.name.startsWith('space_'));
+  t.n.bbox = [t.n.bbox[0] + 5, t.n.bbox[1], t.n.bbox[2], t.n.bbox[3]];   // 1 つ動かす
+  await click('btnExport');
+  console.log('export 4:', xmsg(), '| versions', hist().map(h => h.version).join(','), '| stamp', JSON.stringify(psx.xmp.match(/uiexp:BaseVersion="[^"]*"/g)));
+  $('screenId').value = 'bad id';
+  await click('btnExport', 50);
+  console.log('export 5:', xmsg());
 })();

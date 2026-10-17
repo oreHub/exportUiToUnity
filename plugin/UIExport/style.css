@@ -153,6 +153,22 @@ body {
 .tag.t-text { border-color: #E8A33D; color: #E8A33D; }
 .legend { margin-bottom: 0.4em; font-size: 0.8em; }
 
+/* 書き出し */
+#pane-export .field { margin-bottom: 0.9em; }
+#pane-export .field .muted { margin-bottom: 0.2em; }
+#pane-export .note { margin-top: 0.3em; font-size: 0.85em; }
+#outPath { word-break: break-all; margin-bottom: 0.3em; }
+#screenId { width: 12em; font-size: 1em; }
+#btnExport { font-size: 1em; padding: 0.25em 1.6em; }
+.fbtn.busy { opacity: 0.5; }
+.xmsg { padding: 0.4em 0.6em; border-radius: 4px; background-color: rgba(229, 72, 77, 0.18); }
+.xmsg.ok { background-color: rgba(63, 179, 127, 0.18); }
+.xmsg.warn { background-color: rgba(255, 187, 51, 0.18); }
+.xmsg div { padding: 0.05em 0; word-break: break-all; }
+.xmsg textarea { width: 100%; height: 8em; font-size: 0.7em; margin-top: 0.3em; }
+.xbtns { margin-top: 0.5em; }
+.xbtns .fbtn { margin-right: 0.5em; }
+
 /* 確認用 */
 #cmpMsg { margin-top: 0.4em; font-size: 0.75em; }
 .cmpline { padding: 1px 0; }
