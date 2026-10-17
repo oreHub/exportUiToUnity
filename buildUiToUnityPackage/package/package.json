@@ -1,6 +1,6 @@
 {
   "name": "com.company.builduitounity",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "displayName": "Build UI To Unity",
   "description": "PSD から書き出した UI 構造（UIExport/<画面ID>/ の layout.json と画像）を取り込み、uGUI の画面を組み立てるエディタ拡張。",
   "unity": "6000.0",

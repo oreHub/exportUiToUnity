@@ -179,6 +179,12 @@ namespace BuildUiToUnity.Editor
                             var dir = s.dir; var root = assetRoot;
                             EditorApplication.delayCall += () => UiBuilder.Import(dir, root, SceneTarget.New);
                         }
+                        // エンジニアの作業を残したまま、今のシーンの画面を新しい版に更新する（段階 2）
+                        if (GUILayout.Button("反映（更新）…"))
+                        {
+                            var dir = s.dir; var root = assetRoot;
+                            EditorApplication.delayCall += () => UiUpdateWindow.Open(dir, root);
+                        }
                         if (GUILayout.Button("report.html を開く"))
                             Application.OpenURL("file:///" + Path.Combine(s.dir, "report.html").Replace("\\", "/"));
                     }

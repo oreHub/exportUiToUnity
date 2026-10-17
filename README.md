@@ -5,9 +5,9 @@ Photoshop・After Effects・Unity の 3 つのツールを、このリポジト�
 
 | ツール | 場所 | 状態 |
 | --- | --- | --- |
-| Photoshop プラグイン（PSD を解析・修正し、UI の構造と画像を書き出す） | `exportPsdToUnity_plugin/` | 書き出しまで作成済み（実機の確認待ち） |
+| Photoshop プラグイン（PSD を解析・修正し、UI の構造と画像を書き出す） | `exportPsdToUnity_plugin/` | 解析・修正・書き出し（0.3.0。実機でおおむね確認済み） |
 | After Effects パネル（AE ファイルの構築、動きの検査と書き出し） | `exportAeToUnity_plugin/` | 予定 |
-| Unity 取り込みツール（uGUI の画面を組み立てる UPM パッケージ） | `buildUiToUnityPackage/` | シーンへの新規の取り込みまで |
+| Unity 取り込みツール（uGUI の画面を組み立てる UPM パッケージ） | `buildUiToUnityPackage/` | 新規の取り込みと、エンジニアの作業を残した反映まで（0.3.0） |
 
 ## 資料
 

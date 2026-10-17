@@ -1,0 +1,6105 @@
+{
+ "screen": "Home",
+ "version": "261018-1",
+ "base_version": "261017-3",
+ "psd_file": "Home_261017-2.psd",
+ "exported_at": "2026-10-18T02:10:18",
+ "tool_version": "0.3.0",
+ "source": "Home_261017-2.psd",
+ "canvas": [
+  1920,
+  1080
+ ],
+ "rules": {
+  "marks": {
+   "_Grp": "ゲームオブジェクト",
+   "_List": "レイアウトグループ",
+   "_Prefab": "Prefab",
+   "_Img": "1 枚の画像",
+   "_Base": "親自身の画像"
+  },
+  "area_prefix": "area_",
+  "space_prefix": "space_",
+  "tolerance_px": 3
+ },
+ "fonts": [
+  {
+   "font": "ArialMT",
+   "size": 21.3
+  },
+  {
+   "font": "ArialMT",
+   "size": 24
+  },
+  {
+   "font": "ArialMT",
+   "size": 29.3
+  },
+  {
+   "font": "ArialMT",
+   "size": 42.7
+  },
+  {
+   "font": "ArialMT",
+   "size": 85.3
+  }
+ ],
+ "images": {
+  "count": 20
+ },
+ "tree": {
+  "uid": 0,
+  "name": "Canvas",
+  "id": "Canvas",
+  "marks": [
+   "grp"
+  ],
+  "path": "",
+  "kind": "group",
+  "psd_kind": "document",
+  "visible": true,
+  "opacity": 1,
+  "has_fx": false,
+  "bbox": [
+   0,
+   0,
+   1920,
+   1080
+  ],
+  "children": [
+   {
+    "uid": 1,
+    "name": "BG_Grp",
+    "id": "BG",
+    "marks": [
+     "grp"
+    ],
+    "path": "BG_Grp",
+    "psd_kind": "group",
+    "visible": true,
+    "opacity": 1,
+    "has_fx": false,
+    "bbox": [
+     0,
+     0,
+     1920,
+     1080
+    ],
+    "children": [
+     {
+      "uid": 3,
+      "name": "Back Ground",
+      "id": "Back Ground",
+      "marks": [],
+      "path": "BG_Grp/Back Ground",
+      "psd_kind": "type",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       708,
+       509,
+       504,
+       63
+      ],
+      "children": [],
+      "layer_id": 103,
+      "kind": "text",
+      "text": {
+       "content": "Back Ground",
+       "font": "ArialMT",
+       "size": 85.3,
+       "color": "#4D4D4D",
+       "align": "center"
+      },
+      "role": "text",
+      "rect": [
+       708,
+       509,
+       504,
+       63
+      ],
+      "rect_source": "glyphs",
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        0,
+        -0.5
+       ],
+       "sizeDelta": [
+        504,
+        63
+       ],
+       "name": "Back Ground",
+       "components": [
+        "TextMeshProUGUI"
+       ]
+      }
+     }
+    ],
+    "layer_id": 101,
+    "kind": "group",
+    "role": "group",
+    "auto_item": false,
+    "is_list": false,
+    "is_prefab": false,
+    "base_image": {
+     "name": "BG_Fill_Base",
+     "id": "BG_Fill",
+     "rect": [
+      0,
+      0,
+      1920,
+      1080
+     ],
+     "merged": null,
+     "frame": null,
+     "frame_from": null,
+     "opacity": 1,
+     "has_fx": false,
+     "path": "BG_Grp/BG_Fill_Base",
+     "layer_id": 3,
+     "image": {
+      "file": "images/BG.Base.png",
+      "hash": "c74bff74a558",
+      "rect": [
+       0,
+       0,
+       1920,
+       1080
+      ],
+      "shared": false
+     }
+    },
+    "rect": [
+     0,
+     0,
+     1920,
+     1080
+    ],
+    "rect_source": "base",
+    "unity": {
+     "anchorMin": [
+      0.5,
+      0.5
+     ],
+     "anchorMax": [
+      0.5,
+      0.5
+     ],
+     "pivot": [
+      0.5,
+      0.5
+     ],
+     "anchoredPosition": [
+      0,
+      0
+     ],
+     "sizeDelta": [
+      1920,
+      1080
+     ],
+     "name": "BG",
+     "components": [
+      "RectTransform",
+      "Image"
+     ]
+    }
+   },
+   {
+    "uid": 4,
+    "name": "Footer_List",
+    "id": "Footer",
+    "marks": [
+     "list"
+    ],
+    "path": "Footer_List",
+    "psd_kind": "group",
+    "visible": true,
+    "opacity": 1,
+    "has_fx": false,
+    "bbox": [
+     26,
+     922,
+     1064,
+     117
+    ],
+    "children": [
+     {
+      "uid": 6,
+      "name": "Btn_Footer_Gacha_Prefab",
+      "id": "Btn_Footer_Gacha",
+      "marks": [
+       "prefab"
+      ],
+      "path": "Footer_List/Btn_Footer_Gacha_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       26,
+       922,
+       94,
+       113
+      ],
+      "children": [
+       {
+        "uid": 8,
+        "name": "Gacha",
+        "id": "Gacha",
+        "marks": [],
+        "path": "Footer_List/Btn_Footer_Gacha_Prefab/Gacha",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         41,
+         1018,
+         64,
+         17
+        ],
+        "children": [],
+        "layer_id": 149,
+        "kind": "text",
+        "text": {
+         "content": "Gacha",
+         "font": "ArialMT",
+         "size": 21.3,
+         "color": "#FFFFFF",
+         "align": "center"
+        },
+        "text_box": [
+         26,
+         1018,
+         94,
+         20
+        ],
+        "text_box_from": "area_Label",
+        "role": "text",
+        "rect": [
+         26,
+         1018,
+         94,
+         20
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          -48
+         ],
+         "sizeDelta": [
+          94,
+          20
+         ],
+         "name": "Gacha",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        }
+       },
+       {
+        "uid": 9,
+        "name": "Icon_Footer_Gacha",
+        "id": "Icon_Footer_Gacha",
+        "marks": [],
+        "path": "Footer_List/Btn_Footer_Gacha_Prefab/Icon_Footer_Gacha",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         26,
+         922,
+         94,
+         94
+        ],
+        "children": [],
+        "layer_id": 150,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         26,
+         922,
+         94,
+         94
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          11
+         ],
+         "sizeDelta": [
+          94,
+          94
+         ],
+         "name": "Icon_Footer_Gacha",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Footer.Btn_Footer_Gacha.Icon_Footer_Gacha.png",
+         "hash": "191bf9c4632a",
+         "rect": [
+          26,
+          922,
+          94,
+          94
+         ],
+         "shared": false
+        }
+       }
+      ],
+      "layer_id": 151,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       26,
+       922,
+       94,
+       116
+      ],
+      "rect_source": "union",
+      "layout_item": true,
+      "prefab": {
+       "kind": "explicit",
+       "index": 0,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        -483,
+        0
+       ],
+       "sizeDelta": [
+        94,
+        116
+       ],
+       "name": "Btn_Footer_Gacha",
+       "components": [
+        "RectTransform",
+        "Button?"
+       ],
+       "prefab": "explicit"
+      }
+     },
+     {
+      "uid": 10,
+      "name": "Btn_Footer_Shop_Prefab",
+      "id": "Btn_Footer_Shop",
+      "marks": [
+       "prefab"
+      ],
+      "path": "Footer_List/Btn_Footer_Shop_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       220,
+       922,
+       94,
+       117
+      ],
+      "children": [
+       {
+        "uid": 12,
+        "name": "Shop",
+        "id": "Shop",
+        "marks": [],
+        "path": "Footer_List/Btn_Footer_Shop_Prefab/Shop",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         242,
+         1018,
+         50,
+         21
+        ],
+        "children": [],
+        "layer_id": 154,
+        "kind": "text",
+        "text": {
+         "content": "Shop",
+         "font": "ArialMT",
+         "size": 21.3,
+         "color": "#FFFFFF",
+         "align": "center"
+        },
+        "text_box": [
+         220,
+         1018,
+         94,
+         20
+        ],
+        "text_box_from": "area_Label",
+        "role": "text",
+        "rect": [
+         220,
+         1018,
+         94,
+         20
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          -48
+         ],
+         "sizeDelta": [
+          94,
+          20
+         ],
+         "name": "Shop",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        }
+       },
+       {
+        "uid": 13,
+        "name": "Icon_Footer_Shop",
+        "id": "Icon_Footer_Shop",
+        "marks": [],
+        "path": "Footer_List/Btn_Footer_Shop_Prefab/Icon_Footer_Shop",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         220,
+         922,
+         94,
+         94
+        ],
+        "children": [],
+        "layer_id": 155,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         220,
+         922,
+         94,
+         94
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          11
+         ],
+         "sizeDelta": [
+          94,
+          94
+         ],
+         "name": "Icon_Footer_Shop",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Footer.Btn_Footer_Gacha.Icon_Footer_Gacha.png",
+         "hash": "191bf9c4632a",
+         "rect": [
+          220,
+          922,
+          94,
+          94
+         ],
+         "shared": true
+        }
+       }
+      ],
+      "layer_id": 156,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       220,
+       922,
+       94,
+       116
+      ],
+      "rect_source": "union",
+      "layout_item": true,
+      "prefab": {
+       "kind": "explicit",
+       "index": 0,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        -289,
+        0
+       ],
+       "sizeDelta": [
+        94,
+        116
+       ],
+       "name": "Btn_Footer_Shop",
+       "components": [
+        "RectTransform",
+        "Button?"
+       ],
+       "prefab": "explicit"
+      }
+     },
+     {
+      "uid": 14,
+      "name": "Btn_Footer_Chara_Prefab",
+      "id": "Btn_Footer_Chara",
+      "marks": [
+       "prefab"
+      ],
+      "path": "Footer_List/Btn_Footer_Chara_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       414,
+       922,
+       94,
+       113
+      ],
+      "children": [
+       {
+        "uid": 16,
+        "name": "Chara",
+        "id": "Chara",
+        "marks": [],
+        "path": "Footer_List/Btn_Footer_Chara_Prefab/Chara",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         432,
+         1018,
+         58,
+         17
+        ],
+        "children": [],
+        "layer_id": 159,
+        "kind": "text",
+        "text": {
+         "content": "Chara",
+         "font": "ArialMT",
+         "size": 21.3,
+         "color": "#FFFFFF",
+         "align": "center"
+        },
+        "text_box": [
+         414,
+         1018,
+         94,
+         20
+        ],
+        "text_box_from": "area_Label",
+        "role": "text",
+        "rect": [
+         414,
+         1018,
+         94,
+         20
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          -48
+         ],
+         "sizeDelta": [
+          94,
+          20
+         ],
+         "name": "Chara",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        }
+       },
+       {
+        "uid": 17,
+        "name": "Icon_Footer_Chara",
+        "id": "Icon_Footer_Chara",
+        "marks": [],
+        "path": "Footer_List/Btn_Footer_Chara_Prefab/Icon_Footer_Chara",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         414,
+         922,
+         94,
+         94
+        ],
+        "children": [],
+        "layer_id": 160,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         414,
+         922,
+         94,
+         94
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          11
+         ],
+         "sizeDelta": [
+          94,
+          94
+         ],
+         "name": "Icon_Footer_Chara",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Footer.Btn_Footer_Gacha.Icon_Footer_Gacha.png",
+         "hash": "191bf9c4632a",
+         "rect": [
+          414,
+          922,
+          94,
+          94
+         ],
+         "shared": true
+        }
+       }
+      ],
+      "layer_id": 161,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       414,
+       922,
+       94,
+       116
+      ],
+      "rect_source": "union",
+      "layout_item": true,
+      "prefab": {
+       "kind": "explicit",
+       "index": 0,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        -95,
+        0
+       ],
+       "sizeDelta": [
+        94,
+        116
+       ],
+       "name": "Btn_Footer_Chara",
+       "components": [
+        "RectTransform",
+        "Button?"
+       ],
+       "prefab": "explicit"
+      }
+     },
+     {
+      "uid": 18,
+      "name": "Btn_Footer_Card_Prefab",
+      "id": "Btn_Footer_Card",
+      "marks": [
+       "prefab"
+      ],
+      "path": "Footer_List/Btn_Footer_Card_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       608,
+       922,
+       94,
+       113
+      ],
+      "children": [
+       {
+        "uid": 20,
+        "name": "Card",
+        "id": "Card",
+        "marks": [],
+        "path": "Footer_List/Btn_Footer_Card_Prefab/Card",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         632,
+         1018,
+         46,
+         17
+        ],
+        "children": [],
+        "layer_id": 164,
+        "kind": "text",
+        "text": {
+         "content": "Card",
+         "font": "ArialMT",
+         "size": 21.3,
+         "color": "#FFFFFF",
+         "align": "center"
+        },
+        "text_box": [
+         608,
+         1018,
+         94,
+         20
+        ],
+        "text_box_from": "area_Label",
+        "role": "text",
+        "rect": [
+         608,
+         1018,
+         94,
+         20
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          -48
+         ],
+         "sizeDelta": [
+          94,
+          20
+         ],
+         "name": "Card",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        }
+       },
+       {
+        "uid": 21,
+        "name": "Icon_Footer_Card",
+        "id": "Icon_Footer_Card",
+        "marks": [],
+        "path": "Footer_List/Btn_Footer_Card_Prefab/Icon_Footer_Card",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         608,
+         922,
+         94,
+         94
+        ],
+        "children": [],
+        "layer_id": 165,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         608,
+         922,
+         94,
+         94
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          11
+         ],
+         "sizeDelta": [
+          94,
+          94
+         ],
+         "name": "Icon_Footer_Card",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Footer.Btn_Footer_Gacha.Icon_Footer_Gacha.png",
+         "hash": "191bf9c4632a",
+         "rect": [
+          608,
+          922,
+          94,
+          94
+         ],
+         "shared": true
+        }
+       }
+      ],
+      "layer_id": 166,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       608,
+       922,
+       94,
+       116
+      ],
+      "rect_source": "union",
+      "layout_item": true,
+      "prefab": {
+       "kind": "explicit",
+       "index": 0,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        99,
+        0
+       ],
+       "sizeDelta": [
+        94,
+        116
+       ],
+       "name": "Btn_Footer_Card",
+       "components": [
+        "RectTransform",
+        "Button?"
+       ],
+       "prefab": "explicit"
+      }
+     },
+     {
+      "uid": 22,
+      "name": "Btn_Footer_Deck_Prefab",
+      "id": "Btn_Footer_Deck",
+      "marks": [
+       "prefab"
+      ],
+      "path": "Footer_List/Btn_Footer_Deck_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       802,
+       922,
+       94,
+       113
+      ],
+      "children": [
+       {
+        "uid": 24,
+        "name": "Deck",
+        "id": "Deck",
+        "marks": [],
+        "path": "Footer_List/Btn_Footer_Deck_Prefab/Deck",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         825,
+         1018,
+         49,
+         17
+        ],
+        "children": [],
+        "layer_id": 169,
+        "kind": "text",
+        "text": {
+         "content": "Deck",
+         "font": "ArialMT",
+         "size": 21.3,
+         "color": "#FFFFFF",
+         "align": "center"
+        },
+        "text_box": [
+         802,
+         1018,
+         94,
+         20
+        ],
+        "text_box_from": "area_Label",
+        "role": "text",
+        "rect": [
+         802,
+         1018,
+         94,
+         20
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          -48
+         ],
+         "sizeDelta": [
+          94,
+          20
+         ],
+         "name": "Deck",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        }
+       },
+       {
+        "uid": 25,
+        "name": "Icon_Footer_Deck",
+        "id": "Icon_Footer_Deck",
+        "marks": [],
+        "path": "Footer_List/Btn_Footer_Deck_Prefab/Icon_Footer_Deck",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         802,
+         922,
+         94,
+         94
+        ],
+        "children": [],
+        "layer_id": 170,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         802,
+         922,
+         94,
+         94
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          11
+         ],
+         "sizeDelta": [
+          94,
+          94
+         ],
+         "name": "Icon_Footer_Deck",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Footer.Btn_Footer_Deck.Icon_Footer_Deck.png",
+         "hash": "18c0b50cca55",
+         "rect": [
+          802,
+          922,
+          94,
+          94
+         ],
+         "shared": false
+        }
+       }
+      ],
+      "layer_id": 171,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       802,
+       922,
+       94,
+       116
+      ],
+      "rect_source": "union",
+      "layout_item": true,
+      "prefab": {
+       "kind": "explicit",
+       "index": 0,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        293,
+        0
+       ],
+       "sizeDelta": [
+        94,
+        116
+       ],
+       "name": "Btn_Footer_Deck",
+       "components": [
+        "RectTransform",
+        "Button?"
+       ],
+       "prefab": "explicit"
+      }
+     },
+     {
+      "uid": 26,
+      "name": "Btn_Footer_Guild_Prefab",
+      "id": "Btn_Footer_Guild",
+      "marks": [
+       "prefab"
+      ],
+      "path": "Footer_List/Btn_Footer_Guild_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       996,
+       922,
+       94,
+       113
+      ],
+      "children": [
+       {
+        "uid": 28,
+        "name": "Guild",
+        "id": "Guild",
+        "marks": [],
+        "path": "Footer_List/Btn_Footer_Guild_Prefab/Guild",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1018,
+         1018,
+         50,
+         17
+        ],
+        "children": [],
+        "layer_id": 177,
+        "kind": "text",
+        "text": {
+         "content": "Guild",
+         "font": "ArialMT",
+         "size": 21.3,
+         "color": "#FFFFFF",
+         "align": "center"
+        },
+        "text_box": [
+         996,
+         1018,
+         94,
+         20
+        ],
+        "text_box_from": "area_Label",
+        "role": "text",
+        "rect": [
+         996,
+         1018,
+         94,
+         20
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          -48
+         ],
+         "sizeDelta": [
+          94,
+          20
+         ],
+         "name": "Guild",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        }
+       },
+       {
+        "uid": 29,
+        "name": "Icon_Footer_Guild",
+        "id": "Icon_Footer_Guild",
+        "marks": [],
+        "path": "Footer_List/Btn_Footer_Guild_Prefab/Icon_Footer_Guild",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         996,
+         922,
+         94,
+         94
+        ],
+        "children": [],
+        "layer_id": 178,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         996,
+         922,
+         94,
+         94
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          11
+         ],
+         "sizeDelta": [
+          94,
+          94
+         ],
+         "name": "Icon_Footer_Guild",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Footer.Btn_Footer_Deck.Icon_Footer_Deck.png",
+         "hash": "18c0b50cca55",
+         "rect": [
+          996,
+          922,
+          94,
+          94
+         ],
+         "shared": true
+        }
+       }
+      ],
+      "layer_id": 179,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       996,
+       922,
+       94,
+       116
+      ],
+      "rect_source": "union",
+      "layout_item": true,
+      "prefab": {
+       "kind": "explicit",
+       "index": 0,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        487,
+        0
+       ],
+       "sizeDelta": [
+        94,
+        116
+       ],
+       "name": "Btn_Footer_Guild",
+       "components": [
+        "RectTransform",
+        "Button?"
+       ],
+       "prefab": "explicit"
+      }
+     }
+    ],
+    "layer_id": 4,
+    "kind": "group",
+    "role": "group",
+    "auto_item": false,
+    "is_list": true,
+    "is_prefab": false,
+    "group_area": [
+     26,
+     914,
+     1060,
+     132
+    ],
+    "group_area_from": "area_Footer",
+    "rect": [
+     26,
+     914,
+     1060,
+     132
+    ],
+    "rect_source": "area",
+    "layout": 0,
+    "spaces": [
+     0
+    ],
+    "anchor": {
+     "v": {
+      "side": "bottom",
+      "offset": 34,
+      "from": "space_Footer_Bottom"
+     }
+    },
+    "unity": {
+     "anchorMin": [
+      0.5,
+      0
+     ],
+     "anchorMax": [
+      0.5,
+      0
+     ],
+     "pivot": [
+      0.5,
+      0
+     ],
+     "anchoredPosition": [
+      -404,
+      34
+     ],
+     "sizeDelta": [
+      1060,
+      132
+     ],
+     "name": "Footer",
+     "components": [
+      "RectTransform",
+      "HorizontalLayoutGroup"
+     ]
+    }
+   },
+   {
+    "uid": 31,
+    "name": "Btn_Battle_Grp",
+    "id": "Btn_Battle",
+    "marks": [
+     "grp"
+    ],
+    "path": "Btn_Battle_Grp",
+    "psd_kind": "group",
+    "visible": true,
+    "opacity": 1,
+    "has_fx": false,
+    "bbox": [
+     1680,
+     892,
+     177,
+     177
+    ],
+    "children": [
+     {
+      "uid": 33,
+      "name": "Battle",
+      "id": "Battle",
+      "marks": [],
+      "path": "Btn_Battle_Grp/Battle",
+      "psd_kind": "type",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       1713,
+       965,
+       109,
+       32
+      ],
+      "children": [],
+      "layer_id": 182,
+      "kind": "text",
+      "text": {
+       "content": "Battle",
+       "font": "ArialMT",
+       "size": 42.7,
+       "color": "#FFFFFF",
+       "align": "center"
+      },
+      "role": "text",
+      "rect": [
+       1713,
+       965,
+       109,
+       32
+      ],
+      "rect_source": "glyphs",
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        -1,
+        -0.5
+       ],
+       "sizeDelta": [
+        109,
+        32
+       ],
+       "name": "Battle",
+       "components": [
+        "TextMeshProUGUI"
+       ]
+      }
+     }
+    ],
+    "layer_id": 172,
+    "kind": "group",
+    "role": "group",
+    "auto_item": false,
+    "is_list": false,
+    "is_prefab": false,
+    "base_image": {
+     "name": "Btn_Battle_bg_Base",
+     "id": "Btn_Battle_bg",
+     "rect": [
+      1680,
+      892,
+      177,
+      177
+     ],
+     "merged": null,
+     "frame": null,
+     "frame_from": null,
+     "opacity": 1,
+     "has_fx": true,
+     "path": "Btn_Battle_Grp/Btn_Battle_bg_Base",
+     "layer_id": 174,
+     "image": {
+      "file": "images/Btn_Battle.Base.png",
+      "hash": "d8f9ceb4de90",
+      "rect": [
+       1680,
+       892,
+       177,
+       177
+      ],
+      "shared": false
+     }
+    },
+    "rect": [
+     1680,
+     892,
+     177,
+     177
+    ],
+    "rect_source": "base",
+    "unity": {
+     "anchorMin": [
+      0.5,
+      0.5
+     ],
+     "anchorMax": [
+      0.5,
+      0.5
+     ],
+     "pivot": [
+      0.5,
+      0.5
+     ],
+     "anchoredPosition": [
+      808.5,
+      -440.5
+     ],
+     "sizeDelta": [
+      177,
+      177
+     ],
+     "name": "Btn_Battle",
+     "components": [
+      "RectTransform",
+      "Image",
+      "Button?"
+     ]
+    }
+   },
+   {
+    "uid": 34,
+    "name": "Menu_R_List",
+    "id": "Menu_R",
+    "marks": [
+     "list"
+    ],
+    "path": "Menu_R_List",
+    "psd_kind": "group",
+    "visible": true,
+    "opacity": 1,
+    "has_fx": false,
+    "bbox": [
+     1817,
+     376,
+     87,
+     320
+    ],
+    "children": [
+     {
+      "uid": 49,
+      "name": "Btn_MenuR_Event_Prefab",
+      "id": "Btn_MenuR_Event",
+      "marks": [
+       "prefab"
+      ],
+      "path": "Menu_R_List/Btn_MenuR_Event_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       1822,
+       376,
+       64,
+       83
+      ],
+      "children": [
+       {
+        "uid": 51,
+        "name": "Event",
+        "id": "Event",
+        "marks": [],
+        "path": "Menu_R_List/Btn_MenuR_Event_Prefab/Event",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1827,
+         442,
+         55,
+         17
+        ],
+        "children": [],
+        "layer_id": 99,
+        "kind": "text",
+        "text": {
+         "content": "Event",
+         "font": "ArialMT",
+         "size": 21.3,
+         "color": "#FFFFFF",
+         "align": "center"
+        },
+        "text_box": [
+         1804,
+         442,
+         100,
+         20
+        ],
+        "text_box_from": "area_Label",
+        "role": "text",
+        "rect": [
+         1804,
+         442,
+         100,
+         20
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          -33
+         ],
+         "sizeDelta": [
+          100,
+          20
+         ],
+         "name": "Event",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        }
+       },
+       {
+        "uid": 52,
+        "name": "Icon_MenuR_Event",
+        "id": "Icon_MenuR_Event",
+        "marks": [],
+        "path": "Menu_R_List/Btn_MenuR_Event_Prefab/Icon_MenuR_Event",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         1822,
+         376,
+         64,
+         64
+        ],
+        "children": [],
+        "layer_id": 97,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1822,
+         376,
+         64,
+         64
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          11
+         ],
+         "sizeDelta": [
+          64,
+          64
+         ],
+         "name": "Icon_MenuR_Event",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Menu_R.Btn_MenuR_Event.Icon_MenuR_Event.png",
+         "hash": "f686ccb88e6d",
+         "rect": [
+          1822,
+          376,
+          64,
+          64
+         ],
+         "shared": false
+        }
+       }
+      ],
+      "layer_id": 95,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       1804,
+       376,
+       100,
+       86
+      ],
+      "rect_source": "union",
+      "layout_item": true,
+      "prefab": {
+       "kind": "explicit",
+       "index": 1,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        0,
+        118
+       ],
+       "sizeDelta": [
+        100,
+        86
+       ],
+       "name": "Btn_MenuR_Event",
+       "components": [
+        "RectTransform",
+        "Button?"
+       ],
+       "prefab": "explicit"
+      }
+     },
+     {
+      "uid": 42,
+      "name": "Btn_MenuR_Present_Prefab",
+      "id": "Btn_MenuR_Present",
+      "marks": [
+       "prefab"
+      ],
+      "path": "Menu_R_List/Btn_MenuR_Present_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       1817,
+       477,
+       87,
+       100
+      ],
+      "children": [
+       {
+        "uid": 44,
+        "name": "Present",
+        "id": "Present",
+        "marks": [],
+        "path": "Menu_R_List/Btn_MenuR_Present_Prefab/Present",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1817,
+         560,
+         75,
+         17
+        ],
+        "children": [],
+        "layer_id": 106,
+        "kind": "text",
+        "text": {
+         "content": "Present",
+         "font": "ArialMT",
+         "size": 21.3,
+         "color": "#FFFFFF",
+         "align": "center"
+        },
+        "text_box": [
+         1804,
+         560,
+         100,
+         20
+        ],
+        "text_box_from": "area_Label",
+        "role": "text",
+        "rect": [
+         1804,
+         560,
+         100,
+         20
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          -33
+         ],
+         "sizeDelta": [
+          100,
+          20
+         ],
+         "name": "Present",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        }
+       },
+       {
+        "uid": 45,
+        "name": "Icon_MenuR_Present",
+        "id": "Icon_MenuR_Present",
+        "marks": [],
+        "path": "Menu_R_List/Btn_MenuR_Present_Prefab/Icon_MenuR_Present",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         1822,
+         494,
+         64,
+         64
+        ],
+        "children": [],
+        "layer_id": 107,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1822,
+         494,
+         64,
+         64
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          11
+         ],
+         "sizeDelta": [
+          64,
+          64
+         ],
+         "name": "Icon_MenuR_Present",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Menu_R.Btn_MenuR_Event.Icon_MenuR_Event.png",
+         "hash": "f686ccb88e6d",
+         "rect": [
+          1822,
+          494,
+          64,
+          64
+         ],
+         "shared": true
+        }
+       },
+       {
+        "uid": 46,
+        "name": "Mark_Attention_Grp_Prefab",
+        "id": "Mark_Attention",
+        "marks": [
+         "grp",
+         "prefab"
+        ],
+        "path": "Menu_R_List/Btn_MenuR_Present_Prefab/Mark_Attention_Grp_Prefab",
+        "psd_kind": "group",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1869,
+         477,
+         35,
+         35
+        ],
+        "children": [
+         {
+          "uid": 48,
+          "name": "99",
+          "id": "99",
+          "marks": [],
+          "path": "Menu_R_List/Btn_MenuR_Present_Prefab/Mark_Attention_Grp_Prefab/99",
+          "psd_kind": "type",
+          "visible": true,
+          "opacity": 1,
+          "has_fx": false,
+          "bbox": [
+           1875,
+           486,
+           23,
+           17
+          ],
+          "children": [],
+          "layer_id": 145,
+          "kind": "text",
+          "text": {
+           "content": "99",
+           "font": "ArialMT",
+           "size": 21.3,
+           "color": "#FFFFFF",
+           "align": "center"
+          },
+          "role": "text",
+          "rect": [
+           1875,
+           486,
+           23,
+           17
+          ],
+          "rect_source": "glyphs",
+          "unity": {
+           "anchorMin": [
+            0.5,
+            0.5
+           ],
+           "anchorMax": [
+            0.5,
+            0.5
+           ],
+           "pivot": [
+            0.5,
+            0.5
+           ],
+           "anchoredPosition": [
+            0,
+            0
+           ],
+           "sizeDelta": [
+            23,
+            17
+           ],
+           "name": "99",
+           "components": [
+            "TextMeshProUGUI"
+           ]
+          },
+          "hint_dynamic": true
+         }
+        ],
+        "layer_id": 141,
+        "kind": "group",
+        "role": "group",
+        "auto_item": false,
+        "is_list": false,
+        "is_prefab": true,
+        "base_image": {
+         "name": "Mark_Attention_bg_Base",
+         "id": "Mark_Attention_bg",
+         "rect": [
+          1869,
+          477,
+          35,
+          35
+         ],
+         "merged": null,
+         "frame": null,
+         "frame_from": null,
+         "opacity": 1,
+         "has_fx": true,
+         "path": "Menu_R_List/Btn_MenuR_Present_Prefab/Mark_Attention_Grp_Prefab/Mark_Attention_bg_Base",
+         "layer_id": 143,
+         "image": {
+          "file": "images/Menu_R.Btn_MenuR_Present.Mark_Attention.Base.png",
+          "hash": "01ae322fab58",
+          "rect": [
+           1869,
+           477,
+           35,
+           35
+          ],
+          "shared": false
+         }
+        },
+        "rect": [
+         1869,
+         477,
+         35,
+         35
+        ],
+        "rect_source": "base",
+        "prefab": {
+         "kind": "explicit",
+         "index": 2,
+         "variant": false
+        },
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          32.5,
+          42.5
+         ],
+         "sizeDelta": [
+          35,
+          35
+         ],
+         "name": "Mark_Attention",
+         "components": [
+          "RectTransform",
+          "Image"
+         ],
+         "prefab": "explicit"
+        }
+       }
+      ],
+      "layer_id": 108,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       1804,
+       494,
+       100,
+       86
+      ],
+      "rect_source": "slot",
+      "rect_original": [
+       1804,
+       477,
+       100,
+       103
+      ],
+      "layout_item": true,
+      "prefab": {
+       "kind": "explicit",
+       "index": 1,
+       "variant": true
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        0,
+        0
+       ],
+       "sizeDelta": [
+        100,
+        86
+       ],
+       "name": "Btn_MenuR_Present",
+       "components": [
+        "RectTransform",
+        "Button?"
+       ],
+       "prefab": "explicit"
+      }
+     },
+     {
+      "uid": 35,
+      "name": "Btn_MenuR_Quest_Prefab",
+      "id": "Btn_MenuR_Quest",
+      "marks": [
+       "prefab"
+      ],
+      "path": "Menu_R_List/Btn_MenuR_Quest_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       1822,
+       612,
+       64,
+       84
+      ],
+      "children": [
+       {
+        "uid": 37,
+        "name": "Quest",
+        "id": "Quest",
+        "marks": [],
+        "path": "Menu_R_List/Btn_MenuR_Quest_Prefab/Quest",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1825,
+         678,
+         59,
+         18
+        ],
+        "children": [],
+        "layer_id": 111,
+        "kind": "text",
+        "text": {
+         "content": "Quest",
+         "font": "ArialMT",
+         "size": 21.3,
+         "color": "#FFFFFF",
+         "align": "center"
+        },
+        "text_box": [
+         1804,
+         678,
+         100,
+         20
+        ],
+        "text_box_from": "area_Label",
+        "role": "text",
+        "rect": [
+         1804,
+         678,
+         100,
+         20
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          -33
+         ],
+         "sizeDelta": [
+          100,
+          20
+         ],
+         "name": "Quest",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        }
+       },
+       {
+        "uid": 38,
+        "name": "Icon_MenuR_Quest",
+        "id": "Icon_MenuR_Quest",
+        "marks": [],
+        "path": "Menu_R_List/Btn_MenuR_Quest_Prefab/Icon_MenuR_Quest",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         1822,
+         612,
+         64,
+         64
+        ],
+        "children": [],
+        "layer_id": 112,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1822,
+         612,
+         64,
+         64
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          11
+         ],
+         "sizeDelta": [
+          64,
+          64
+         ],
+         "name": "Icon_MenuR_Quest",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Menu_R.Btn_MenuR_Event.Icon_MenuR_Event.png",
+         "hash": "f686ccb88e6d",
+         "rect": [
+          1822,
+          612,
+          64,
+          64
+         ],
+         "shared": true
+        }
+       }
+      ],
+      "layer_id": 113,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       1804,
+       612,
+       100,
+       86
+      ],
+      "rect_source": "union",
+      "layout_item": true,
+      "prefab": {
+       "kind": "explicit",
+       "index": 1,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        0,
+        -118
+       ],
+       "sizeDelta": [
+        100,
+        86
+       ],
+       "name": "Btn_MenuR_Quest",
+       "components": [
+        "RectTransform",
+        "Button?"
+       ],
+       "prefab": "explicit"
+      }
+     }
+    ],
+    "layer_id": 6,
+    "kind": "group",
+    "role": "group",
+    "auto_item": false,
+    "is_list": true,
+    "is_prefab": false,
+    "rect": [
+     1804,
+     376,
+     100,
+     322
+    ],
+    "rect_source": "union",
+    "layout": 1,
+    "spaces": [
+     1
+    ],
+    "anchor": {
+     "h": {
+      "side": "right",
+      "offset": 16,
+      "from": "space_MenuR_Right"
+     }
+    },
+    "unity": {
+     "anchorMin": [
+      1,
+      0.5
+     ],
+     "anchorMax": [
+      1,
+      0.5
+     ],
+     "pivot": [
+      1,
+      0.5
+     ],
+     "anchoredPosition": [
+      -16,
+      3
+     ],
+     "sizeDelta": [
+      100,
+      322
+     ],
+     "name": "Menu_R",
+     "components": [
+      "RectTransform",
+      "VerticalLayoutGroup"
+     ]
+    }
+   },
+   {
+    "uid": 57,
+    "name": "Menu_L_List",
+    "id": "Menu_L",
+    "marks": [
+     "list"
+    ],
+    "path": "Menu_L_List",
+    "psd_kind": "group",
+    "visible": true,
+    "opacity": 1,
+    "has_fx": false,
+    "bbox": [
+     26,
+     152,
+     312,
+     87
+    ],
+    "children": [
+     {
+      "uid": 62,
+      "name": "Btn_MenuL_DailyPass_Prefab",
+      "id": "Btn_MenuL_DailyPass",
+      "marks": [
+       "prefab"
+      ],
+      "path": "Menu_L_List/Btn_MenuL_DailyPass_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       26,
+       152,
+       140,
+       87
+      ],
+      "children": [
+       {
+        "uid": 64,
+        "name": "Daily Pass",
+        "id": "Daily Pass",
+        "marks": [],
+        "path": "Menu_L_List/Btn_MenuL_DailyPass_Prefab/Daily Pass",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         45,
+         218,
+         103,
+         21
+        ],
+        "children": [],
+        "layer_id": 127,
+        "kind": "text",
+        "text": {
+         "content": "Daily Pass",
+         "font": "ArialMT",
+         "size": 21.3,
+         "color": "#FFFFFF",
+         "align": "center"
+        },
+        "text_box": [
+         26,
+         218,
+         140,
+         20
+        ],
+        "text_box_from": "area_Label",
+        "role": "text",
+        "rect": [
+         26,
+         218,
+         140,
+         20
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          -33
+         ],
+         "sizeDelta": [
+          140,
+          20
+         ],
+         "name": "Daily Pass",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        }
+       },
+       {
+        "uid": 65,
+        "name": "Banner_MenuL_DailyPass",
+        "id": "Banner_MenuL_DailyPass",
+        "marks": [],
+        "path": "Menu_L_List/Btn_MenuL_DailyPass_Prefab/Banner_MenuL_DailyPass",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         26,
+         152,
+         140,
+         64
+        ],
+        "children": [],
+        "layer_id": 128,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         26,
+         152,
+         140,
+         64
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          11
+         ],
+         "sizeDelta": [
+          140,
+          64
+         ],
+         "name": "Banner_MenuL_DailyPass",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Menu_L.Btn_MenuL_DailyPass.Banner_MenuL_DailyPass.png",
+         "hash": "7301f3be6d13",
+         "rect": [
+          26,
+          152,
+          140,
+          64
+         ],
+         "shared": false
+        }
+       }
+      ],
+      "layer_id": 129,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       26,
+       152,
+       140,
+       86
+      ],
+      "rect_source": "union",
+      "layout_item": true,
+      "prefab": {
+       "kind": "explicit",
+       "index": 3,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        -86,
+        0
+       ],
+       "sizeDelta": [
+        140,
+        86
+       ],
+       "name": "Btn_MenuL_DailyPass",
+       "components": [
+        "RectTransform",
+        "Button?"
+       ],
+       "prefab": "explicit"
+      }
+     },
+     {
+      "uid": 58,
+      "name": "Btn_MenuL_MonthlyPass_Prefab",
+      "id": "Btn_MenuL_MonthlyPass",
+      "marks": [
+       "prefab"
+      ],
+      "path": "Menu_L_List/Btn_MenuL_MonthlyPass_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       198,
+       152,
+       140,
+       87
+      ],
+      "children": [
+       {
+        "uid": 60,
+        "name": "Monthly Pass",
+        "id": "Monthly Pass",
+        "marks": [],
+        "path": "Menu_L_List/Btn_MenuL_MonthlyPass_Prefab/Monthly Pass",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         203,
+         218,
+         131,
+         21
+        ],
+        "children": [],
+        "layer_id": 138,
+        "kind": "text",
+        "text": {
+         "content": "Monthly Pass",
+         "font": "ArialMT",
+         "size": 21.3,
+         "color": "#FFFFFF",
+         "align": "center"
+        },
+        "text_box": [
+         198,
+         218,
+         140,
+         20
+        ],
+        "text_box_from": "area_Label",
+        "role": "text",
+        "rect": [
+         198,
+         218,
+         140,
+         20
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          -33
+         ],
+         "sizeDelta": [
+          140,
+          20
+         ],
+         "name": "Monthly Pass",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        }
+       },
+       {
+        "uid": 61,
+        "name": "Banner_MenuL_MonthlyPass",
+        "id": "Banner_MenuL_MonthlyPass",
+        "marks": [],
+        "path": "Menu_L_List/Btn_MenuL_MonthlyPass_Prefab/Banner_MenuL_MonthlyPass",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         198,
+         152,
+         140,
+         64
+        ],
+        "children": [],
+        "layer_id": 139,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         198,
+         152,
+         140,
+         64
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          11
+         ],
+         "sizeDelta": [
+          140,
+          64
+         ],
+         "name": "Banner_MenuL_MonthlyPass",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Menu_L.Btn_MenuL_DailyPass.Banner_MenuL_DailyPass.png",
+         "hash": "7301f3be6d13",
+         "rect": [
+          198,
+          152,
+          140,
+          64
+         ],
+         "shared": true
+        }
+       }
+      ],
+      "layer_id": 140,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       198,
+       152,
+       140,
+       86
+      ],
+      "rect_source": "union",
+      "layout_item": true,
+      "prefab": {
+       "kind": "explicit",
+       "index": 3,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        86,
+        0
+       ],
+       "sizeDelta": [
+        140,
+        86
+       ],
+       "name": "Btn_MenuL_MonthlyPass",
+       "components": [
+        "RectTransform",
+        "Button?"
+       ],
+       "prefab": "explicit"
+      }
+     }
+    ],
+    "layer_id": 130,
+    "kind": "group",
+    "role": "group",
+    "auto_item": false,
+    "is_list": true,
+    "is_prefab": false,
+    "rect": [
+     26,
+     152,
+     312,
+     86
+    ],
+    "rect_source": "union",
+    "layout": 2,
+    "unity": {
+     "anchorMin": [
+      0.5,
+      0.5
+     ],
+     "anchorMax": [
+      0.5,
+      0.5
+     ],
+     "pivot": [
+      0.5,
+      0.5
+     ],
+     "anchoredPosition": [
+      -778,
+      345
+     ],
+     "sizeDelta": [
+      312,
+      86
+     ],
+     "name": "Menu_L",
+     "components": [
+      "RectTransform",
+      "HorizontalLayoutGroup"
+     ]
+    }
+   },
+   {
+    "uid": 66,
+    "name": "Banner_Grp",
+    "id": "Banner",
+    "marks": [
+     "grp"
+    ],
+    "path": "Banner_Grp",
+    "psd_kind": "group",
+    "visible": true,
+    "opacity": 1,
+    "has_fx": false,
+    "bbox": [
+     1526,
+     152,
+     360,
+     184
+    ],
+    "children": [
+     {
+      "uid": 67,
+      "name": "UI_Carousel_List",
+      "id": "UI_Carousel",
+      "marks": [
+       "list"
+      ],
+      "path": "Banner_Grp/UI_Carousel_List",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       1650,
+       319,
+       113,
+       17
+      ],
+      "children": [
+       {
+        "uid": 73,
+        "name": "UI_Carousel_ON",
+        "id": "UI_Carousel_ON",
+        "marks": [],
+        "path": "Banner_Grp/UI_Carousel_List/UI_Carousel_ON",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         1650,
+         319,
+         17,
+         17
+        ],
+        "children": [],
+        "layer_id": 190,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1650,
+         319,
+         17,
+         17
+        ],
+        "rect_source": "layer",
+        "layout_item": true,
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          -48,
+          0
+         ],
+         "sizeDelta": [
+          17,
+          17
+         ],
+         "name": "UI_Carousel_ON",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Banner.UI_Carousel.UI_Carousel_ON.png",
+         "hash": "5a0b49c69bc8",
+         "rect": [
+          1650,
+          319,
+          17,
+          17
+         ],
+         "shared": false
+        }
+       },
+       {
+        "uid": 72,
+        "name": "UI_Carousel_OFF_1",
+        "id": "UI_Carousel_OFF_1",
+        "marks": [],
+        "path": "Banner_Grp/UI_Carousel_List/UI_Carousel_OFF_1",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         1674,
+         319,
+         17,
+         17
+        ],
+        "children": [],
+        "layer_id": 189,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1674,
+         319,
+         17,
+         17
+        ],
+        "rect_source": "layer",
+        "layout_item": true,
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          -24,
+          0
+         ],
+         "sizeDelta": [
+          17,
+          17
+         ],
+         "name": "UI_Carousel_OFF_1",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Banner.UI_Carousel.UI_Carousel_OFF_1.png",
+         "hash": "3d4bde444b7c",
+         "rect": [
+          1674,
+          319,
+          17,
+          17
+         ],
+         "shared": false
+        }
+       },
+       {
+        "uid": 71,
+        "name": "UI_Carousel_OFF_2",
+        "id": "UI_Carousel_OFF_2",
+        "marks": [],
+        "path": "Banner_Grp/UI_Carousel_List/UI_Carousel_OFF_2",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         1698,
+         319,
+         17,
+         17
+        ],
+        "children": [],
+        "layer_id": 188,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1698,
+         319,
+         17,
+         17
+        ],
+        "rect_source": "layer",
+        "layout_item": true,
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          0
+         ],
+         "sizeDelta": [
+          17,
+          17
+         ],
+         "name": "UI_Carousel_OFF_2",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Banner.UI_Carousel.UI_Carousel_OFF_1.png",
+         "hash": "3d4bde444b7c",
+         "rect": [
+          1698,
+          319,
+          17,
+          17
+         ],
+         "shared": true
+        }
+       },
+       {
+        "uid": 70,
+        "name": "UI_Carousel_OFF_3",
+        "id": "UI_Carousel_OFF_3",
+        "marks": [],
+        "path": "Banner_Grp/UI_Carousel_List/UI_Carousel_OFF_3",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         1722,
+         319,
+         17,
+         17
+        ],
+        "children": [],
+        "layer_id": 187,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1722,
+         319,
+         17,
+         17
+        ],
+        "rect_source": "layer",
+        "layout_item": true,
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          24,
+          0
+         ],
+         "sizeDelta": [
+          17,
+          17
+         ],
+         "name": "UI_Carousel_OFF_3",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Banner.UI_Carousel.UI_Carousel_OFF_1.png",
+         "hash": "3d4bde444b7c",
+         "rect": [
+          1722,
+          319,
+          17,
+          17
+         ],
+         "shared": true
+        }
+       },
+       {
+        "uid": 69,
+        "name": "UI_Carousel_OFF_4",
+        "id": "UI_Carousel_OFF_4",
+        "marks": [],
+        "path": "Banner_Grp/UI_Carousel_List/UI_Carousel_OFF_4",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         1746,
+         319,
+         17,
+         17
+        ],
+        "children": [],
+        "layer_id": 186,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1746,
+         319,
+         17,
+         17
+        ],
+        "rect_source": "layer",
+        "layout_item": true,
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          48,
+          0
+         ],
+         "sizeDelta": [
+          17,
+          17
+         ],
+         "name": "UI_Carousel_OFF_4",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Banner.UI_Carousel.UI_Carousel_OFF_1.png",
+         "hash": "3d4bde444b7c",
+         "rect": [
+          1746,
+          319,
+          17,
+          17
+         ],
+         "shared": true
+        }
+       }
+      ],
+      "layer_id": 183,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": true,
+      "is_prefab": false,
+      "group_area": [
+       1650,
+       319,
+       113,
+       17
+      ],
+      "group_area_from": "area_carousel",
+      "rect": [
+       1650,
+       319,
+       113,
+       17
+      ],
+      "rect_source": "area",
+      "layout": 3,
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        0.5,
+        -83.5
+       ],
+       "sizeDelta": [
+        113,
+        17
+       ],
+       "name": "UI_Carousel",
+       "components": [
+        "RectTransform",
+        "HorizontalLayoutGroup"
+       ]
+      }
+     },
+     {
+      "uid": 74,
+      "name": "BannerImage",
+      "id": "BannerImage",
+      "marks": [],
+      "path": "Banner_Grp/BannerImage",
+      "psd_kind": "shape",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": true,
+      "bbox": [
+       1526,
+       152,
+       360,
+       160
+      ],
+      "children": [],
+      "layer_id": 98,
+      "kind": "image",
+      "role": "image",
+      "rect": [
+       1526,
+       152,
+       360,
+       160
+      ],
+      "rect_source": "layer",
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        0,
+        12
+       ],
+       "sizeDelta": [
+        360,
+        160
+       ],
+       "name": "BannerImage",
+       "components": [
+        "Image"
+       ]
+      },
+      "image": {
+       "file": "images/Banner.BannerImage.png",
+       "hash": "eb48b667f7d5",
+       "rect": [
+        1526,
+        152,
+        360,
+        160
+       ],
+       "shared": false
+      }
+     }
+    ],
+    "layer_id": 12,
+    "kind": "group",
+    "role": "group",
+    "auto_item": false,
+    "is_list": false,
+    "is_prefab": false,
+    "rect": [
+     1526,
+     152,
+     360,
+     184
+    ],
+    "rect_source": "union",
+    "unity": {
+     "anchorMin": [
+      0.5,
+      0.5
+     ],
+     "anchorMax": [
+      0.5,
+      0.5
+     ],
+     "pivot": [
+      0.5,
+      0.5
+     ],
+     "anchoredPosition": [
+      746,
+      296
+     ],
+     "sizeDelta": [
+      360,
+      184
+     ],
+     "name": "Banner",
+     "components": [
+      "RectTransform"
+     ]
+    }
+   },
+   {
+    "uid": 75,
+    "name": "Header_Info_Grp",
+    "id": "Header_Info",
+    "marks": [
+     "grp"
+    ],
+    "path": "Header_Info_Grp",
+    "psd_kind": "group",
+    "visible": true,
+    "opacity": 1,
+    "has_fx": false,
+    "bbox": [
+     1196,
+     40,
+     690,
+     48
+    ],
+    "children": [
+     {
+      "uid": 77,
+      "name": "Btn_Menu_Grp",
+      "id": "Btn_Menu",
+      "marks": [
+       "grp"
+      ],
+      "path": "Header_Info_Grp/Btn_Menu_Grp",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       1838,
+       40,
+       48,
+       48
+      ],
+      "children": [
+       {
+        "uid": 79,
+        "name": "Icon_Menu_Img",
+        "id": "Icon_Menu",
+        "marks": [
+         "img"
+        ],
+        "path": "Header_Info_Grp/Btn_Menu_Grp/Icon_Menu_Img",
+        "psd_kind": "group",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1850,
+         52,
+         24,
+         24
+        ],
+        "children": [],
+        "layer_id": 92,
+        "kind": "group",
+        "role": "image",
+        "merged": "img",
+        "merged_count": 3,
+        "merged_text": [],
+        "rect": [
+         1850,
+         52,
+         24,
+         24
+        ],
+        "rect_source": "merged",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          0,
+          0
+         ],
+         "sizeDelta": [
+          24,
+          24
+         ],
+         "name": "Icon_Menu",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Header_Info.Btn_Menu.Icon_Menu.png",
+         "hash": "0883ec76120c",
+         "rect": [
+          1850,
+          52,
+          24,
+          24
+         ],
+         "shared": false
+        }
+       }
+      ],
+      "layer_id": 86,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": false,
+      "base_image": {
+       "name": "Btn_Menu_bg_Base",
+       "id": "Btn_Menu_bg",
+       "rect": [
+        1838,
+        40,
+        48,
+        48
+       ],
+       "merged": null,
+       "frame": null,
+       "frame_from": null,
+       "opacity": 1,
+       "has_fx": true,
+       "path": "Header_Info_Grp/Btn_Menu_Grp/Btn_Menu_bg_Base",
+       "layer_id": 88,
+       "image": {
+        "file": "images/Header_Info.Btn_Menu.Base.png",
+        "hash": "647bcbfdb70a",
+        "rect": [
+         1838,
+         40,
+         48,
+         48
+        ],
+        "shared": false
+       }
+      },
+      "rect": [
+       1838,
+       40,
+       48,
+       48
+      ],
+      "rect_source": "base",
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        320.5,
+        0
+       ],
+       "sizeDelta": [
+        48,
+        48
+       ],
+       "name": "Btn_Menu",
+       "components": [
+        "RectTransform",
+        "Image",
+        "Button?"
+       ]
+      }
+     },
+     {
+      "uid": 83,
+      "name": "Item_PaidJem_Grp_Prefab",
+      "id": "Item_PaidJem",
+      "marks": [
+       "grp",
+       "prefab"
+      ],
+      "path": "Header_Info_Grp/Item_PaidJem_Grp_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       1616,
+       47,
+       205,
+       34
+      ],
+      "children": [
+       {
+        "uid": 84,
+        "name": "Item_bg",
+        "id": "Item_bg",
+        "marks": [],
+        "path": "Header_Info_Grp/Item_PaidJem_Grp_Prefab/Item_bg",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 0.502,
+        "has_fx": false,
+        "bbox": [
+         1633,
+         49,
+         186,
+         30
+        ],
+        "children": [],
+        "layer_id": 74,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1633,
+         49,
+         186,
+         30
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          7.5,
+          0
+         ],
+         "sizeDelta": [
+          186,
+          30
+         ],
+         "name": "Item_bg",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Header_Info.Item_PaidJem.Item_bg.png",
+         "hash": "af7b0976e440",
+         "rect": [
+          1633,
+          49,
+          186,
+          30
+         ],
+         "shared": false
+        }
+       },
+       {
+        "uid": 86,
+        "name": "99,999,999",
+        "id": "99,999,999",
+        "marks": [],
+        "path": "Header_Info_Grp/Item_PaidJem_Grp_Prefab/99,999,999",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1659,
+         53,
+         123,
+         22
+        ],
+        "children": [],
+        "layer_id": 76,
+        "kind": "text",
+        "text": {
+         "content": "99,999,999",
+         "font": "ArialMT",
+         "size": 24,
+         "color": "#FFFFFF",
+         "align": "right"
+        },
+        "text_box": [
+         1658,
+         53,
+         125,
+         22
+        ],
+        "text_box_from": "area_ItemNum",
+        "role": "text",
+        "rect": [
+         1658,
+         53,
+         125,
+         22
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          2,
+          0
+         ],
+         "sizeDelta": [
+          125,
+          22
+         ],
+         "name": "99,999,999",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        },
+        "hint_dynamic": true
+       },
+       {
+        "uid": 87,
+        "name": "Button_addItem_Grp",
+        "id": "Button_addItem",
+        "marks": [
+         "grp"
+        ],
+        "path": "Header_Info_Grp/Item_PaidJem_Grp_Prefab/Button_addItem_Grp",
+        "psd_kind": "group",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1787,
+         47,
+         34,
+         34
+        ],
+        "children": [
+         {
+          "uid": 89,
+          "name": "mark_plus",
+          "id": "mark_plus",
+          "marks": [],
+          "path": "Header_Info_Grp/Item_PaidJem_Grp_Prefab/Button_addItem_Grp/mark_plus",
+          "psd_kind": "group",
+          "visible": true,
+          "opacity": 1,
+          "has_fx": false,
+          "bbox": [
+           1793,
+           53,
+           22,
+           22
+          ],
+          "children": [],
+          "layer_id": 82,
+          "kind": "group",
+          "role": "image",
+          "merged": "auto",
+          "merged_count": 2,
+          "merged_text": [],
+          "rect": [
+           1793,
+           53,
+           22,
+           22
+          ],
+          "rect_source": "merged",
+          "unity": {
+           "anchorMin": [
+            0.5,
+            0.5
+           ],
+           "anchorMax": [
+            0.5,
+            0.5
+           ],
+           "pivot": [
+            0.5,
+            0.5
+           ],
+           "anchoredPosition": [
+            0,
+            0
+           ],
+           "sizeDelta": [
+            22,
+            22
+           ],
+           "name": "mark_plus",
+           "components": [
+            "Image"
+           ]
+          },
+          "image": {
+           "file": "images/Header_Info.Item_PaidJem.Button_addItem.mark_plus.png",
+           "hash": "ddbc47f1e285",
+           "rect": [
+            1793,
+            53,
+            22,
+            22
+           ],
+           "shared": false
+          }
+         }
+        ],
+        "layer_id": 83,
+        "kind": "group",
+        "role": "group",
+        "auto_item": false,
+        "is_list": false,
+        "is_prefab": false,
+        "base_image": {
+         "name": "Button_addItem_bg_Base",
+         "id": "Button_addItem_bg",
+         "rect": [
+          1787,
+          47,
+          34,
+          34
+         ],
+         "merged": null,
+         "frame": null,
+         "frame_from": null,
+         "opacity": 1,
+         "has_fx": true,
+         "path": "Header_Info_Grp/Item_PaidJem_Grp_Prefab/Button_addItem_Grp/Button_addItem_bg_Base",
+         "layer_id": 78,
+         "image": {
+          "file": "images/Header_Info.Item_PaidJem.Button_addItem.Base.png",
+          "hash": "bbf72741163f",
+          "rect": [
+           1787,
+           47,
+           34,
+           34
+          ],
+          "shared": false
+         }
+        },
+        "rect": [
+         1787,
+         47,
+         34,
+         34
+        ],
+        "rect_source": "base",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          85.5,
+          0
+         ],
+         "sizeDelta": [
+          34,
+          34
+         ],
+         "name": "Button_addItem",
+         "components": [
+          "RectTransform",
+          "Image",
+          "Button?"
+         ]
+        }
+       },
+       {
+        "uid": 92,
+        "name": "Item_Image",
+        "id": "Item_Image",
+        "marks": [],
+        "path": "Header_Info_Grp/Item_PaidJem_Grp_Prefab/Item_Image",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1616,
+         47,
+         34,
+         34
+        ],
+        "children": [],
+        "layer_id": 84,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1616,
+         47,
+         34,
+         34
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          -85.5,
+          0
+         ],
+         "sizeDelta": [
+          34,
+          34
+         ],
+         "name": "Item_Image",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Header_Info.Item_PaidJem.Item_Image.png",
+         "hash": "2dfc2a0f8b66",
+         "rect": [
+          1616,
+          47,
+          34,
+          34
+         ],
+         "shared": false
+        }
+       }
+      ],
+      "layer_id": 85,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       1616,
+       47,
+       205,
+       34
+      ],
+      "rect_source": "union",
+      "prefab": {
+       "kind": "explicit",
+       "index": 4,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        177,
+        0
+       ],
+       "sizeDelta": [
+        205,
+        34
+       ],
+       "name": "Item_PaidJem",
+       "components": [
+        "RectTransform"
+       ],
+       "prefab": "explicit"
+      }
+     },
+     {
+      "uid": 93,
+      "name": "Item_Coin_Grp_Prefab",
+      "id": "Item_Coin",
+      "marks": [
+       "grp",
+       "prefab"
+      ],
+      "path": "Header_Info_Grp/Item_Coin_Grp_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       1407,
+       47,
+       205,
+       34
+      ],
+      "children": [
+       {
+        "uid": 94,
+        "name": "Item_bg",
+        "id": "Item_bg",
+        "marks": [],
+        "path": "Header_Info_Grp/Item_Coin_Grp_Prefab/Item_bg",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 0.502,
+        "has_fx": false,
+        "bbox": [
+         1424,
+         49,
+         186,
+         30
+        ],
+        "children": [],
+        "layer_id": 61,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1424,
+         49,
+         186,
+         30
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          7.5,
+          0
+         ],
+         "sizeDelta": [
+          186,
+          30
+         ],
+         "name": "Item_bg",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Header_Info.Item_PaidJem.Item_bg.png",
+         "hash": "af7b0976e440",
+         "rect": [
+          1424,
+          49,
+          186,
+          30
+         ],
+         "shared": true
+        }
+       },
+       {
+        "uid": 96,
+        "name": "99,999,999",
+        "id": "99,999,999",
+        "marks": [],
+        "path": "Header_Info_Grp/Item_Coin_Grp_Prefab/99,999,999",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1450,
+         53,
+         123,
+         22
+        ],
+        "children": [],
+        "layer_id": 63,
+        "kind": "text",
+        "text": {
+         "content": "99,999,999",
+         "font": "ArialMT",
+         "size": 24,
+         "color": "#FFFFFF",
+         "align": "right"
+        },
+        "text_box": [
+         1449,
+         53,
+         125,
+         22
+        ],
+        "text_box_from": "area_ItemNum",
+        "role": "text",
+        "rect": [
+         1449,
+         53,
+         125,
+         22
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          2,
+          0
+         ],
+         "sizeDelta": [
+          125,
+          22
+         ],
+         "name": "99,999,999",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        },
+        "hint_dynamic": true
+       },
+       {
+        "uid": 97,
+        "name": "Button_addItem_Grp",
+        "id": "Button_addItem",
+        "marks": [
+         "grp"
+        ],
+        "path": "Header_Info_Grp/Item_Coin_Grp_Prefab/Button_addItem_Grp",
+        "psd_kind": "group",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1578,
+         47,
+         34,
+         34
+        ],
+        "children": [
+         {
+          "uid": 99,
+          "name": "mark_plus",
+          "id": "mark_plus",
+          "marks": [],
+          "path": "Header_Info_Grp/Item_Coin_Grp_Prefab/Button_addItem_Grp/mark_plus",
+          "psd_kind": "group",
+          "visible": true,
+          "opacity": 1,
+          "has_fx": false,
+          "bbox": [
+           1584,
+           53,
+           22,
+           22
+          ],
+          "children": [],
+          "layer_id": 69,
+          "kind": "group",
+          "role": "image",
+          "merged": "auto",
+          "merged_count": 2,
+          "merged_text": [],
+          "rect": [
+           1584,
+           53,
+           22,
+           22
+          ],
+          "rect_source": "merged",
+          "unity": {
+           "anchorMin": [
+            0.5,
+            0.5
+           ],
+           "anchorMax": [
+            0.5,
+            0.5
+           ],
+           "pivot": [
+            0.5,
+            0.5
+           ],
+           "anchoredPosition": [
+            0,
+            0
+           ],
+           "sizeDelta": [
+            22,
+            22
+           ],
+           "name": "mark_plus",
+           "components": [
+            "Image"
+           ]
+          },
+          "image": {
+           "file": "images/Header_Info.Item_PaidJem.Button_addItem.mark_plus.png",
+           "hash": "ddbc47f1e285",
+           "rect": [
+            1584,
+            53,
+            22,
+            22
+           ],
+           "shared": true
+          }
+         }
+        ],
+        "layer_id": 70,
+        "kind": "group",
+        "role": "group",
+        "auto_item": false,
+        "is_list": false,
+        "is_prefab": false,
+        "base_image": {
+         "name": "Button_addItem_bg_Base",
+         "id": "Button_addItem_bg",
+         "rect": [
+          1578,
+          47,
+          34,
+          34
+         ],
+         "merged": null,
+         "frame": null,
+         "frame_from": null,
+         "opacity": 1,
+         "has_fx": true,
+         "path": "Header_Info_Grp/Item_Coin_Grp_Prefab/Button_addItem_Grp/Button_addItem_bg_Base",
+         "layer_id": 65,
+         "image": {
+          "file": "images/Header_Info.Item_PaidJem.Button_addItem.Base.png",
+          "hash": "bbf72741163f",
+          "rect": [
+           1578,
+           47,
+           34,
+           34
+          ],
+          "shared": true
+         }
+        },
+        "rect": [
+         1578,
+         47,
+         34,
+         34
+        ],
+        "rect_source": "base",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          85.5,
+          0
+         ],
+         "sizeDelta": [
+          34,
+          34
+         ],
+         "name": "Button_addItem",
+         "components": [
+          "RectTransform",
+          "Image",
+          "Button?"
+         ]
+        }
+       },
+       {
+        "uid": 102,
+        "name": "Item_Image",
+        "id": "Item_Image",
+        "marks": [],
+        "path": "Header_Info_Grp/Item_Coin_Grp_Prefab/Item_Image",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1407,
+         47,
+         34,
+         34
+        ],
+        "children": [],
+        "layer_id": 71,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1407,
+         47,
+         34,
+         34
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          -85.5,
+          0
+         ],
+         "sizeDelta": [
+          34,
+          34
+         ],
+         "name": "Item_Image",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Header_Info.Item_PaidJem.Item_Image.png",
+         "hash": "2dfc2a0f8b66",
+         "rect": [
+          1407,
+          47,
+          34,
+          34
+         ],
+         "shared": true
+        }
+       }
+      ],
+      "layer_id": 72,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       1407,
+       47,
+       205,
+       34
+      ],
+      "rect_source": "union",
+      "prefab": {
+       "kind": "explicit",
+       "index": 4,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        -32,
+        0
+       ],
+       "sizeDelta": [
+        205,
+        34
+       ],
+       "name": "Item_Coin",
+       "components": [
+        "RectTransform"
+       ],
+       "prefab": "explicit"
+      }
+     },
+     {
+      "uid": 103,
+      "name": "Item_Jem_Grp_Prefab",
+      "id": "Item_Jem",
+      "marks": [
+       "grp",
+       "prefab"
+      ],
+      "path": "Header_Info_Grp/Item_Jem_Grp_Prefab",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       1196,
+       47,
+       205,
+       34
+      ],
+      "children": [
+       {
+        "uid": 104,
+        "name": "Item_bg",
+        "id": "Item_bg",
+        "marks": [],
+        "path": "Header_Info_Grp/Item_Jem_Grp_Prefab/Item_bg",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 0.502,
+        "has_fx": false,
+        "bbox": [
+         1213,
+         49,
+         186,
+         30
+        ],
+        "children": [],
+        "layer_id": 49,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1213,
+         49,
+         186,
+         30
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          7.5,
+          0
+         ],
+         "sizeDelta": [
+          186,
+          30
+         ],
+         "name": "Item_bg",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Header_Info.Item_PaidJem.Item_bg.png",
+         "hash": "af7b0976e440",
+         "rect": [
+          1213,
+          49,
+          186,
+          30
+         ],
+         "shared": true
+        }
+       },
+       {
+        "uid": 106,
+        "name": "99,999,999",
+        "id": "99,999,999",
+        "marks": [],
+        "path": "Header_Info_Grp/Item_Jem_Grp_Prefab/99,999,999",
+        "psd_kind": "type",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1239,
+         53,
+         123,
+         22
+        ],
+        "children": [],
+        "layer_id": 51,
+        "kind": "text",
+        "text": {
+         "content": "99,999,999",
+         "font": "ArialMT",
+         "size": 24,
+         "color": "#FFFFFF",
+         "align": "right"
+        },
+        "text_box": [
+         1238,
+         53,
+         125,
+         22
+        ],
+        "text_box_from": "area_ItemNum",
+        "role": "text",
+        "rect": [
+         1238,
+         53,
+         125,
+         22
+        ],
+        "rect_source": "area",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          2,
+          0
+         ],
+         "sizeDelta": [
+          125,
+          22
+         ],
+         "name": "99,999,999",
+         "components": [
+          "TextMeshProUGUI"
+         ]
+        },
+        "hint_dynamic": true
+       },
+       {
+        "uid": 107,
+        "name": "Button_addItem_Grp",
+        "id": "Button_addItem",
+        "marks": [
+         "grp"
+        ],
+        "path": "Header_Info_Grp/Item_Jem_Grp_Prefab/Button_addItem_Grp",
+        "psd_kind": "group",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1367,
+         47,
+         34,
+         34
+        ],
+        "children": [
+         {
+          "uid": 109,
+          "name": "mark_plus",
+          "id": "mark_plus",
+          "marks": [],
+          "path": "Header_Info_Grp/Item_Jem_Grp_Prefab/Button_addItem_Grp/mark_plus",
+          "psd_kind": "group",
+          "visible": true,
+          "opacity": 1,
+          "has_fx": false,
+          "bbox": [
+           1373,
+           53,
+           22,
+           22
+          ],
+          "children": [],
+          "layer_id": 57,
+          "kind": "group",
+          "role": "image",
+          "merged": "auto",
+          "merged_count": 2,
+          "merged_text": [],
+          "rect": [
+           1373,
+           53,
+           22,
+           22
+          ],
+          "rect_source": "merged",
+          "unity": {
+           "anchorMin": [
+            0.5,
+            0.5
+           ],
+           "anchorMax": [
+            0.5,
+            0.5
+           ],
+           "pivot": [
+            0.5,
+            0.5
+           ],
+           "anchoredPosition": [
+            0,
+            0
+           ],
+           "sizeDelta": [
+            22,
+            22
+           ],
+           "name": "mark_plus",
+           "components": [
+            "Image"
+           ]
+          },
+          "image": {
+           "file": "images/Header_Info.Item_PaidJem.Button_addItem.mark_plus.png",
+           "hash": "ddbc47f1e285",
+           "rect": [
+            1373,
+            53,
+            22,
+            22
+           ],
+           "shared": true
+          }
+         }
+        ],
+        "layer_id": 53,
+        "kind": "group",
+        "role": "group",
+        "auto_item": false,
+        "is_list": false,
+        "is_prefab": false,
+        "base_image": {
+         "name": "Button_addItem_bg_Base",
+         "id": "Button_addItem_bg",
+         "rect": [
+          1367,
+          47,
+          34,
+          34
+         ],
+         "merged": null,
+         "frame": null,
+         "frame_from": null,
+         "opacity": 1,
+         "has_fx": true,
+         "path": "Header_Info_Grp/Item_Jem_Grp_Prefab/Button_addItem_Grp/Button_addItem_bg_Base",
+         "layer_id": 52,
+         "image": {
+          "file": "images/Header_Info.Item_PaidJem.Button_addItem.Base.png",
+          "hash": "bbf72741163f",
+          "rect": [
+           1367,
+           47,
+           34,
+           34
+          ],
+          "shared": true
+         }
+        },
+        "rect": [
+         1367,
+         47,
+         34,
+         34
+        ],
+        "rect_source": "base",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          85.5,
+          0
+         ],
+         "sizeDelta": [
+          34,
+          34
+         ],
+         "name": "Button_addItem",
+         "components": [
+          "RectTransform",
+          "Image",
+          "Button?"
+         ]
+        }
+       },
+       {
+        "uid": 112,
+        "name": "Item_Image",
+        "id": "Item_Image",
+        "marks": [],
+        "path": "Header_Info_Grp/Item_Jem_Grp_Prefab/Item_Image",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": false,
+        "bbox": [
+         1196,
+         47,
+         34,
+         34
+        ],
+        "children": [],
+        "layer_id": 59,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         1196,
+         47,
+         34,
+         34
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          -85.5,
+          0
+         ],
+         "sizeDelta": [
+          34,
+          34
+         ],
+         "name": "Item_Image",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Header_Info.Item_PaidJem.Item_Image.png",
+         "hash": "2dfc2a0f8b66",
+         "rect": [
+          1196,
+          47,
+          34,
+          34
+         ],
+         "shared": true
+        }
+       }
+      ],
+      "layer_id": 47,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": true,
+      "rect": [
+       1196,
+       47,
+       205,
+       34
+      ],
+      "rect_source": "union",
+      "prefab": {
+       "kind": "explicit",
+       "index": 4,
+       "variant": false
+      },
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        -243,
+        0
+       ],
+       "sizeDelta": [
+        205,
+        34
+       ],
+       "name": "Item_Jem",
+       "components": [
+        "RectTransform"
+       ],
+       "prefab": "explicit"
+      }
+     }
+    ],
+    "layer_id": 19,
+    "kind": "group",
+    "role": "group",
+    "auto_item": false,
+    "is_list": false,
+    "is_prefab": false,
+    "group_area": [
+     1196,
+     40,
+     691,
+     48
+    ],
+    "group_area_from": "area_header_InfoItem",
+    "rect": [
+     1196,
+     40,
+     691,
+     48
+    ],
+    "rect_source": "area",
+    "anchor": {
+     "v": {
+      "side": "top",
+      "offset": 40,
+      "from": "space_HeaderInfo_Top"
+     },
+     "h": {
+      "side": "right",
+      "offset": 33,
+      "from": "space_HeaderInfo_Right"
+     }
+    },
+    "unity": {
+     "anchorMin": [
+      1,
+      1
+     ],
+     "anchorMax": [
+      1,
+      1
+     ],
+     "pivot": [
+      1,
+      1
+     ],
+     "anchoredPosition": [
+      -33,
+      -40
+     ],
+     "sizeDelta": [
+      691,
+      48
+     ],
+     "name": "Header_Info",
+     "components": [
+      "RectTransform"
+     ]
+    }
+   },
+   {
+    "uid": 113,
+    "name": "Header_InfoChr_Grp_Prefab",
+    "id": "Header_InfoChr",
+    "marks": [
+     "grp",
+     "prefab"
+    ],
+    "path": "Header_InfoChr_Grp_Prefab",
+    "psd_kind": "group",
+    "visible": true,
+    "opacity": 1,
+    "has_fx": false,
+    "bbox": [
+     0,
+     26,
+     570,
+     77
+    ],
+    "children": [
+     {
+      "uid": 115,
+      "name": "thum_chr",
+      "id": "thum_chr",
+      "marks": [],
+      "path": "Header_InfoChr_Grp_Prefab/thum_chr",
+      "psd_kind": "shape",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       33,
+       26,
+       77,
+       77
+      ],
+      "children": [],
+      "layer_id": 23,
+      "kind": "image",
+      "role": "image",
+      "rect": [
+       33,
+       26,
+       77,
+       77
+      ],
+      "rect_source": "layer",
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        -213.5,
+        -0.5
+       ],
+       "sizeDelta": [
+        77,
+        77
+       ],
+       "name": "thum_chr",
+       "components": [
+        "Image"
+       ]
+      },
+      "image": {
+       "file": "images/Header_InfoChr.thum_chr.png",
+       "hash": "eb39b0792c5d",
+       "rect": [
+        33,
+        26,
+        77,
+        77
+       ],
+       "shared": false
+      }
+     },
+     {
+      "uid": 116,
+      "name": "Gauge_ChrLv_Grp",
+      "id": "Gauge_ChrLv",
+      "marks": [
+       "grp"
+      ],
+      "path": "Header_InfoChr_Grp_Prefab/Gauge_ChrLv_Grp",
+      "psd_kind": "group",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       120,
+       74,
+       440,
+       12
+      ],
+      "children": [
+       {
+        "uid": 118,
+        "name": "gauge_bar",
+        "id": "gauge_bar",
+        "marks": [],
+        "path": "Header_InfoChr_Grp_Prefab/Gauge_ChrLv_Grp/gauge_bar",
+        "psd_kind": "shape",
+        "visible": true,
+        "opacity": 1,
+        "has_fx": true,
+        "bbox": [
+         120,
+         74,
+         200,
+         12
+        ],
+        "children": [],
+        "layer_id": 41,
+        "kind": "image",
+        "role": "image",
+        "rect": [
+         120,
+         74,
+         200,
+         12
+        ],
+        "rect_source": "layer",
+        "unity": {
+         "anchorMin": [
+          0.5,
+          0.5
+         ],
+         "anchorMax": [
+          0.5,
+          0.5
+         ],
+         "pivot": [
+          0.5,
+          0.5
+         ],
+         "anchoredPosition": [
+          -120,
+          0
+         ],
+         "sizeDelta": [
+          200,
+          12
+         ],
+         "name": "gauge_bar",
+         "components": [
+          "Image"
+         ]
+        },
+        "image": {
+         "file": "images/Header_InfoChr.Gauge_ChrLv.gauge_bar.png",
+         "hash": "9cb54d3ac38a",
+         "rect": [
+          120,
+          74,
+          200,
+          12
+         ],
+         "shared": false
+        }
+       }
+      ],
+      "layer_id": 25,
+      "kind": "group",
+      "role": "group",
+      "auto_item": false,
+      "is_list": false,
+      "is_prefab": false,
+      "base_image": {
+       "name": "gauge_bg_Base",
+       "id": "gauge_bg",
+       "rect": [
+        120,
+        74,
+        440,
+        12
+       ],
+       "merged": null,
+       "frame": null,
+       "frame_from": null,
+       "opacity": 1,
+       "has_fx": true,
+       "path": "Header_InfoChr_Grp_Prefab/Gauge_ChrLv_Grp/gauge_bg_Base",
+       "layer_id": 27,
+       "image": {
+        "file": "images/Header_InfoChr.Gauge_ChrLv.Base.png",
+        "hash": "c815b340745f",
+        "rect": [
+         118,
+         72,
+         444,
+         16
+        ],
+        "shared": false
+       }
+      },
+      "rect": [
+       120,
+       74,
+       440,
+       12
+      ],
+      "rect_source": "base",
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        55,
+        -16
+       ],
+       "sizeDelta": [
+        440,
+        12
+       ],
+       "name": "Gauge_ChrLv",
+       "components": [
+        "RectTransform",
+        "Image"
+       ]
+      }
+     },
+     {
+      "uid": 120,
+      "name": "CheName",
+      "id": "CheName",
+      "marks": [],
+      "path": "Header_InfoChr_Grp_Prefab/CheName",
+      "psd_kind": "type",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       120,
+       41,
+       135,
+       23
+      ],
+      "children": [],
+      "layer_id": 29,
+      "kind": "text",
+      "text": {
+       "content": "CheName",
+       "font": "ArialMT",
+       "size": 29.3,
+       "color": "#FFFFFF",
+       "align": "left"
+      },
+      "text_box": [
+       120,
+       42,
+       160,
+       22
+      ],
+      "text_box_from": "area_ChrName",
+      "role": "text",
+      "rect": [
+       120,
+       42,
+       160,
+       22
+      ],
+      "rect_source": "area",
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        -85,
+        11
+       ],
+       "sizeDelta": [
+        160,
+        22
+       ],
+       "name": "CheName",
+       "components": [
+        "TextMeshProUGUI"
+       ]
+      }
+     },
+     {
+      "uid": 122,
+      "name": "10",
+      "id": "10",
+      "marks": [],
+      "path": "Header_InfoChr_Grp_Prefab/10",
+      "psd_kind": "type",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       521,
+       43,
+       29,
+       22
+      ],
+      "children": [],
+      "layer_id": 31,
+      "kind": "text",
+      "text": {
+       "content": "10",
+       "font": "ArialMT",
+       "size": 29.3,
+       "color": "#FFFFFF",
+       "align": "center"
+      },
+      "text_box": [
+       510,
+       42,
+       50,
+       22
+      ],
+      "text_box_from": "area_LvNum",
+      "role": "text",
+      "rect": [
+       510,
+       42,
+       50,
+       22
+      ],
+      "rect_source": "area",
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        250,
+        11
+       ],
+       "sizeDelta": [
+        50,
+        22
+       ],
+       "name": "10",
+       "components": [
+        "TextMeshProUGUI"
+       ]
+      },
+      "hint_dynamic": true
+     },
+     {
+      "uid": 124,
+      "name": "Lv.",
+      "id": "Lv.",
+      "marks": [],
+      "path": "Header_InfoChr_Grp_Prefab/Lv.",
+      "psd_kind": "type",
+      "visible": true,
+      "opacity": 1,
+      "has_fx": false,
+      "bbox": [
+       483,
+       48,
+       25,
+       16
+      ],
+      "children": [],
+      "layer_id": 28,
+      "kind": "text",
+      "text": {
+       "content": "Lv.",
+       "font": "ArialMT",
+       "size": 21.3,
+       "color": "#FFFFFF",
+       "align": "left"
+      },
+      "text_box": [
+       483,
+       42,
+       25,
+       22
+      ],
+      "text_box_from": "area_lv",
+      "role": "text",
+      "rect": [
+       483,
+       42,
+       25,
+       22
+      ],
+      "rect_source": "area",
+      "unity": {
+       "anchorMin": [
+        0.5,
+        0.5
+       ],
+       "anchorMax": [
+        0.5,
+        0.5
+       ],
+       "pivot": [
+        0.5,
+        0.5
+       ],
+       "anchoredPosition": [
+        210.5,
+        11
+       ],
+       "sizeDelta": [
+        25,
+        22
+       ],
+       "name": "Lv.",
+       "components": [
+        "TextMeshProUGUI"
+       ]
+      }
+     }
+    ],
+    "layer_id": 10,
+    "kind": "group",
+    "role": "group",
+    "auto_item": false,
+    "is_list": false,
+    "is_prefab": true,
+    "base_image": {
+     "name": "header_InfoChr_bg_Base",
+     "id": "header_InfoChr_bg",
+     "rect": [
+      0,
+      32,
+      570,
+      64
+     ],
+     "merged": null,
+     "frame": null,
+     "frame_from": null,
+     "opacity": 1,
+     "has_fx": false,
+     "path": "Header_InfoChr_Grp_Prefab/header_InfoChr_bg_Base",
+     "layer_id": 22,
+     "image": {
+      "file": "images/Header_InfoChr.Base.png",
+      "hash": "b40f4b4fe666",
+      "rect": [
+       0,
+       32,
+       570,
+       64
+      ],
+      "shared": false
+     }
+    },
+    "rect": [
+     0,
+     32,
+     570,
+     64
+    ],
+    "rect_source": "base",
+    "prefab": {
+     "kind": "explicit",
+     "index": 5,
+     "variant": false
+    },
+    "unity": {
+     "anchorMin": [
+      0.5,
+      0.5
+     ],
+     "anchorMax": [
+      0.5,
+      0.5
+     ],
+     "pivot": [
+      0.5,
+      0.5
+     ],
+     "anchoredPosition": [
+      -675,
+      476
+     ],
+     "sizeDelta": [
+      570,
+      64
+     ],
+     "name": "Header_InfoChr",
+     "components": [
+      "RectTransform",
+      "Image"
+     ],
+     "prefab": "explicit"
+    }
+   }
+  ],
+  "role": "root",
+  "auto_item": false,
+  "is_list": false,
+  "is_prefab": false,
+  "rect": [
+   0,
+   0,
+   1920,
+   1080
+  ],
+  "spaces": [
+   2,
+   3,
+   4,
+   5
+  ],
+  "rect_source": "canvas",
+  "unity": {
+   "anchorMin": [
+    0.5,
+    0.5
+   ],
+   "anchorMax": [
+    0.5,
+    0.5
+   ],
+   "pivot": [
+    0.5,
+    0.5
+   ],
+   "anchoredPosition": [
+    0,
+    0
+   ],
+   "sizeDelta": [
+    1920,
+    1080
+   ],
+   "name": "Canvas",
+   "components": [
+    "Canvas",
+    "CanvasScaler"
+   ]
+  }
+ },
+ "layouts": [
+  {
+   "group": "Footer_List",
+   "group_path": "Footer_List",
+   "axis": "horizontal",
+   "items": [
+    "Btn_Footer_Gacha_Prefab",
+    "Btn_Footer_Shop_Prefab",
+    "Btn_Footer_Chara_Prefab",
+    "Btn_Footer_Card_Prefab",
+    "Btn_Footer_Deck_Prefab",
+    "Btn_Footer_Guild_Prefab"
+   ],
+   "basis": [
+    "Icon_Footer_Gacha",
+    "Icon_Footer_Shop",
+    "Icon_Footer_Chara",
+    "Icon_Footer_Card",
+    "Icon_Footer_Deck",
+    "Icon_Footer_Guild"
+   ],
+   "pitch": 194,
+   "pitches": [
+    194,
+    194,
+    194,
+    194,
+    194
+   ],
+   "spacing": 100,
+   "item_size": [
+    94,
+    116
+   ],
+   "padding_lrtb": [
+    0,
+    -4,
+    8,
+    8
+   ],
+   "uniform": true,
+   "deviations": [],
+   "outside": [],
+   "reordered": false,
+   "confidence": "high",
+   "spacing_source": "space_Footer_Gap"
+  },
+  {
+   "group": "Menu_R_List",
+   "group_path": "Menu_R_List",
+   "axis": "vertical",
+   "items": [
+    "Btn_MenuR_Event_Prefab",
+    "Btn_MenuR_Present_Prefab",
+    "Btn_MenuR_Quest_Prefab"
+   ],
+   "basis": [
+    "Icon_MenuR_Event",
+    "Icon_MenuR_Present",
+    "Icon_MenuR_Quest"
+   ],
+   "pitch": 118,
+   "pitches": [
+    118,
+    118
+   ],
+   "spacing": 32,
+   "item_size": [
+    100,
+    86
+   ],
+   "padding_lrtb": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "uniform": true,
+   "deviations": [],
+   "outside": [],
+   "reordered": true,
+   "confidence": "high",
+   "spacing_source": "space_MenuR_Gap"
+  },
+  {
+   "group": "Menu_L_List",
+   "group_path": "Menu_L_List",
+   "axis": "horizontal",
+   "items": [
+    "Btn_MenuL_DailyPass_Prefab",
+    "Btn_MenuL_MonthlyPass_Prefab"
+   ],
+   "basis": [
+    "Banner_MenuL_DailyPass",
+    "Banner_MenuL_MonthlyPass"
+   ],
+   "pitch": 172,
+   "pitches": [
+    172
+   ],
+   "spacing": 32,
+   "item_size": [
+    140,
+    86
+   ],
+   "padding_lrtb": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "uniform": true,
+   "deviations": [],
+   "outside": [],
+   "reordered": true,
+   "confidence": "medium"
+  },
+  {
+   "group": "UI_Carousel_List",
+   "group_path": "Banner_Grp/UI_Carousel_List",
+   "axis": "horizontal",
+   "items": [
+    "UI_Carousel_ON",
+    "UI_Carousel_OFF_1",
+    "UI_Carousel_OFF_2",
+    "UI_Carousel_OFF_3",
+    "UI_Carousel_OFF_4"
+   ],
+   "basis": [
+    "UI_Carousel_ON",
+    "UI_Carousel_OFF_1",
+    "UI_Carousel_OFF_2",
+    "UI_Carousel_OFF_3",
+    "UI_Carousel_OFF_4"
+   ],
+   "pitch": 24,
+   "pitches": [
+    24,
+    24,
+    24,
+    24
+   ],
+   "spacing": 7,
+   "item_size": [
+    17,
+    17
+   ],
+   "padding_lrtb": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "uniform": true,
+   "deviations": [],
+   "outside": [],
+   "reordered": true,
+   "confidence": "high"
+  }
+ ],
+ "prefabs": [
+  {
+   "name": "Btn_Footer",
+   "explicit": true,
+   "members": [
+    "Btn_Footer_Gacha_Prefab",
+    "Btn_Footer_Shop_Prefab",
+    "Btn_Footer_Chara_Prefab",
+    "Btn_Footer_Card_Prefab",
+    "Btn_Footer_Deck_Prefab",
+    "Btn_Footer_Guild_Prefab"
+   ],
+   "paths": [
+    "Footer_List/Btn_Footer_Gacha_Prefab",
+    "Footer_List/Btn_Footer_Shop_Prefab",
+    "Footer_List/Btn_Footer_Chara_Prefab",
+    "Footer_List/Btn_Footer_Card_Prefab",
+    "Footer_List/Btn_Footer_Deck_Prefab",
+    "Footer_List/Btn_Footer_Guild_Prefab"
+   ],
+   "parent": "Footer_List",
+   "variants": [],
+   "diffs": [
+    {
+     "kind": "text",
+     "label": "文字",
+     "values": [
+      "Gacha",
+      "Shop",
+      "Chara",
+      "Card",
+      "Deck",
+      "Guild"
+     ]
+    },
+    {
+     "kind": "image",
+     "label": "Icon_Footer*",
+     "values": [
+      "Icon_Footer_Gacha",
+      "Icon_Footer_Shop",
+      "Icon_Footer_Chara",
+      "Icon_Footer_Card",
+      "Icon_Footer_Deck",
+      "Icon_Footer_Guild"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Btn_MenuR",
+   "explicit": true,
+   "members": [
+    "Btn_MenuR_Event_Prefab",
+    "Btn_MenuR_Present_Prefab",
+    "Btn_MenuR_Quest_Prefab"
+   ],
+   "paths": [
+    "Menu_R_List/Btn_MenuR_Event_Prefab",
+    "Menu_R_List/Btn_MenuR_Present_Prefab",
+    "Menu_R_List/Btn_MenuR_Quest_Prefab"
+   ],
+   "parent": "Menu_R_List",
+   "variants": [
+    {
+     "name": "Btn_MenuR_Present_Prefab",
+     "path": "Menu_R_List/Btn_MenuR_Present_Prefab",
+     "extra": [
+      "Mark_Attention_Grp_Prefab"
+     ],
+     "missing": 0
+    }
+   ],
+   "diffs": [
+    {
+     "kind": "text",
+     "label": "文字",
+     "values": [
+      "Event",
+      "Quest"
+     ]
+    },
+    {
+     "kind": "image",
+     "label": "Icon_MenuR*",
+     "values": [
+      "Icon_MenuR_Event",
+      "Icon_MenuR_Quest"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Mark_Attention",
+   "explicit": true,
+   "members": [
+    "Mark_Attention_Grp_Prefab"
+   ],
+   "paths": [
+    "Menu_R_List/Btn_MenuR_Present_Prefab/Mark_Attention_Grp_Prefab"
+   ],
+   "parent": "Btn_MenuR_Present_Prefab",
+   "variants": [],
+   "diffs": []
+  },
+  {
+   "name": "Btn_MenuL",
+   "explicit": true,
+   "members": [
+    "Btn_MenuL_DailyPass_Prefab",
+    "Btn_MenuL_MonthlyPass_Prefab"
+   ],
+   "paths": [
+    "Menu_L_List/Btn_MenuL_DailyPass_Prefab",
+    "Menu_L_List/Btn_MenuL_MonthlyPass_Prefab"
+   ],
+   "parent": "Menu_L_List",
+   "variants": [],
+   "diffs": [
+    {
+     "kind": "text",
+     "label": "文字",
+     "values": [
+      "Daily Pass",
+      "Monthly Pass"
+     ]
+    },
+    {
+     "kind": "image",
+     "label": "Banner_MenuL*",
+     "values": [
+      "Banner_MenuL_DailyPass",
+      "Banner_MenuL_MonthlyPass"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Item",
+   "explicit": true,
+   "members": [
+    "Item_PaidJem_Grp_Prefab",
+    "Item_Coin_Grp_Prefab",
+    "Item_Jem_Grp_Prefab"
+   ],
+   "paths": [
+    "Header_Info_Grp/Item_PaidJem_Grp_Prefab",
+    "Header_Info_Grp/Item_Coin_Grp_Prefab",
+    "Header_Info_Grp/Item_Jem_Grp_Prefab"
+   ],
+   "parent": "Header_Info_Grp",
+   "variants": [],
+   "diffs": [
+    {
+     "kind": "runtime",
+     "label": "数字（実行時）",
+     "values": [
+      "99,999,999",
+      "99,999,999",
+      "99,999,999"
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Header_InfoChr",
+   "explicit": true,
+   "members": [
+    "Header_InfoChr_Grp_Prefab"
+   ],
+   "paths": [
+    "Header_InfoChr_Grp_Prefab"
+   ],
+   "parent": "Canvas",
+   "variants": [],
+   "diffs": []
+  }
+ ],
+ "spaces": [
+  {
+   "name": "space_Footer_Gap",
+   "path": "Footer_List/space_Footer_Gap",
+   "rect": [
+    120,
+    940,
+    100,
+    20
+   ],
+   "owner": "Footer_List",
+   "layer_id": 191,
+   "meaning": "spacing",
+   "value": 100,
+   "axis": "horizontal",
+   "between": [
+    "Btn_Footer_Gacha_Prefab",
+    "Btn_Footer_Shop_Prefab"
+   ]
+  },
+  {
+   "name": "space_MenuR_Gap",
+   "path": "Menu_R_List/space_MenuR_Gap",
+   "rect": [
+    1840,
+    462,
+    20,
+    32
+   ],
+   "owner": "Menu_R_List",
+   "layer_id": 192,
+   "meaning": "spacing",
+   "value": 32,
+   "axis": "vertical",
+   "between": [
+    "Btn_MenuR_Event_Prefab",
+    "Btn_MenuR_Present_Prefab"
+   ]
+  },
+  {
+   "name": "space_Footer_Bottom",
+   "path": "space_Footer_Bottom",
+   "rect": [
+    700,
+    1046,
+    40,
+    34
+   ],
+   "owner": "Canvas",
+   "layer_id": 193,
+   "meaning": "anchor",
+   "side": "bottom",
+   "value": 34,
+   "target": "Footer_List"
+  },
+  {
+   "name": "space_MenuR_Right",
+   "path": "space_MenuR_Right",
+   "rect": [
+    1904,
+    520,
+    16,
+    30
+   ],
+   "owner": "Canvas",
+   "layer_id": 194,
+   "meaning": "anchor",
+   "side": "right",
+   "value": 16,
+   "target": "Menu_R_List"
+  },
+  {
+   "name": "space_HeaderInfo_Top",
+   "path": "space_HeaderInfo_Top",
+   "rect": [
+    1500,
+    0,
+    30,
+    40
+   ],
+   "owner": "Canvas",
+   "layer_id": 195,
+   "meaning": "anchor",
+   "side": "top",
+   "value": 40,
+   "target": "Header_Info_Grp"
+  },
+  {
+   "name": "space_HeaderInfo_Right",
+   "path": "space_HeaderInfo_Right",
+   "rect": [
+    1887,
+    50,
+    33,
+    20
+   ],
+   "owner": "Canvas",
+   "layer_id": 196,
+   "meaning": "anchor",
+   "side": "right",
+   "value": 33,
+   "target": "Header_Info_Grp"
+  }
+ ],
+ "flattened": [
+  {
+   "name": "mark_plus",
+   "path": "Header_Info_Grp/Item_PaidJem_Grp_Prefab/Button_addItem_Grp/mark_plus",
+   "how": "merged",
+   "count": 2
+  },
+  {
+   "name": "mark_plus",
+   "path": "Header_Info_Grp/Item_Coin_Grp_Prefab/Button_addItem_Grp/mark_plus",
+   "how": "merged",
+   "count": 2
+  },
+  {
+   "name": "mark_plus",
+   "path": "Header_Info_Grp/Item_Jem_Grp_Prefab/Button_addItem_Grp/mark_plus",
+   "how": "merged",
+   "count": 2
+  }
+ ],
+ "issues": [
+  {
+   "level": "suggest",
+   "code": "slot_area",
+   "message": "Btn_MenuR_Present_Prefab: 中身のはみ出し（バッジ等）で他の項目より大きい（100×103 / 他 100×86）。枠は他にそろえた。項目全体の area_ を置くと確実",
+   "paths": [
+    "Menu_R_List/Btn_MenuR_Present_Prefab"
+   ]
+  },
+  {
+   "level": "suggest",
+   "code": "prefab_variant",
+   "message": "Prefab「Btn_MenuR」: Btn_MenuR_Present_Prefab だけ Mark_Attention_Grp_Prefab が多い。同じ Prefab の中で表示を切り替えるか、別の Prefab にするかを決める",
+   "paths": [
+    "Menu_R_List/Btn_MenuR_Present_Prefab"
+   ]
+  },
+  {
+   "level": "suggest",
+   "code": "need_list",
+   "message": "Header_Info_Grp: Item_Jem_Grp_Prefab・Item_Coin_Grp_Prefab・Item_PaidJem_Grp_Prefab が横に等間隔で並んでいる（211 / 209px）。この並びを新しいグループで包んで _List を付ける（Btn_Menu_Grp は外に）",
+   "paths": [
+    "Header_Info_Grp"
+   ]
+  },
+  {
+   "level": "info",
+   "code": "no_text_box",
+   "message": "文字の枠（area_）が無いので、文字の外接矩形を使う: 「Back Ground」",
+   "paths": [
+    "BG_Grp/Back Ground"
+   ]
+  },
+  {
+   "level": "info",
+   "code": "no_text_box",
+   "message": "文字の枠（area_）が無いので、文字の外接矩形を使う: 「Battle」",
+   "paths": [
+    "Btn_Battle_Grp/Battle"
+   ]
+  },
+  {
+   "level": "info",
+   "code": "hidden",
+   "message": "非表示のため変換しない: Mark_Attention_Grp_Prefab",
+   "paths": [
+    "Menu_R_List/Btn_MenuR_Quest_Prefab/Mark_Attention_Grp_Prefab",
+    "Menu_R_List/Btn_MenuR_Event_Prefab/Mark_Attention_Grp_Prefab"
+   ]
+  },
+  {
+   "level": "info",
+   "code": "no_text_box",
+   "message": "文字の枠（area_）が無いので、文字の外接矩形を使う: 「99」",
+   "paths": [
+    "Menu_R_List/Btn_MenuR_Present_Prefab/Mark_Attention_Grp_Prefab/99"
+   ]
+  },
+  {
+   "level": "info",
+   "code": "auto_merged",
+   "message": "印の無い画像だけのグループを 1 枚にまとめた: mark_plus（2 枚） × 3",
+   "paths": [
+    "Header_Info_Grp/Item_PaidJem_Grp_Prefab/Button_addItem_Grp/mark_plus",
+    "Header_Info_Grp/Item_Coin_Grp_Prefab/Button_addItem_Grp/mark_plus",
+    "Header_Info_Grp/Item_Jem_Grp_Prefab/Button_addItem_Grp/mark_plus"
+   ]
+  },
+  {
+   "level": "info",
+   "code": "typo_text",
+   "message": "仮テキストの綴り: 「CheName」 → ChrName?",
+   "paths": [
+    "Header_InfoChr_Grp_Prefab/CheName"
+   ]
+  },
+  {
+   "level": "info",
+   "code": "layer_fx",
+   "message": "レイヤースタイル付きが 25 個。画像に書き出すときに焼き込む",
+   "paths": []
+  }
+ ]
+}

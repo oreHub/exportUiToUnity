@@ -12,7 +12,7 @@ namespace BuildUiToUnity.Editor
     /// JsonUtility は入れ子の深い木（tree）を扱いにくく、外部のパッケージにも頼らないために自前で持つ。
     /// 値は Dictionary&lt;string, object&gt; / List&lt;object&gt; / string / double / bool / null になる。
     /// </summary>
-    static class Json
+    public static class Json
     {
         public static J Parse(string text)
         {
@@ -132,7 +132,7 @@ namespace BuildUiToUnity.Editor
     }
 
     /// <summary>JSON の値を読みやすくする包み。無い項目は null として読める（例外にしない）。</summary>
-    class J
+    public class J
     {
         public readonly object v;
         public J(object v) { this.v = v; }
