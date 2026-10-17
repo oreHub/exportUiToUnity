@@ -5,14 +5,15 @@
 3. レイヤー情報をランダムに崩した版でも一致するか（fuzz）
 4. 仮の Photoshop（mock_panel.js）でパネルを動かし、件数・修正ボタンの動作を確かめる
 
-使い方（リポジトリの直下で）:
+使い方（exportPsdToUnity_plugin フォルダで）:
   tools\\.venv\\Scripts\\python.exe tests\\run_all.py [--fuzz 100]
 準備: tools の venv（tools/setup.bat）と、tests で `npm install`（jsdom）
 """
 import argparse, os, subprocess, sys
 
 H = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(H)
+ROOT = os.path.dirname(H)                                   # exportPsdToUnity_plugin
+SAMPLES_DIR = os.path.join(os.path.dirname(ROOT), 'samples')   # 共通の試験データ（リポジトリの直下）
 SAMPLES = ['Home', 'home_unmarked', 'space_test']
 EXPECT_HOME = '●エラー 0 | ●注意 1 | ●提案 5 | ●情報 6'
 
@@ -32,7 +33,7 @@ def main():
 
     print('== 1-2. サンプルの読み取りと Python / JS の照合')
     for s in SAMPLES:
-        psd = os.path.join(ROOT, 'samples', s + '.psd')
+        psd = os.path.join(SAMPLES_DIR, s + '.psd')
         lj, pj = os.path.join(fx, s + '.layers.json'), os.path.join(fx, s + '.py.json')
         c1, o1 = run([sys.executable, os.path.join(H, 'dump_layers.py'), psd, lj])
         c2, o2 = run([sys.executable, os.path.join(ROOT, 'tools', 'psd_to_layout.py'), psd, pj])
@@ -63,7 +64,7 @@ def main():
 
     print('== 5. 書き出しの照合（Python 版 export_ui.py と JS 版 core/export.js）')
     ref, work = os.path.join(fx, 'Home.export.json'), os.path.join(fx, 'export_work')
-    c1, o1 = run([sys.executable, os.path.join(H, 'export_ref.py'), os.path.join(ROOT, 'samples', 'Home.psd'),
+    c1, o1 = run([sys.executable, os.path.join(H, 'export_ref.py'), os.path.join(SAMPLES_DIR, 'Home.psd'),
                   os.path.join(fx, 'home_unmarked.py.json'), work, ref])
     c2, o2 = run(['node', os.path.join(H, 'export_parity.js'), os.path.join(fx, 'Home.layers.json'), ref, os.path.join(fx, 'home_unmarked.py.json')])
     good = c1 == 0 and c2 == 0

@@ -1,16 +1,33 @@
-# 環境
-tools/.venv/
-tests/node_modules/
+# 環境（Photoshop プラグインのテスト）
+exportPsdToUnity_plugin/tools/.venv/
+exportPsdToUnity_plugin/tests/node_modules/
 __pycache__/
 *.pyc
 
 # テストで作るもの
-tests/fixtures/
-tests/out/
+exportPsdToUnity_plugin/tests/fixtures/
+exportPsdToUnity_plugin/tests/out/
 
 # 書き出しの試し
 UIExport_out/
 *.__new/
+
+# テスト用 Unity プロジェクト（dev_buildUiToUnity）の自動生成物
+dev_buildUiToUnity/[Ll]ibrary/
+dev_buildUiToUnity/[Tt]emp/
+dev_buildUiToUnity/[Ll]ogs/
+dev_buildUiToUnity/[Uu]ser[Ss]ettings/
+dev_buildUiToUnity/[Oo]bj/
+dev_buildUiToUnity/[Bb]uild/
+dev_buildUiToUnity/[Bb]uilds/
+dev_buildUiToUnity/.vs/
+dev_buildUiToUnity/.idea/
+dev_buildUiToUnity/*.csproj
+dev_buildUiToUnity/*.sln
+dev_buildUiToUnity/*.slnx
+
+# テスト用 Unity プロジェクトに置く書き出しデータ（正は samples/UIExport/ と、プラグインの書き出し）
+dev_buildUiToUnity/UIExport/
 
 # OS
 .DS_Store

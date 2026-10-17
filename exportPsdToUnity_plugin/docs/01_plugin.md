@@ -1,4 +1,4 @@
-# 04 Photoshop プラグイン（UXP）
+# 01 Photoshop プラグイン（UXP）
 
 ## 段階
 
@@ -28,7 +28,7 @@
 - 書き出し先は初回に選び、許可を記録して次回も使う（選んだフォルダ以外には触らない）
 - 画面 ID は PSD の記録（XMP）があればそれを、無ければファイル名から入れておく
 - 書き出す直前に解析し直す。エラーがあっても書き出せる
-- 版の照合（`docs/03_versioning.md`）で止まったときは「上書きして書き出す」か「やめる」を選ぶ
+- 版の照合（直下の `docs/03_versioning.md`）で止まったときは「上書きして書き出す」か「やめる」を選ぶ
 - 前の版から変わっていなければ版を増やさない（PSD の記録が最新の版と違えば、最新の版に合わせて保存する）
 - 書き出しと同時に、PSD に画面 ID と版を書き込んで保存する。保存していない PSD は書き出せない
 
@@ -46,7 +46,7 @@ Python 版との違い: 画像のハッシュの計算方法が違うので、Py
 ## 開発の進め方
 
 1. Photoshop の 環境設定 > プラグイン で「開発者モード」をオンにする
-2. UXP Developer Tool で「Add Plugin」→ `plugin/UIExport/manifest.json` を選ぶ → 「Load」
+2. UXP Developer Tool で「Add Plugin」→ `exportPsdToUnity_plugin/plugin/UIExport/manifest.json` を選ぶ → 「Load」
 3. 「Load & Watch」にすると、ファイルを保存するたびに自動で再読み込みされる
 4. 確認用タブ: 「解析結果を保存…」（読んだレイヤー情報と結果の JSON）、「読み取りの比較」（2 つの読み取り方式の照合）
 

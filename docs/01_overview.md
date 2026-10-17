@@ -19,8 +19,26 @@ PSD に構造の情報（印）を持たせ、Unity の UI 構造と画像を機
 6. **実装**: エンジニアがスクリプト・イベント・データのつなぎ込みを足す
 7. **修正**: PSD を直して再書き出し → 再取り込み。ID で照合し、エンジニアが足したものは残す
 
-アニメーションが要る画面（後の段階）: 確定した構造から AE のファイルを作り、AE で動きを付け、ID で Unity に当てる。
-Unity 側の形式（AnimationClip か、DOTween のようなスクリプトか）は未決定。
+アニメーションが要る画面（後の段階）: 確定した構造（layout.json）から AE のファイルを作り、AE で動きを付け、
+動きのデータを書き出して、ID で Unity に当てる。Unity 側の形式（AnimationClip か、DOTween のようなスクリプトか）は未決定
+（`05_motion_format.md`）。
+
+## ツール
+
+| ツール | 場所 | 動く場所 | 役割 |
+| --- | --- | --- | --- |
+| Photoshop プラグイン | `exportPsdToUnity_plugin/` | Photoshop | PSD を解析・修正し、UI の構造（layout.json）と画像を書き出す |
+| After Effects パネル（予定） | `exportAeToUnity_plugin/` | After Effects | layout.json から AE ファイルを作る。付けた動きを検査し、動きのデータを書き出す |
+| Unity 取り込みツール | `buildUiToUnityPackage/` | Unity（エディタ拡張） | layout.json と画像から uGUI の画面を組み立てる。後で AE の動きも取り込む |
+
+```
+PSD ──[Photoshop プラグイン]──→ UIExport/<画面ID>/（layout.json・images）──[Unity 取り込みツール]──→ uGUI の画面
+                                     │                                          ↑
+                                     └──[AE パネル]→ AE ファイル → 動きのデータ ─┘
+```
+
+ツールの間の約束ごとは、直下の docs に置く: layout.json の形（`04_layout_format.md`）、動きのデータの形（`05_motion_format.md`）、
+版の管理（`03_versioning.md`）。
 
 ## 書き出し先
 
@@ -29,7 +47,7 @@ Unity 側の形式（AnimationClip か、DOTween のようなスクリプトか�
 | ファイル | 内容 |
 | --- | --- |
 | `images/` | 部品ごとの画像。同じ絵は 1 枚にまとめて共有 |
-| `layout.json` | 構造データ（ツール同士の受け渡し用） |
+| `layout.json` | 構造データ（ツール同士の受け渡し用。形は `04_layout_format.md`） |
 | `preview.png` | 画面全体（area_ / space_ は除く） |
 | `report.html` | 人が見る構造レポート |
 | `history.json` | 書き出しの記録 |

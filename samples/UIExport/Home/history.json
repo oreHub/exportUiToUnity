@@ -1,0 +1,16 @@
+[
+ {
+  "version": "261017-1",
+  "exported_at": "2026-10-17T10:09:20",
+  "psd_file": "h_exp.psd",
+  "base_version": null,
+  "issues": {
+   "error": 0,
+   "warn": 1,
+   "suggest": 5,
+   "info": 6
+  },
+  "images": 19,
+  "changes": null
+ }
+]

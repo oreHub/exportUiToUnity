@@ -1,30 +1,26 @@
-# 07 残作業
+# 07 残作業（全体）
 
-## プラグイン（Claude Code で進める）
+ツールごとの細かい残作業は、それぞれの docs にある。
 
-- [ ] **段階 3: 書き出し** — 作成済み（0.3.0）。実機の確認待ち（`docs/04_plugin.md` の「書き出し」）
-  - 画像は「新しいドキュメントに複製して書き出す」方式（確実さを優先。速さが要るようになったら imaging API を検討）
-  - 実機で確かめること: 効果つきの部品・グループ・枠つきの画像が見た目どおりか、XMP の書き込みと保存、2 回目の「変更なし」
-- [ ] `_Fx` の印を解析で読む（今は `MARKS` に無いので名前に残ってしまう）。Python 版も同時に
-- [ ] 効果の分割の書き出し（Glow / Art / Stroke、光彩は白で書き出し色を記録）
-- [ ] 枠からのはみ出しを解析の時点でも出す（Photoshop の効果込みの範囲 `bounds` を使えば可能）
-- [ ] 配布用の `.ccx` にまとめる手順
-- [ ] 名前の変更の追跡用に、layout.json に PSD のレイヤー ID を入れる
+| ツール | 残作業 |
+| --- | --- |
+| Photoshop プラグイン | `exportPsdToUnity_plugin/docs/02_backlog.md` |
+| Unity 取り込みツール | `buildUiToUnityPackage/docs/02_importer_plan.md` |
+| After Effects パネル | `exportAeToUnity_plugin/docs/01_plan.md` |
 
-## Unity 取り込みツール（Claude Code の IDE 拡張で、Unity プロジェクトの中で進める）
+## ツールをまたぐもの
 
-- [ ] `docs/05_unity_importer.md` の「最初に作る範囲」
-- [ ] エラーのある版の確認
-- [ ] 再取り込み（ID で照合、持ち分）
+- [ ] **layout.json に形の版（`format_version`）を足し、読む側で確かめる**
+  - 書き出す側（プラグインと Python 版）で `format_version` を書く。形を変えたら番号を上げる
+  - 読む側（Unity 取り込みツール、AE パネル）は、知らない番号なら止めて知らせる
+  - `04_layout_format.md` に番号ごとの違いを書く
+- [ ] AE から書き出す動きのデータの形を決める（`05_motion_format.md`）。Unity 側の形式（AnimationClip / スクリプト）も同時に
+- [ ] 名前の変更の追跡: プラグインの書き出しは layout.json に PSD のレイヤー ID（`layer_id`）を入れている（Python 版は入れていない）。
+      Unity の再取り込みで、ID が変わった部品をレイヤー ID で照合する
+- [ ] XMP の名前空間を社内で決めたものにする（プラグインと Python 版を同時に）
+- [ ] テスト用の Unity プロジェクト `dev_buildUiToUnity/` を Unity Hub で作る（`buildUiToUnityPackage/docs/01_setup.md`）
 
-## その後
+## 資料
 
-- [ ] AE ファイルの生成（確定した構造から）と、AE の動きを Unity に当てる仕組み。形式（AnimationClip / スクリプト）を決める
 - [ ] 社内向け資料（スライド）を今の規則に合わせて更新
 - [ ] 運用文書: 「修正と更新の流れ」「エンジニアが先に作る場合・同時に進める場合」
-- [ ] XMP の名前空間を社内で決めたものにする
-
-## メモ
-
-- Python 版（`tools/`）は Python 3.10 で動作確認済み。Python 3.10 は 2026 年 10 月でサポート終了
-- 依存は `psd-tools[composite]`（境界線の描画に scipy が要るため。`psd-tools` だけでは止まる）

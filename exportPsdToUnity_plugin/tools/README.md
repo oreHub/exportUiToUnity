@@ -49,7 +49,7 @@ tools フォルダで実行する。
 
 - `export_ui.py` 書き出し本体
 - `psd_to_layout.py` 解析（印の読み取り、構造の組み立て、検査と提案）
-- レポートのひな形は、プラグインと共用の `plugin/UIExport/report_template.html` を使う
+- レポートのひな形は、プラグインと共用の `../plugin/UIExport/report_template.html` を使う
 - `requirements.txt` 必要なライブラリの一覧
 - `setup.bat` 準備用（.venv 作成とライブラリのインストール）
 
