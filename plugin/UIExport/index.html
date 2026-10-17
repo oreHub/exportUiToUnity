@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="top">
+    <div class="row">
+      <sp-button id="btnAnalyze" variant="cta">解析</sp-button>
+      <div id="docInfo" class="muted">PSD を開いて「解析」</div>
+      <div id="zoom"><span class="muted">文字</span><span class="zbtn" id="zOut">A−</span><span class="zbtn" id="zIn">A＋</span></div>
+    </div>
+    <div id="counts" class="row hidden"></div>
+    <div id="tabs" class="row hidden">
+      <div class="tab on" data-tab="issues">問題</div>
+      <div class="tab" data-tab="tree">構造</div>
+      <div class="tab" data-tab="debug">確認用</div>
+    </div>
+  </div>
+  <div id="msg" class="hidden"></div>
+  <div id="main">
+    <div id="pane-issues" class="pane"></div>
+    <div id="pane-tree" class="pane hidden"></div>
+    <div id="pane-debug" class="pane hidden">
+      <p class="muted">解析に使ったレイヤー情報と結果を JSON で保存します。結果が思った通りでないときに、このファイルを送ってもらえれば原因を調べられます。</p>
+      <sp-button id="btnSave" variant="secondary">解析結果を保存…</sp-button>
+      <p id="saveMsg" class="muted"></p>
+      <p class="muted">2 つの読み取り方式（まとめて取る / レイヤーごと）で読んだ結果が同じかを確かめます。</p>
+      <sp-button id="btnCompare" variant="secondary">読み取りの比較</sp-button>
+      <div id="cmpMsg"></div>
+    </div>
+  </div>
+  <script src="main.js"></script>
+</body>
+</html>

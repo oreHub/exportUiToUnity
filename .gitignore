@@ -1,0 +1,17 @@
+# 環境
+tools/.venv/
+tests/node_modules/
+__pycache__/
+*.pyc
+
+# テストで作るもの
+tests/fixtures/
+tests/out/
+
+# 書き出しの試し
+UIExport_out/
+*.__new/
+
+# OS
+.DS_Store
+Thumbs.db

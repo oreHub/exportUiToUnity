@@ -1,0 +1,11 @@
+{
+  "name": "ui-export-tests",
+  "private": true,
+  "description": "Photoshop が無くても動くテスト（仮の Photoshop でパネルを動かす）",
+  "scripts": {
+    "test": "python run_all.py"
+  },
+  "devDependencies": {
+    "jsdom": "24.1.3"
+  }
+}

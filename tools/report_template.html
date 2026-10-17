@@ -1,0 +1,513 @@
+<title>UI 構造レポート</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* レイアウト: 要約と印の早見表 → PSD に重ねた図（全幅）→「階層ツリー｜選択中の詳細」→ 提案と指摘 → 並びと Prefab → 補足 */
+:root {
+  --bg: #F4F5F7; --surface: #FFFFFF; --sunk: #EAECF0; --line: #D7DBE2;
+  --fg: #1B2230; --muted: #5A6475; --faint: #8A93A3;
+  --grp: #6B4FD0; --list: #C26A0E; --text: #1F7FA3; --prefab: #23855A;
+  --err: #C23B32; --warn: #A86F00; --sug: #2F62C9; --info: #5B6B85;
+  --grp-bg: #EEEAFB; --list-bg: #FBEEDD; --text-bg: #E2F1F7; --prefab-bg: #E1F3EA;
+  --err-bg: #FBE8E6; --warn-bg: #FAF0D9; --sug-bg: #E5EDFB; --info-bg: #ECEFF4;
+  --sans: "IBM Plex Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #12151B; --surface: #1A1F27; --sunk: #232933; --line: #323A47;
+  --fg: #E6E9EF; --muted: #A3ACBB; --faint: #77808F;
+  --grp: #A794F2; --list: #F0A24A; --text: #5CC0E0; --prefab: #63D49C;
+  --err: #F07A70; --warn: #E2B04A; --sug: #86A9F2; --info: #A3B0C4;
+  --grp-bg: #2A2446; --list-bg: #3A2A16; --text-bg: #16323D; --prefab-bg: #173527;
+  --err-bg: #3D1E1C; --warn-bg: #3A2F14; --sug-bg: #1C2A44; --info-bg: #232A35;
+  color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #12151B; --surface: #1A1F27; --sunk: #232933; --line: #323A47;
+  --fg: #E6E9EF; --muted: #A3ACBB; --faint: #77808F;
+  --grp: #A794F2; --list: #F0A24A; --text: #5CC0E0; --prefab: #63D49C;
+  --err: #F07A70; --warn: #E2B04A; --sug: #86A9F2; --info: #A3B0C4;
+  --grp-bg: #2A2446; --list-bg: #3A2A16; --text-bg: #16323D; --prefab-bg: #173527;
+  --err-bg: #3D1E1C; --warn-bg: #3A2F14; --sug-bg: #1C2A44; --info-bg: #232A35;
+  color-scheme: dark }
+
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--fg); font-family: var(--sans); font-size: 15px; line-height: 1.65 }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: 20px; padding-block: 28px 64px; display: flex; flex-direction: column; gap: 36px }
+h1 { font-size: 26px; line-height: 1.3; margin: 0; text-wrap: balance; font-weight: 700 }
+h2 { font-size: 19px; margin: 0; font-weight: 700; text-wrap: balance }
+h3 { font-size: 15px; margin: 0; font-weight: 700 }
+p { margin: 0 }
+code, .mono { font-family: var(--mono); font-size: 13px }
+.muted { color: var(--muted) }
+.eyebrow { font-size: 12px; letter-spacing: .08em; color: var(--muted); font-weight: 500 }
+section { display: flex; flex-direction: column; gap: 14px; min-width: 0 }
+.lede { max-width: 72ch; color: var(--muted) }
+header { display: flex; flex-direction: column; gap: 10px }
+.src { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--muted); font-size: 13px }
+.top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 18px; align-items: start }
+@media (max-width: 900px) { .top { grid-template-columns: minmax(0, 1fr) } }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: flex; flex-direction: column; gap: 2px; min-width: 0 }
+.stat b { font-size: 24px; font-variant-numeric: tabular-nums; line-height: 1.2 }
+.stat span { font-size: 12.5px; color: var(--muted) }
+.stat.sug b { color: var(--sug) } .stat.err b { color: var(--err) }
+.marks { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; overflow: hidden }
+.marks table { min-width: 0 }
+.marks td:first-child { white-space: nowrap }
+
+/* 図 */
+.figtools { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center }
+.toggle { display: inline-flex; align-items: center; gap: 7px; font-size: 13.5px; cursor: pointer; user-select: none; padding: 4px 10px 4px 8px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface) }
+.toggle input { margin: 0; accent-color: var(--fg) }
+.sw { width: 14px; height: 10px; border-radius: 2px; border: 2px solid }
+.sw.grp { border-color: var(--grp) } .sw.list { border-color: var(--list); border-style: dashed } .sw.prefab { border-color: var(--prefab) } .sw.text { border-color: var(--text) } .sw.issue { border-color: var(--sug); background: var(--sug-bg) } .sw.space { border-color: #E0359A; background: rgba(224,53,154,.25) }
+.figure { position: relative; width: 100%; aspect-ratio: 16 / 9; max-width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: #333 }
+.figure img { position: absolute; inset: 0; width: 100%; height: 100%; display: block }
+.figure svg { position: absolute; inset: 0; width: 100%; height: 100% }
+.ov { fill: transparent; stroke-width: 3; vector-effect: non-scaling-stroke; cursor: pointer }
+.ov.leaf { stroke: rgba(255,255,255,0); pointer-events: all }
+.ov.leaf:hover { fill: rgba(255,255,255,.10) }
+.ov.grp { stroke: #B9A6FF; pointer-events: visibleStroke }
+.ov.list { stroke: #FFB45A; stroke-dasharray: 7 4; pointer-events: visibleStroke }
+.ov.prefab { stroke: #7CF0B4; stroke-width: 4; pointer-events: visibleStroke } .ov.prefab.cand { stroke-dasharray: 10 5; stroke-width: 2.5 }
+.ov.text { stroke: #6FD3F2; stroke-width: 1.5 }
+.ov.issue { stroke: #8FB4FF; fill: rgba(110,150,255,.18); stroke-width: 2; pointer-events: visibleStroke }
+.ov.issue.bad { stroke: #FF7A6E; fill: rgba(255,90,80,.18) }
+.ov.sel { stroke: #FFFFFF; stroke-width: 3; fill: rgba(255,255,255,.14); pointer-events: none }
+.ov.space { stroke: #FF5FBF; fill: rgba(255,60,170,.45); stroke-width: 1.5; pointer-events: all }
+.space-label { fill: #FFFFFF; font: 600 22px var(--mono); paint-order: stroke; stroke: rgba(120,0,70,.9); stroke-width: 5px; pointer-events: none }
+.gap-mark { fill: rgba(255,180,90,.35); pointer-events: none } .gap-mark.bad { fill: rgba(255,90,80,.75) }
+.tip { position: absolute; pointer-events: none; background: rgba(15,18,24,.94); color: #F1F3F7; font-size: 12.5px; line-height: 1.5; padding: 7px 9px; border-radius: 6px; max-width: 280px; z-index: 3 }
+.legend-note { font-size: 13px; color: var(--muted) }
+
+/* ツリー + 詳細 */
+.split { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 18px; align-items: start }
+@media (max-width: 860px) { .split { grid-template-columns: minmax(0, 1fr) } }
+.panel { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; min-width: 0 }
+.panel-h { padding: 12px 14px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap }
+.tree { padding: 8px 6px 10px; max-height: 640px; overflow: auto; font-size: 13.5px }
+.tree ul { list-style: none; margin: 0 0 0 7px; padding-left: 16px; border-left: 1px dotted var(--line) }
+.tree > ul { padding-left: 0; border-left: 0; margin-left: 0 }
+.row { display: flex; align-items: center; gap: 6px; padding: 3px 6px; border-radius: 5px; cursor: pointer; min-width: 0 }
+.row:hover { background: var(--sunk) }
+.row.sel { background: var(--fg); color: var(--bg) }
+.row .nm { font-family: var(--mono); font-size: 12.8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0 }
+.row .sz { margin-left: auto; font-family: var(--mono); font-size: 11.5px; color: var(--faint); font-variant-numeric: tabular-nums; white-space: nowrap; padding-left: 6px }
+.row.sel .sz { color: inherit; opacity: .75 }
+.tw { width: 14px; flex: none; text-align: center; font-size: 11px; background: none; border: 0; padding: 0; cursor: pointer; color: inherit }
+.kind { flex: none; width: 18px; height: 18px; border-radius: 4px; font-size: 10.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; background: var(--sunk); color: var(--muted) }
+.row.sel .kind { background: rgba(127,127,127,.35); color: inherit }
+.chip { flex: none; font-size: 11px; line-height: 1.5; padding: 0 6px; border-radius: 4px; border: 1px solid var(--line); white-space: nowrap }
+.chip.grp { color: var(--grp); background: var(--grp-bg); border-color: transparent }
+.chip.list { color: var(--list); background: var(--list-bg); border-color: transparent }
+.chip.prefab { color: var(--prefab); background: var(--prefab-bg); border-color: transparent; font-weight: 700 }
+.chip.pcand { color: var(--prefab); border-color: var(--prefab); border-style: dashed }
+.chip.base { color: var(--muted) }
+.chip.auto { color: var(--faint); border-style: dotted }
+.chip.dyn { color: var(--text); background: var(--text-bg); border-color: transparent }
+.row.sel .chip { color: inherit; background: rgba(127,127,127,.3); border-color: transparent }
+.detail { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 14px }
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 14px; font-size: 13.5px; margin: 0 }
+.kv dt { color: var(--muted) } .kv dd { margin: 0; min-width: 0; overflow-wrap: anywhere }
+.num { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: 13px }
+.comps { display: flex; flex-wrap: wrap; gap: 6px }
+.comps .chip { font-size: 12px; padding: 1px 8px }
+.cand { border-style: dashed }
+.note { font-size: 13px; color: var(--muted); background: var(--sunk); border-radius: 6px; padding: 9px 11px }
+
+/* 表 */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--surface) }
+table { border-collapse: collapse; width: 100%; font-size: 13.5px; min-width: 680px }
+th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--line); vertical-align: top }
+th { font-size: 12px; color: var(--muted); font-weight: 500; background: var(--sunk); white-space: nowrap }
+tr:last-child td { border-bottom: 0 }
+td.n { font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap }
+tbody.click tr { cursor: pointer } tbody.click tr:hover td { background: var(--sunk) }
+.conf { font-size: 12px; padding: 1px 8px; border-radius: 999px; white-space: nowrap }
+.conf.high { background: var(--text-bg); color: var(--text) } .conf.medium { background: var(--sunk); color: var(--muted) } .conf.check { background: var(--warn-bg); color: var(--warn) }
+.strip { display: block; height: 18px; width: 170px; margin-top: 4px }
+
+/* 提案と指摘 */
+.filters { display: flex; flex-wrap: wrap; gap: 8px }
+.filters button { font: inherit; font-size: 13px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); padding: 4px 12px; border-radius: 999px; cursor: pointer }
+.filters button[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg) }
+.issues { display: flex; flex-direction: column; gap: 8px }
+.issue { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 12px; align-items: start; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; border-left-width: 4px }
+.issue.error { border-left-color: var(--err) } .issue.warn { border-left-color: var(--warn) } .issue.suggest { border-left-color: var(--sug) } .issue.info { border-left-color: var(--info) }
+.lv { font-size: 12px; font-weight: 700; padding: 1px 0; border-radius: 4px; text-align: center }
+.lv.error { color: var(--err); background: var(--err-bg) } .lv.warn { color: var(--warn); background: var(--warn-bg) } .lv.suggest { color: var(--sug); background: var(--sug-bg) } .lv.info { color: var(--info); background: var(--info-bg) }
+.issue .msg { overflow-wrap: anywhere }
+.issue .where { font-size: 12px; color: var(--faint); font-family: var(--mono); overflow-wrap: anywhere; margin-top: 2px }
+button.show { font: inherit; font-size: 12.5px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); padding: 3px 10px; border-radius: 6px; cursor: pointer; white-space: nowrap }
+button.show:hover { background: var(--sunk) }
+button:focus-visible, .row:focus-visible, .toggle:focus-within, tbody tr:focus-visible, summary:focus-visible { outline: 2px solid var(--text); outline-offset: 2px }
+@media (max-width: 560px) { .issue { grid-template-columns: minmax(0, 1fr) } .lv { justify-self: start; padding: 1px 8px } }
+
+.pf-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 12px }
+.pf { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; min-width: 0 }
+.pf.explicit { border: 2px solid var(--prefab) }
+.pf-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap }
+.pf-h code { font-size: 15px; font-weight: 500 }
+.members { display: flex; flex-wrap: wrap; gap: 6px }
+.members button { font: inherit; font-family: var(--mono); font-size: 12px; border: 1px solid var(--line); background: var(--bg); color: var(--fg); padding: 2px 8px; border-radius: 5px; cursor: pointer }
+.members button:hover { background: var(--sunk) }
+.members button.var { border-style: dashed }
+.pf .kv { grid-template-columns: minmax(0, 1fr); gap: 0 } .pf .kv dt { font-size: 12px } .pf .kv dd { margin-bottom: 8px }
+
+details.more { background: var(--surface); border: 1px solid var(--line); border-radius: 8px }
+details.more > summary { cursor: pointer; padding: 12px 14px; font-weight: 700; list-style-position: inside }
+details.more > div { padding: 0 14px 14px; display: flex; flex-direction: column; gap: 10px }
+.mini-issues { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 13.5px }
+.mini-issues li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 10px; align-items: start; overflow-wrap: anywhere }
+.renames { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 4px 10px; font-family: var(--mono); font-size: 12.5px; align-items: center }
+.renames .from { color: var(--faint); overflow-wrap: anywhere } .renames .to { overflow-wrap: anywhere } .renames .ar { color: var(--faint) }
+.assume { margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 6px; max-width: 80ch; color: var(--muted) }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important } }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">PSD → UNITY 構造</p>
+    <h1 id="h1">UI の Unity 構造レポート</h1>
+    <p class="lede">PSD のレイヤー名に付けた印から、Unity（uGUI）の階層・位置とサイズ・LayoutGroup・Prefab・テキスト枠を組み立てた結果です。印の抜けや食い違いは「提案」として一覧にしています。AE と Unity は使わず、PSD だけから作っています。</p>
+    <div class="src" id="src"></div>
+  </header>
+
+  <div class="top">
+    <section aria-label="要約"><div class="stats" id="stats"></div></section>
+    <section aria-labelledby="h-marks">
+      <h2 id="h-marks" class="eyebrow" style="font-size:12px">印の早見表（名前の末尾に付ける。Unity の名前からは外す）</h2>
+      <div class="marks"><table>
+        <tbody>
+          <tr><td><code>_Grp</code></td><td>ゲームオブジェクトとして残す（大きな親も、ボタンやバッジなどの小さな部品も）</td></tr>
+          <tr><td><code>_List</code></td><td>レイアウトグループ。直下の子は印が無くても並びの項目になる</td></tr>
+          <tr><td><code>_Prefab</code></td><td>Prefab にする（<code>_Grp</code> / <code>_List</code> に重ねる）</td></tr>
+          <tr><td><code>_Img</code></td><td>中身ごと 1 枚の画像にする（文字やレイヤースタイルも焼き込む）</td></tr>
+          <tr><td><code>_Base</code></td><td>親自身の画像にする（バッジの赤丸、ボタンの背景など）</td></tr>
+          <tr><td><code>area_</code></td><td>レイヤーの先頭に付ける。文字の枠、またはグループの範囲</td></tr>
+          <tr><td><code>space_</code></td><td>レイヤーの先頭に付ける。並びの間隔、内側の余白、画面端からの距離。<code>area_</code> と同じく表示・非表示に関係なく構造情報としてだけ使う</td></tr>
+        </tbody>
+      </table></div>
+    </section>
+  </div>
+
+  <section aria-labelledby="h-fig">
+    <h2 id="h-fig">PSD に重ねた構造</h2>
+    <div class="figtools" role="group" aria-label="表示の切り替え">
+      <label class="toggle"><input type="checkbox" id="t-grp" checked><span class="sw grp"></span>ゲームオブジェクト（_Grp）</label>
+      <label class="toggle"><input type="checkbox" id="t-list" checked><span class="sw list"></span>並び（_List）と間隔</label>
+      <label class="toggle"><input type="checkbox" id="t-prefab" checked><span class="sw prefab"></span>Prefab（指定・候補）</label>
+      <label class="toggle"><input type="checkbox" id="t-space" checked><span class="sw space"></span>余白（space_）</label>
+      <label class="toggle"><input type="checkbox" id="t-text"><span class="sw text"></span>文字の枠</label>
+      <label class="toggle"><input type="checkbox" id="t-issue"><span class="sw issue"></span>提案と指摘の箇所</label>
+    </div>
+    <div class="figure" id="fig">
+      <img id="psdimg" alt="Home UI の PSD 全体" src="__IMG__">
+      <svg id="ov" viewBox="0 0 1920 1080" preserveAspectRatio="none" aria-label="構造の重ね表示"></svg>
+      <div class="tip" id="tip" hidden></div>
+    </div>
+    <p class="legend-note">枠をクリックすると、下の階層ツリーと詳細に移ります。Prefab は実線が <code>_Prefab</code> で指定したもの、破線が同じ構造の繰り返しから見つけた候補です。間隔の帯は、オレンジが揃っている間隔、赤が他とずれている間隔です。</p>
+  </section>
+
+  <section aria-labelledby="h-tree">
+    <h2 id="h-tree">Unity の階層</h2>
+    <div class="split">
+      <div class="panel">
+        <div class="panel-h"><h3>階層ツリー</h3><span class="muted" style="font-size:12.5px">G ゲームオブジェクト ／ I 画像 ／ T 文字</span></div>
+        <div class="tree" id="tree" role="tree"></div>
+      </div>
+      <div class="panel" aria-live="polite">
+        <div class="panel-h"><h3>選択中の部品</h3></div>
+        <div class="detail" id="detail"><p class="muted">図かツリーで部品を選んでください。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="h-iss">
+    <h2 id="h-iss">提案と指摘</h2>
+    <p class="lede">エラーは直さないと Unity で問題になるもの、注意は印と中身が食い違っているもの、提案は印の付け忘れの可能性です。提案は採用するかどうかをデザイナーとエンジニアで決めます。</p>
+    <div class="filters" id="filters" role="group" aria-label="種類で絞り込む"></div>
+    <div class="issues" id="issues"></div>
+  </section>
+
+  <section aria-labelledby="h-list">
+    <h2 id="h-list">並び（_List）</h2>
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>グループ</th><th>向き</th><th>項目</th><th>ピッチ / spacing</th><th>間隔の根拠</th><th>項目の大きさ</th><th>並び順</th><th>確からしさ</th></tr></thead>
+      <tbody id="lists" class="click"></tbody>
+    </table></div>
+  </section>
+
+  <section aria-labelledby="h-pf">
+    <h2 id="h-pf">Prefab</h2>
+    <p class="lede">太い枠は <code>_Prefab</code> で指定したもの、細い枠は印が無いが同じ構造が繰り返されている候補です。</p>
+    <div class="pf-grid" id="pfs"></div>
+  </section>
+
+  <section aria-labelledby="h-more">
+    <h2 id="h-more">補足</h2>
+    <details class="more" id="changes" open><summary></summary><div></div></details>
+    <details class="more" id="history"><summary></summary><div></div></details>
+    <details class="more" id="fonts"><summary></summary><div></div></details>
+    <details class="more"><summary>組み立ての前提</summary><div>
+      <ul class="assume">
+        <li>キャンバスは PSD と同じ 1920×1080。位置は親の中心を原点、上向きを正とする Unity の anchoredPosition で示し、pivot は中央。<code>space_</code> で画面端（親の端）からの距離が指定された部品だけ、その端に anchor と pivot を合わせ、距離をオフセットにする。</li>
+        <li><code>space_</code> は置いた場所で意味を判定する。<code>_List</code> の項目の間は間隔、容器の端と部品の間は、<code>_List</code> なら内側の余白、それ以外なら端からの距離。片側だけ接している場合は、指定の値と実際の間隔の食い違いとして知らせる。</li>
+        <li>ゲームオブジェクトの大きさは、<code>area_</code> があればそれ、無ければ <code>_Base</code> の画像、それも無ければ中身の範囲。</li>
+        <li>印の無いグループは、画像だけなら 1 枚にまとめ、文字や印付きを含むならグループを外して中身を一番近い印付きの親に入れる。</li>
+        <li>並びの向き・間隔・順番は位置から判定（許容差 3px）。LayoutGroup が上書きするのは直下の子の位置とサイズだけなので、並び全体を動かすことや、子の拡大縮小・回転・不透明度を動かすことは問題ない。子の位置を個別に動かす場合だけ、その子を「枠＋見た目」の 2 段にする。</li>
+        <li>コンポーネントの「?」は候補。Button は Btn_ / Button_ で始まるゲームオブジェクトに付けている。文字は TextMeshPro を想定し、数字だけの文字は実行時に変わる候補として印を付けた。</li>
+      </ul></div></details>
+  </section>
+</div>
+
+<script>
+const DATA = /*__DATA__*/null;
+const CHANGES = /*__CHANGES__*/null;
+const HISTORY = /*__HISTORY__*/null;
+document.title = `${DATA.screen} 構造レポート ${DATA.version}`;
+document.getElementById('h1').textContent = `${DATA.screen} の Unity 構造レポート`;
+
+const $ = (s, r = document) => r.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SVGNS = 'http://www.w3.org/2000/svg';
+const LV = { error: 'エラー', warn: '注意', suggest: '提案', info: '情報' };
+const SRC = { area: 'area_ で指定', union: '中身の範囲', layer: 'レイヤーの範囲', glyphs: '文字の外接矩形（枠なし）', merged: 'まとめた画像の範囲', slot: '他の項目にそろえた枠', base: '_Base の画像', canvas: 'キャンバス' };
+
+const nodes = [], byPath = new Map(), byUid = new Map(), parentOf = new Map();
+(function index(n, parent) {
+  nodes.push(n); byUid.set(n.uid, n); if (parent) parentOf.set(n.uid, parent);
+  if (!byPath.has(n.path)) byPath.set(n.path, n);
+  if (n.base_image) byPath.set(n.base_image.path, n);
+  (n.children || []).forEach(c => index(c, n));
+})(DATA.tree, null);
+function findNode(p) { while (p) { if (byPath.has(p)) return byPath.get(p); const k = p.lastIndexOf('/'); if (k < 0) return null; p = p.slice(0, k); } return null; }
+const issueAt = new Map(); DATA.issues.forEach(i => { if (i.level === 'info') return; (i.paths || []).forEach(p => { const n = findNode(p); if (n && n.role !== 'root') { const prev = issueAt.get(n.uid); if (!prev || prev === 'suggest') issueAt.set(n.uid, i.level); } }); });
+const kindOf = n => n.role === 'group' || n.role === 'root' ? 'G' : n.role === 'text' ? 'T' : 'I';
+
+// ---------- 要約
+(function header() {
+  const lv = { error: 0, warn: 0, suggest: 0, info: 0 }; DATA.issues.forEach(i => lv[i.level]++);
+  const parts = nodes.filter(n => n.role !== 'root');
+  $('#src').innerHTML = `<span>版: <b class="num">${esc(DATA.version)}</b>（元にした版 ${DATA.base_version ? `<span class="num">${esc(DATA.base_version)}</span>` : 'なし・初回'}）</span><span>元の PSD: <code>${esc(DATA.psd_file)}</code></span><span>書き出し: <span class="num">${esc(DATA.exported_at.replace('T', ' '))}</span></span><span>キャンバス: <span class="num">${DATA.canvas[0]}×${DATA.canvas[1]}</span></span>`;
+  const st = [
+    [parts.length, 'Unity に作る部品', ''],
+    [parts.filter(n => n.role === 'group').length, 'ゲームオブジェクト', ''],
+    [DATA.layouts.length, '並び（_List）', ''],
+    [`${DATA.prefabs.filter(p => p.explicit).length} / ${DATA.prefabs.filter(p => !p.explicit && !p.inside_prefab).length}`, 'Prefab 指定 / 候補', ''],
+    [lv.error + lv.warn, 'エラーと注意', lv.error ? 'err' : ''],
+    [lv.suggest, '提案', 'sug'],
+  ];
+  $('#stats').innerHTML = st.map(([v, l, c]) => `<div class="stat ${c}"><b>${v}</b><span>${l}</span></div>`).join('');
+})();
+
+// ---------- 図
+const ov = $('#ov'), tip = $('#tip'), fig = $('#fig'), layers = {};
+function g(cls) { const e = document.createElementNS(SVGNS, 'g'); e.setAttribute('class', cls); ov.appendChild(e); return e; }
+function rect(parent, r, cls, n) {
+  const e = document.createElementNS(SVGNS, 'rect');
+  e.setAttribute('x', r[0]); e.setAttribute('y', r[1]); e.setAttribute('width', Math.max(r[2], 1)); e.setAttribute('height', Math.max(r[3], 1));
+  e.setAttribute('class', 'ov ' + cls);
+  if (n) { e.addEventListener('click', ev => { ev.stopPropagation(); select(n.uid, true); });
+    e.addEventListener('mousemove', ev => showTip(ev, n)); e.addEventListener('mouseleave', () => tip.hidden = true); }
+  parent.appendChild(e); return e;
+}
+['leaf', 'text', 'grp', 'prefab', 'list', 'space', 'issue', 'sel'].forEach(k => layers[k] = g('L-' + k));
+nodes.forEach(n => {
+  if (n.role === 'root') return;
+  if (n.role !== 'text') rect(layers.leaf, n.rect, 'leaf', n);
+  if (n.role === 'text') rect(layers.text, n.rect, 'text', n);
+  if (n.role === 'group' && n.layout == null) rect(layers.grp, n.rect, 'grp', n);
+  if (n.prefab) rect(layers.prefab, n.rect, 'prefab' + (n.prefab.kind === 'explicit' ? '' : ' cand'), n);
+  if (issueAt.has(n.uid)) rect(layers.issue, n.rect, 'issue' + (issueAt.get(n.uid) !== 'suggest' ? ' bad' : ''), n);
+});
+DATA.layouts.forEach(l => {
+  const grp = byPath.get(l.group_path); if (!grp) return;
+  rect(layers.list, grp.rect, 'list', grp);
+  const items = (grp.children || []).filter(c => c.layout_item);
+  for (let i = 0; i + 1 < items.length; i++) {
+    const a = items[i].rect, b = items[i + 1].rect, bad = !l.uniform && l.pitches[i] !== l.pitch;
+    const e = document.createElementNS(SVGNS, 'rect');
+    if (l.axis === 'horizontal') { e.setAttribute('x', a[0] + a[2]); e.setAttribute('y', a[1]); e.setAttribute('width', Math.max(b[0] - a[0] - a[2], 2)); e.setAttribute('height', a[3]); }
+    else { e.setAttribute('x', a[0]); e.setAttribute('y', a[1] + a[3]); e.setAttribute('width', a[2]); e.setAttribute('height', Math.max(b[1] - a[1] - a[3], 2)); }
+    e.setAttribute('class', 'gap-mark' + (bad ? ' bad' : '')); layers.list.appendChild(e);
+  }
+});
+const TOG = ['grp', 'list', 'prefab', 'space', 'text', 'issue'];
+const SPMEAN = { spacing: '並びの間隔', padding: '内側の余白', anchor: '画面端からの距離', margin: '部品の間の距離', unused: 'どこにも接していない' };
+(DATA.spaces || []).forEach(sp => {
+  const r = sp.rect, e = rect(layers.space, r, 'space', null);
+  e.addEventListener('mousemove', ev => { const box = fig.getBoundingClientRect(); tip.innerHTML = `<div class="mono">${esc(sp.name)}</div><div>${SPMEAN[sp.meaning] || ''}${sp.value != null ? ' ・ ' + sp.value + 'px' : ''}${sp.target ? ' ・ ' + esc(sp.target) + ' を' + ({left:'左',right:'右',top:'上',bottom:'下'})[sp.side] + '端に固定' : ''}</div>`; tip.hidden = false; tip.style.left = Math.min(ev.clientX - box.left + 14, box.width - 260) + 'px'; tip.style.top = (ev.clientY - box.top + 14) + 'px'; });
+  e.addEventListener('mouseleave', () => tip.hidden = true);
+  if (sp.value != null) { const t = document.createElementNS(SVGNS, 'text'); const vert = r[3] > r[2], flip = vert && r[0] + r[2] + 40 > DATA.canvas[0]; t.setAttribute('x', vert ? (flip ? r[0] - 6 : r[0] + r[2] + 6) : r[0] + r[2] / 2); t.setAttribute('y', vert ? r[1] + r[3] / 2 + 7 : (r[1] < 30 ? r[1] + r[3] + 22 : r[1] - 6)); t.setAttribute('text-anchor', vert ? (flip ? 'end' : 'start') : 'middle'); t.setAttribute('class', 'space-label'); t.textContent = sp.value; layers.space.appendChild(t); }
+});
+function syncToggles() { TOG.forEach(k => layers[k].style.display = $('#t-' + k).checked ? '' : 'none'); }
+TOG.forEach(k => $('#t-' + k).addEventListener('change', syncToggles)); syncToggles();
+function showTip(ev, n) {
+  const box = fig.getBoundingClientRect();
+  const what = n.role === 'group' ? (n.layout != null ? '並び（_List）' : 'ゲームオブジェクト') : n.role === 'text' ? '文字' : (n.merged ? 'まとめた画像' : '画像');
+  tip.innerHTML = `<div class="mono">${esc(n.unity.name)}</div><div>${what}${n.prefab ? (n.prefab.kind === 'explicit' ? ' ・ Prefab' : ' ・ Prefab 候補') : ''}${n.base_image ? ' ・ 自身の画像あり' : ''}</div><div class="mono">${n.unity.sizeDelta.join('×')}</div>`;
+  tip.hidden = false;
+  let x = ev.clientX - box.left + 14, y = ev.clientY - box.top + 14;
+  if (x + 240 > box.width) x -= 264; if (y + 80 > box.height) y -= 94;
+  tip.style.left = x + 'px'; tip.style.top = y + 'px';
+}
+fig.addEventListener('click', () => { tip.hidden = true; });
+
+// ---------- ツリー
+function chipsFor(n) {
+  const c = [];
+  if (n.layout != null) c.push(`<span class="chip list">${DATA.layouts[n.layout].axis === 'horizontal' ? '横並び' : '縦並び'}</span>`);
+  if (n.prefab?.kind === 'explicit') c.push(`<span class="chip prefab">Prefab${n.prefab.variant ? '・派生' : ''}</span>`);
+  else if (n.prefab) c.push('<span class="chip pcand">Prefab 候補</span>');
+  if (n.base_image) c.push('<span class="chip base">自身の画像</span>');
+  if (n.auto_item) c.push('<span class="chip auto">並びの項目</span>');
+  if (n.merged === 'auto') c.push('<span class="chip auto">自動でまとめた</span>');
+  if (n.merged === 'img') c.push('<span class="chip base">_Img</span>');
+  if (n.hint_dynamic) c.push('<span class="chip dyn">実行時に変わる</span>');
+  return c.join('');
+}
+function buildTree(n) {
+  const li = document.createElement('li'); li.setAttribute('role', 'treeitem');
+  const kids = n.children || [];
+  li.innerHTML = `<div class="row" tabindex="0" data-uid="${n.uid}">${kids.length ? '<button class="tw" aria-label="開閉">▾</button>' : '<span class="tw"></span>'}<span class="kind">${kindOf(n)}</span><span class="nm">${esc(n.unity.name)}</span>${chipsFor(n)}<span class="sz">${n.unity.sizeDelta.join('×')}</span></div>`;
+  if (kids.length) {
+    const ul = document.createElement('ul'); ul.setAttribute('role', 'group');
+    kids.forEach(c => ul.appendChild(buildTree(c))); li.appendChild(ul);
+    const tw = li.querySelector('.tw');
+    tw.addEventListener('click', ev => { ev.stopPropagation(); ul.hidden = !ul.hidden; tw.textContent = ul.hidden ? '▸' : '▾'; });
+  }
+  const row = li.querySelector('.row');
+  row.addEventListener('click', () => select(n.uid, false));
+  row.addEventListener('keydown', ev => { if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); select(n.uid, false); } });
+  return li;
+}
+const rootUl = document.createElement('ul'); rootUl.appendChild(buildTree(DATA.tree)); $('#tree').appendChild(rootUl);
+
+function select(uid, fromFigure) {
+  const n = byUid.get(uid); if (!n) return;
+  document.querySelectorAll('.row.sel').forEach(e => e.classList.remove('sel'));
+  const row = document.querySelector(`.row[data-uid="${uid}"]`);
+  if (row) {
+    for (let ul = row.parentElement.parentElement; ul && ul.id !== 'tree'; ul = ul.parentElement)
+      if (ul.tagName === 'UL' && ul.hidden) { ul.hidden = false; const tw = ul.parentElement.querySelector(':scope > .row .tw'); if (tw) tw.textContent = '▾'; }
+    row.classList.add('sel');
+    const tree = $('#tree'), rt = row.getBoundingClientRect(), tt = tree.getBoundingClientRect();
+    if (rt.top < tt.top || rt.bottom > tt.bottom) tree.scrollTop += rt.top - tt.top - tt.height / 3;
+  }
+  layers.sel.innerHTML = ''; if (n.role !== 'root') rect(layers.sel, n.rect, 'sel', null);
+  renderDetail(n);
+  if (fromFigure) $('#h-tree').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+}
+function renderDetail(n) {
+  const u = n.unity, p = parentOf.get(n.uid), rows = [];
+  const what = n.role === 'root' ? 'キャンバス' : n.role === 'group' ? (n.auto_item ? 'ゲームオブジェクト（_List の項目なので自動）' : 'ゲームオブジェクト') : n.role === 'text' ? '文字' : n.merged === 'img' ? `画像（_Img で ${n.merged_count} 枚を 1 枚に）` : n.merged === 'auto' ? `画像（印が無いので ${n.merged_count} 枚を自動で 1 枚に）` : '画像';
+  rows.push(['種類', what]);
+  if (n.name !== u.name) rows.push(['PSD 上の名前', `<code>${esc(n.name)}</code>`]);
+  if (n.marks?.length && n.role !== 'root') rows.push(['印', n.marks.map(m => `<code>_${m[0].toUpperCase() + m.slice(1)}</code>`).join(' ')]);
+  if (p) rows.push(['親', `<code>${esc(p.unity.name)}</code>`]);
+  if (n.from_dissolved) rows.push(['元のグループ', `印の無い <code>${esc(n.from_dissolved)}</code> から出した`]);
+  if (n.role !== 'root') {
+    rows.push(['PSD 上の矩形', `<span class="num">x ${n.rect[0]}, y ${n.rect[1]}, ${n.rect[2]}×${n.rect[3]}</span>`]);
+    rows.push(['大きさの根拠', esc(SRC[n.rect_source] || n.rect_source) + (n.group_area_from ? `（<code>${esc(n.group_area_from)}</code>）` : '') + (n.text_box_from ? `（<code>${esc(n.text_box_from)}</code>）` : '') + (n.rect_source === 'base' ? `（<code>${esc(n.base_image.name)}</code>）` : '')]);
+  }
+  if (n.rect_original) rows.push(['元の範囲', `<span class="num">${n.rect_original[2]}×${n.rect_original[3]}</span>（はみ出しを含む）`]);
+  rows.push(['anchoredPosition', `<span class="num">(${u.anchoredPosition.join(', ')})</span>`]);
+  rows.push(['sizeDelta', `<span class="num">(${u.sizeDelta.join(', ')})</span>`]);
+  if (n.image) rows.push(['画像ファイル', `<code>${esc(n.image.file)}</code>${n.image.shared ? '（同じ絵を共有）' : ''}`]);
+  if (n.base_image?.image) rows.push(['画像ファイル', `<code>${esc(n.base_image.image.file)}</code>${n.base_image.image.shared ? '（同じ絵を共有）' : ''}`]);
+  if (n.base_image) rows.push(['自身の画像', `<code>${esc(n.base_image.name)}</code>${n.base_image.merged ? '（複数レイヤーを 1 枚に）' : ''}`]);
+  if (n.layout != null) { const l = DATA.layouts[n.layout]; rows.push(['並び', `${l.axis === 'horizontal' ? '横' : '縦'} ${l.items.length} 個 ・ ピッチ <span class="num">${l.pitch}px</span> ・ spacing <span class="num">${l.spacing}px</span>${l.spacing_source ? `（<code>${esc(l.spacing_source)}</code> で指定）` : '（位置から計算）'}`]); if (l.padding_source) rows.push(['内側の余白', Object.entries(l.padding_source).map(([k, v]) => `${({left:'左',right:'右',top:'上',bottom:'下'})[k]} ${l.padding_lrtb[['left','right','top','bottom'].indexOf(k)]}px（<code>${esc(v)}</code>）`).join('、')]); }
+  if (n.anchor) { const j = { left: '左端', right: '右端', top: '上端', bottom: '下端' }; rows.push(['固定', Object.values(n.anchor).map(a => `${j[a.side]}から ${a.offset}px（<code>${esc(a.from)}</code>）`).join('、') + `<br><span class="muted">anchor (${u.anchorMin.join(', ')}) ・ pivot (${u.pivot.join(', ')})</span>`]); }
+  if (n.layout_item) rows.push(['並びの項目', '位置とサイズは親の LayoutGroup が決める。この部品の位置を個別に動かすアニメーションがある場合だけ「枠＋見た目」の 2 段にする']);
+  if (n.prefab) { const pf = DATA.prefabs[n.prefab.index]; rows.push(['Prefab', n.prefab.kind === 'explicit' ? `「${esc(pf.name)}」（${pf.members.length} 個のインスタンス）${n.prefab.variant ? '。他のインスタンスと中身が違う派生' : ''}` : `「${esc(pf.name)}」の候補（同じ構造が ${pf.members.length} 個）${pf.inside_prefab ? `。Prefab「${esc(pf.inside_prefab)}」の一部` : ''}`]); }
+  if (n.role === 'text' && n.text) {
+    rows.push(['文字', `「${esc(n.text.content)}」`]);
+    rows.push(['書式', `<span class="num">${esc(n.text.font || '')} ${n.text.size ?? ''}px ${esc(n.text.color || '')}</span> ・ ${({left:'左揃え',center:'中央揃え',right:'右揃え'})[n.text.align] || ''}`]);
+  }
+  if (n.merged_text?.length) rows.push(['焼き込む文字', esc(n.merged_text.join(' / '))]);
+  const mine = DATA.issues.filter(i => (i.paths || []).some(pp => findNode(pp) === n));
+  const comps = (u.components || []).map(c => `<span class="chip${c.endsWith('?') ? ' cand' : ''}">${esc(c.replace('?', ''))}${c.endsWith('?') ? '（候補）' : ''}</span>`).join('');
+  $('#detail').innerHTML = `
+    <div><p class="mono" style="font-size:15px;font-weight:500;overflow-wrap:anywhere">${esc(u.name)}</p><p class="muted mono" style="font-size:12px;overflow-wrap:anywhere">${esc(n.path || 'Canvas')}</p></div>
+    <dl class="kv">${rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join('')}</dl>
+    <div><p class="eyebrow" style="margin-bottom:6px">UNITY コンポーネント</p><div class="comps">${comps}</div></div>
+    ${mine.map(i => `<p class="note"><b class="lv ${i.level}" style="padding:0 6px;margin-right:6px">${LV[i.level]}</b>${esc(i.message)}</p>`).join('')}`;
+}
+
+// ---------- 提案と指摘
+let filter = 'all';
+function renderIssues() {
+  const list = DATA.issues.filter(i => filter === 'all' || (filter === 'problem' ? (i.level === 'error' || i.level === 'warn') : i.level === filter));
+  $('#issues').innerHTML = list.map(i => { const k = DATA.issues.indexOf(i); const n = i.paths?.length ? findNode(i.paths[0]) : null; return `
+    <div class="issue ${i.level}"><span class="lv ${i.level}">${LV[i.level]}</span>
+      <div style="min-width:0"><p class="msg">${esc(i.message)}</p>${i.paths?.length ? `<p class="where">${esc(i.paths.slice(0, 3).join('  ·  '))}${i.paths.length > 3 ? `  ほか ${i.paths.length - 3} か所` : ''}</p>` : ''}</div>
+      ${n && n.role !== 'root' ? `<button class="show" data-k="${k}">図で見る</button>` : '<span></span>'}</div>`; }).join('');
+  $('#issues').querySelectorAll('button.show').forEach(b => b.addEventListener('click', () => {
+    const n = findNode(DATA.issues[+b.dataset.k].paths[0]);
+    $('#t-issue').checked = true; syncToggles(); select(n.uid, false); $('#h-fig').scrollIntoView({ block: 'start' });
+  }));
+}
+(function filters() {
+  const c = l => DATA.issues.filter(i => i.level === l).length;
+  const opts = [['all', `すべて ${DATA.issues.length}`], ['problem', `エラーと注意 ${c('error') + c('warn')}`], ['suggest', `提案 ${c('suggest')}`], ['info', `情報 ${c('info')}`]];
+  $('#filters').innerHTML = opts.map(([k, l]) => `<button data-f="${k}" aria-pressed="${k === filter}">${l}</button>`).join('');
+  $('#filters').querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    filter = b.dataset.f; $('#filters').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b)); renderIssues();
+  }));
+  renderIssues();
+})();
+
+// ---------- 並び
+function stripSvg(l) {
+  const n = l.items.length, W = 170, pad = 6, step = (W - pad * 2) / Math.max(n - 1, 1);
+  let s = `<svg class="strip" viewBox="0 0 ${W} 18" aria-hidden="true">`;
+  for (let i = 0; i + 1 < n; i++) { const bad = !l.uniform && l.pitches[i] !== l.pitch; s += `<line x1="${pad + i * step}" y1="9" x2="${pad + (i + 1) * step}" y2="9" stroke="${bad ? 'var(--err)' : 'var(--list)'}" stroke-width="${bad ? 3 : 2}"/>`; }
+  for (let i = 0; i < n; i++) s += `<rect x="${pad + i * step - 4}" y="5" width="8" height="8" rx="1.5" fill="var(--fg)"/>`;
+  return s + '</svg>';
+}
+(function lists() {
+  const conf = { high: '高', medium: '中', check: '要確認' };
+  $('#lists').innerHTML = DATA.layouts.map(l => { const n = byPath.get(l.group_path); return `<tr tabindex="0" data-uid="${n.uid}">
+    <td><code>${esc(n.unity.name)}</code></td><td>${l.axis === 'horizontal' ? '横' : '縦'}</td><td class="n">${l.items.length}</td>
+    <td class="n">${l.pitch} / ${l.spacing}px${stripSvg(l)}</td><td>${l.spacing_source ? `<code>${esc(l.spacing_source)}</code>` : '位置から計算'}</td><td class="n">${l.item_size.join('×')}</td>
+    <td>${l.reordered ? '位置順に並べ替え' : 'PSD の順のまま'}</td><td><span class="conf ${l.confidence}">${conf[l.confidence]}</span></td></tr>`; }).join('');
+  $('#lists').querySelectorAll('tr').forEach(tr => { const go = () => { select(+tr.dataset.uid, false); $('#h-fig').scrollIntoView({ block: 'start' }); };
+    tr.addEventListener('click', go); tr.addEventListener('keydown', e => { if (e.key === 'Enter') go(); }); });
+})();
+
+// ---------- Prefab
+(function prefabs() {
+  const diffTxt = p => p.diffs.map(d => d.kind === 'text' ? `文字（${esc(d.values.join(' / '))}）` : d.kind === 'runtime' ? '数字（実行時にエンジニア側で入れる）' : `画像 <code>${esc(d.label)}</code>`).join('、') || 'なし';
+  $('#pfs').innerHTML = DATA.prefabs.filter(p => !p.inside_prefab).map(p => `
+    <div class="pf ${p.explicit ? 'explicit' : ''}"><div class="pf-h"><code>${esc(p.name)}</code><span class="chip ${p.explicit ? 'prefab' : 'pcand'}">${p.explicit ? '指定' : '候補'} × ${p.members.length}</span></div>
+      <div class="members">${p.paths.map((path, i) => `<button data-path="${esc(path)}" class="${p.variants.some(v => v.path === path) ? 'var' : ''}">${esc(p.members[i])}</button>`).join('')}</div>
+      <dl class="kv"><dt>置き場所</dt><dd><code>${esc(p.parent)}</code> の中</dd>
+      ${p.members.length > 1 ? `<dt>インスタンスごとの違い</dt><dd>${diffTxt(p)}</dd>` : '<dt>インスタンス</dt><dd>1 つ（画面に 1 つだけの Prefab）</dd>'}
+      ${p.variants.map(v => `<dt>派生</dt><dd><code>${esc(v.name)}</code>${v.extra.length ? ` は <code>${esc(v.extra.join('・'))}</code> が多い` : ' は中の構成が違う'}</dd>`).join('')}
+      ${p.explicit ? '' : '<dt>次の作業</dt><dd>Prefab にするなら、PSD の各グループ名に <code>_Prefab</code> を付ける</dd>'}</dl></div>`).join('');
+  $('#pfs').querySelectorAll('button[data-path]').forEach(b => b.addEventListener('click', () => {
+    const n = byPath.get(b.dataset.path); if (!n) return;
+    $('#t-prefab').checked = true; syncToggles(); select(n.uid, false); $('#h-fig').scrollIntoView({ block: 'start' });
+  }));
+})();
+
+// ---------- 補足
+(function more() {
+  const ch = CHANGES;
+  if (!ch) {
+    $('#changes summary').textContent = '前の版からの変更（初回の書き出しのため、比べる版はありません）';
+    $('#changes > div').innerHTML = '<p class="muted" style="font-size:13.5px">次の書き出しから、前の版と比べて追加・削除・変更された部品をここに一覧にします。</p>';
+  } else {
+    $('#changes summary').textContent = `前の版 ${DATA.base_version} からの変更（追加 ${ch.added.length}・削除 ${ch.removed.length}・変更 ${ch.changed.length}）`;
+    const li = (cls, label, p, extra) => `<li><span class="lv ${cls}">${label}</span><span><code>${esc(p)}</code>${extra ? ' ・ ' + esc(extra) : ''}</span></li>`;
+    $('#changes > div').innerHTML = `<ul class="mini-issues">${ch.added.map(p => li('suggest', '追加', p)).join('')}${ch.removed.map(p => li('error', '削除', p)).join('')}${ch.changed.map(c => li('warn', '変更', c.path, c.fields.join('、'))).join('')}</ul>`;
+  }
+  $('#history summary').textContent = `書き出しの記録（${HISTORY.length} 件）`;
+  $('#history > div').innerHTML = `<div class="tbl-wrap"><table style="min-width:560px"><thead><tr><th>版</th><th>書き出し日時</th><th>元の PSD</th><th>元にした版</th><th>変更</th><th>エラー / 注意 / 提案</th></tr></thead><tbody>${[...HISTORY].reverse().map(h => `<tr><td class="n">${esc(h.version)}</td><td class="n">${esc(h.exported_at.replace('T', ' '))}</td><td><code>${esc(h.psd_file)}</code></td><td class="n">${esc(h.base_version || '—')}</td><td>${h.changes ? `追加 ${h.changes.added}・削除 ${h.changes.removed}・変更 ${h.changes.changed}` : '初回'}</td><td class="n">${h.issues.error} / ${h.issues.warn} / ${h.issues.suggest}</td></tr>`).join('')}</tbody></table></div>`;
+  $('#fonts summary').textContent = `使われているフォント（${(DATA.fonts || []).length} 種類）`;
+  $('#fonts > div').innerHTML = `<p class="muted" style="font-size:13.5px">Unity の TextMeshPro で使うフォントとの対応表を作るときの一覧です。</p><ul class="mini-issues">${(DATA.fonts || []).map(f => `<li><span class="lv info">${f.size ?? ''}px</span><span><code>${esc(f.font || '不明')}</code></span></li>`).join('')}</ul>`;
+})();
+
+(function init() { const n = nodes.find(x => x.unity.name === 'Mark_Attention'); if (n) select(n.uid, false); })();
+</script>
