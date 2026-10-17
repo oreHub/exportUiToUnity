@@ -19,4 +19,6 @@ https://github.com/oreHub/exportUiToUnity.git?path=/buildUiToUnityPackage/packag
 1. 書き出しフォルダ `UIExport/<画面ID>/` を、プロジェクトの `Assets` の外（プロジェクトの直下など）に置く
 2. メニューの Tools > Build UI To Unity を開く
 3. 書き出しフォルダを選び、画面の版と問題の件数を確かめる
-4. 取り込み（未実装）
+4. 「今のシーンに取り込む」か「新しいシーンに取り込む…」（保存先を選ぶ）を押す
+   - 画像と Prefab は「取り込み先」（既定 `Assets/UI`）の `<画面ID>/` の下に置かれる
+   - 文字は TextMeshPro の既定のフォントになる（先に Window > TextMeshPro > Import TMP Essential Resources が要る）

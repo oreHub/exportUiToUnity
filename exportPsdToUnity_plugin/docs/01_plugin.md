@@ -67,6 +67,11 @@ Python 版との違い: 画像のハッシュの計算方法が違うので、Py
 - 解析した後に名前が変わっていないかを、変更の前に確かめる（変わっていたら変更せず、解析し直してもらう）
 - Photoshop の文字の範囲はフォントの更新で変わることがある（別の PC で開いたときなど）
 - ドキュメントの解像度が 72 以外でも、文字の大きさは px に直して出す（96dpi の PSD で確認）
+- 書き出しで使う次の操作は、実機で動いた（2026-10-17、Home.psd）: レイヤーを新しいドキュメントに複製（`make` document `using` layer）、
+  `mergeVisible`、`Document.crop`、`saveAs.png`（透明を保つ）、`XMPMetadataAsUTF8` の読み書き、`Document.save`、
+  フォルダの許可の記録（`createPersistentToken`）
+- Photoshop が書き出した画像は、Python 版（psd-tools）とシェイプのふちのアンチエイリアスが少し違う。正は Photoshop の方。
+  効果の範囲も 1〜2px 違うことがある（`Gauge_ChrLv.Base` で 444×16 / 443×14）
 
 ## パネルの見た目（ユーザーが決めた値）
 

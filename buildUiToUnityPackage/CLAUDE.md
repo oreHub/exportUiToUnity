@@ -39,5 +39,6 @@ PSD ─[Photoshop プラグイン]→ <Unityプロジェクト>/UIExport/<画面
 
 ## 次にやること
 
-1. ユーザーが Unity Hub で `dev_buildUiToUnity/` を作る（`docs/01_setup.md`）
-2. `docs/02_importer_plan.md` の「段階 1」から
+1. （済）`dev_buildUiToUnity/` を作り、パッケージを参照して一覧の表示を確認した（2026-10-17）
+2. （済）段階 1（新規の取り込み）。0.2.0 で Home 261017-3 を新しいシーンに取り込み、Prefab 6 個（フッターは 1 つの Prefab と 6 インスタンス）を確認（2026-10-18）
+3. `docs/02_importer_plan.md` の「段階 2」（再取り込み）。先に直下の `docs/07_backlog.md` のブラッシュアップ項目と優先を決める

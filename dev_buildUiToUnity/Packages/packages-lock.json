@@ -1,5 +1,13 @@
 {
   "dependencies": {
+    "com.company.builduitounity": {
+      "version": "file:../../buildUiToUnityPackage/package",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {
+        "com.unity.ugui": "2.0.0"
+      }
+    },
     "com.unity.2d.animation": {
       "version": "13.0.4",
       "depth": 0,

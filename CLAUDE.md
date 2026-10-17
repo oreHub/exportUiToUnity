@@ -23,10 +23,10 @@ PSD（印つき） ─[exportPsdToUnity_plugin]→ <Unityプロジェクト>/UIE
 | `CLAUDE.md` / `README.md` | 全体の決まり / 入口 | |
 | `docs/` | 全ツール共通の仕様（流れ、印の規則、版の管理、layout.json の形、動きのデータの形、決定の記録、全体の残作業） | |
 | `samples/` | 共通の試験データ（PSD、`UIExport/` の書き出し結果、後で AE ファイル） | |
-| `exportPsdToUnity_plugin/` | Photoshop プラグイン（PSD を解析・修正し、UI の構造と画像を書き出す）。`plugin/`（UXP）、`tools/`（Python 版）、`tests/` | 段階 1・2 完成。段階 3（書き出し）は実機の確認待ち |
+| `exportPsdToUnity_plugin/` | Photoshop プラグイン（PSD を解析・修正し、UI の構造と画像を書き出す）。`plugin/`（UXP）、`tools/`（Python 版）、`tests/` | 段階 1・2 完成。段階 3（書き出し）は実機でおおむね確認済み（残りは `exportPsdToUnity_plugin/docs/02_backlog.md`） |
 | `exportAeToUnity_plugin/` | After Effects パネル（予定）。`CLAUDE.md` と `docs/` だけ | 未着手 |
-| `buildUiToUnityPackage/` | Unity 取り込みツール。`package/`（UPM パッケージ本体。配布するのはここだけ）、`CLAUDE.md`・`docs/`（開発用） | 0.1.0（一覧の表示のみ。取り込みは未実装） |
-| `dev_buildUiToUnity/` | 共通のテスト用 Unity 6 プロジェクト（ユーザーが Unity Hub で作る。自動生成物は git に入れない） | まだ無い |
+| `buildUiToUnityPackage/` | Unity 取り込みツール。`package/`（UPM パッケージ本体。配布するのはここだけ）、`CLAUDE.md`・`docs/`（開発用） | 0.2.0（段階 1: シーンへの新規の取り込みと Prefab。実機で確認済み） |
+| `dev_buildUiToUnity/` | 共通のテスト用 Unity 6 プロジェクト（自動生成物は git に入れない）。パッケージを `file:../../buildUiToUnityPackage/package` で参照 | 作成済み（2026-10-17） |
 
 ## 命名の決まり
 
@@ -64,7 +64,7 @@ PSD（印つき） ─[exportPsdToUnity_plugin]→ <Unityプロジェクト>/UIE
 
 ## 次にやること（詳細は `docs/07_backlog.md` と各ツールの docs）
 
-1. Photoshop プラグイン段階 3: 書き出しの実機確認と修正（`exportPsdToUnity_plugin/`）
-2. テスト用の Unity プロジェクト `dev_buildUiToUnity/` を作る（`buildUiToUnityPackage/docs/01_setup.md`）→ 取り込みツールの段階 1
+1. Photoshop プラグイン段階 3: 残りの確認（report.html、記録の無い PSD、上書き、枠からのはみ出し）と、見つかった課題の修正
+2. Unity 取り込みツールの段階 2: 再取り込み（`buildUiToUnityPackage/docs/02_importer_plan.md`）。段階 1 は済み（2026-10-18）
 3. layout.json に `format_version` を足し、読む側で確かめる
 4. `_Fx`（効果を別画像に分ける）の印の読み取りと書き出し

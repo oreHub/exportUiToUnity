@@ -8,8 +8,8 @@ using UnityEngine;
 namespace BuildUiToUnity.Editor
 {
     /// <summary>
-    /// 書き出しフォルダ（UIExport）の中の画面を一覧し、版と問題の件数を見るウインドウ。
-    /// 取り込み（GameObject の組み立て）はこれから作る（buildUiToUnityPackage/docs/02_importer_plan.md）。
+    /// 書き出しフォルダ（UIExport）の中の画面を一覧し、版と問題の件数を見て、シーンに取り込むウインドウ。
+    /// 取り込みの中身は UiBuilder（buildUiToUnityPackage/docs/02_importer_plan.md の段階 1）。
     /// </summary>
     public class BuildUiToUnityWindow : EditorWindow
     {
@@ -40,12 +40,15 @@ namespace BuildUiToUnity.Editor
         static readonly string[] Levels = { "error", "warn", "suggest", "info" };
 
         string exportRoot;
+        string assetRoot;
         Vector2 scroll;
         readonly List<ScreenInfo> screens = new List<ScreenInfo>();
 
         // EditorPrefs は PC 全体で共有されるので、プロジェクトごとに分ける
         static string PrefKey => "BuildUiToUnity.ExportRoot:" + Application.dataPath;
         static string DefaultRoot => Path.GetFullPath(Path.Combine(Application.dataPath, "..", "UIExport"));
+        static string AssetPrefKey => "BuildUiToUnity.AssetRoot:" + Application.dataPath;
+        const string DefaultAssetRoot = "Assets/UI";
 
         [MenuItem("Tools/Build UI To Unity")]
         static void Open() => GetWindow<BuildUiToUnityWindow>("Build UI To Unity");
@@ -53,6 +56,7 @@ namespace BuildUiToUnity.Editor
         void OnEnable()
         {
             exportRoot = EditorPrefs.GetString(PrefKey, DefaultRoot);
+            assetRoot = EditorPrefs.GetString(AssetPrefKey, DefaultAssetRoot);
             Scan();
         }
 
@@ -103,6 +107,32 @@ namespace BuildUiToUnity.Editor
                 if (GUILayout.Button("再読み込み", GUILayout.Width(80))) Scan();
             }
 
+            EditorGUILayout.LabelField("取り込み先（Assets の中。画像と Prefab を <画面ID>/ の下に置く）", EditorStyles.boldLabel);
+            using (new EditorGUILayout.HorizontalScope())
+            {
+                EditorGUILayout.SelectableLabel(assetRoot, EditorStyles.textField, GUILayout.Height(EditorGUIUtility.singleLineHeight));
+                if (GUILayout.Button("選ぶ…", GUILayout.Width(60)))
+                {
+                    var p = EditorUtility.OpenFolderPanel("取り込み先（Assets の中）を選ぶ", Application.dataPath, "");
+                    var full = Path.GetFullPath(Application.dataPath).Replace(Path.DirectorySeparatorChar, '/');
+                    if (!string.IsNullOrEmpty(p))
+                    {
+                        p = Path.GetFullPath(p).Replace(Path.DirectorySeparatorChar, '/');
+                        if (p == full || p.StartsWith(full + "/"))
+                        {
+                            assetRoot = "Assets" + p.Substring(full.Length);
+                            EditorPrefs.SetString(AssetPrefKey, assetRoot);
+                        }
+                        else EditorUtility.DisplayDialog("Build UI To Unity", "Assets の中のフォルダを選んでください。", "OK");
+                    }
+                }
+                if (GUILayout.Button("既定に戻す", GUILayout.Width(80)))
+                {
+                    assetRoot = DefaultAssetRoot;
+                    EditorPrefs.SetString(AssetPrefKey, assetRoot);
+                }
+            }
+
             if (!Directory.Exists(exportRoot))
             {
                 EditorGUILayout.HelpBox("フォルダがありません。プラグインで書き出すか、「選ぶ…」でフォルダを指定してください。", MessageType.Warning);
@@ -134,12 +164,21 @@ namespace BuildUiToUnity.Editor
                         EditorGUILayout.LabelField("画面", $"{h.canvas[0]} × {h.canvas[1]}");
                     EditorGUILayout.LabelField("問題", $"エラー {s.counts[0]} / 注意 {s.counts[1]} / 提案 {s.counts[2]} / 情報 {s.counts[3]}");
                     if (s.counts[0] > 0)
-                        EditorGUILayout.HelpBox("エラーがあります。取り込むと構造が崩れる可能性があります（取り込むときに確認を出す予定）。", MessageType.Warning);
+                        EditorGUILayout.HelpBox("エラーがあります。取り込むと構造が崩れる可能性があります（取り込むときに確認を出します）。", MessageType.Warning);
 
                     using (new EditorGUILayout.HorizontalScope())
                     {
-                        using (new EditorGUI.DisabledScope(true))
-                            GUILayout.Button("取り込み（未実装）");
+                        // シーンを変える処理は、画面の描画が終わってから行う（描画の途中で変えるとエラーになる）
+                        if (GUILayout.Button("今のシーンに取り込む"))
+                        {
+                            var dir = s.dir; var root = assetRoot;
+                            EditorApplication.delayCall += () => UiBuilder.Import(dir, root, SceneTarget.Current);
+                        }
+                        if (GUILayout.Button("新しいシーンに取り込む…"))
+                        {
+                            var dir = s.dir; var root = assetRoot;
+                            EditorApplication.delayCall += () => UiBuilder.Import(dir, root, SceneTarget.New);
+                        }
                         if (GUILayout.Button("report.html を開く"))
                             Application.OpenURL("file:///" + Path.Combine(s.dir, "report.html").Replace("\\", "/"));
                     }
